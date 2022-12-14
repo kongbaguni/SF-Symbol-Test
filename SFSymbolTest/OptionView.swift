@@ -64,10 +64,10 @@ struct OptionView: View {
         var forgroundColorSelect:Int
         
         init() {
-            renderingModeSelect = 0
-            variantSelect = 0
-            fontWeightSelect = 0
-            forgroundColorSelect = 0
+            renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
+            variantSelect = UserDefaults.standard.integer(forKey: "variantSelect")
+            fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
+            forgroundColorSelect = UserDefaults.standard.integer(forKey: "forgroundColorSelect")
         }
         
         var renderingMode:SymbolRenderingMode {
@@ -85,13 +85,18 @@ struct OptionView: View {
         var forgroundColor:Color {
             colorList[forgroundColorSelect].1
         }
+        
+        func save() {
+            UserDefaults.standard.set(renderingModeSelect, forKey: "renderingModeSelect")
+            UserDefaults.standard.set(variantSelect, forKey: "variantSelect")
+            UserDefaults.standard.set(fontWeightSelect, forKey: "fontWeightSelect")
+            UserDefaults.standard.set(forgroundColorSelect, forKey: "forgroundColorSelect")
+        }
+        
     }
     
     @Binding var data:Data
-    
-
-    
-    
+        
     var body: some View {
         ScrollView {
             HStack {
@@ -143,7 +148,10 @@ struct OptionView: View {
                 }
                 Spacer()
             }.padding(.leading,20)
-        }        
+        }
+        .onDisappear {
+            data.save()
+        }
     }
 }
 
