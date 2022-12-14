@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct SymbolListView: View {
-    private func getColumns(isWide:Bool)->[GridItem] {
-        isWide
-        ? [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-        : [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    }
- 
-    @State var optionData:OptionView.Data = .init()
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
+    @State var optionData:OptionView.Data = .init()
     @State var keyword:String = ""
     @State var isPushView:Bool = false
+    
+    func isInKeyword(imgName:String)->Bool? {
+        let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if kwd.isEmpty {
+            return nil
+        }
+        return imgName.contains(kwd)
+    }
+    
     func getImageView(imgName:String)-> some View {
         NavigationLink  {
             SFSymbolDetailView(imageName: imgName, optionData: $optionData)
         } label: {
             VStack {
-                let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                let a = kwd.isEmpty
-                let b = imgName.contains(kwd)
-                let isBold = !a && b
+                let isBold = isInKeyword(imgName: imgName) == true
                 Image(systemName: imgName)
                     .imageScale(.large)
                     .padding(.leading,5)
@@ -39,7 +40,7 @@ struct SymbolListView: View {
                     .foregroundColor(optionData.forgroundColor)
                 
                 Text(imgName)
-                    .font(.system(size: 8, weight: isBold ? .heavy : .regular))
+                    .font(.system(size: 12))
                     .padding(5)
                 Spacer()
             }
@@ -47,17 +48,16 @@ struct SymbolListView: View {
     }
     
     var body: some View {
-        GeometryReader { geomentry in
-            ScrollView {
-
-                ForEach(symbolKeys, id:\.self) { key in
-                    HStack {
-                        Text(key)
-                        Spacer()
-                    }.padding(20)
-                    if let names = symbolNames[key] {
-                        LazyVGrid(columns: getColumns(isWide: geomentry.size.width > geomentry.size.height)) {
-                            ForEach(0..<names.count, id:\.self) { j in
+        ScrollView {
+            ForEach(symbolKeys, id:\.self) { key in
+                HStack {
+                    Text(key)
+                    Spacer()
+                }.padding(20)
+                if let names = symbolNames[key] {
+                    LazyVGrid(columns: columns) {
+                        ForEach(0..<names.count, id:\.self) { j in
+                            if isInKeyword(imgName: names[j]) != false  {
                                 getImageView(imgName: names[j])
                                     .padding(5)
                             }
@@ -65,8 +65,8 @@ struct SymbolListView: View {
                     }
                 }
             }
-            .searchable(text: $keyword)
         }
+        .searchable(text: $keyword)
         .toolbar {
             NavigationLink {
                 OptionView(data: $optionData)
@@ -74,7 +74,7 @@ struct SymbolListView: View {
             } label: {
                 Image(systemName:"line.3.horizontal")
             }
-
+            
         }
     }
 }
