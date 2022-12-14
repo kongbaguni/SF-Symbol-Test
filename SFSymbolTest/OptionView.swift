@@ -143,8 +143,7 @@ struct OptionView: View {
                 }
                 Spacer()
             }.padding(.leading,20)
-        }
-        .navigationTitle(Text("Option"))
+        }        
     }
 }
 

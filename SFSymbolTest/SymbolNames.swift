@@ -7,6 +7,27 @@
 
 import Foundation
 let symbolNames:[String:[String]] = [
+    "새로운 기호": [
+        "backpack.circle",
+        "backpack.circle.fill",
+        "person.crop.circle.dashed",
+        "figure.run.square.stack",
+        "figure.run.square.stack.fill",
+        "lane",
+        "1.lane",
+        "2.lane",
+        "3.lane",
+        "4.lane",
+        "5.lane",
+        "6.lane",
+        "7.lane",
+        "8.lane",
+        "9.lane",
+        "10.lane",
+        "11.lane",
+        "12.lane",
+    ],
+        
     "날씨" : [
         "aqi.high",
         "aqi.low",
@@ -28,6 +49,7 @@ let symbolNames:[String:[String]] = [
         "sun.max.trianglebadge.exclamationmark",
         "sun.max.trianglebadge.exclamationmark.fill"
     ],
+    
     "통신" : [
         "mic",
         "mic.fill",

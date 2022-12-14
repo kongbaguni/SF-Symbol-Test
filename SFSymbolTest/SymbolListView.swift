@@ -19,26 +19,30 @@ struct SymbolListView: View {
     @State var keyword:String = ""
     @State var isPushView:Bool = false
     func getImageView(imgName:String)-> some View {
-        VStack {
-            let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-            let a = kwd.isEmpty
-            let b = imgName.contains(kwd)
-            let isBold = !a && b
-            
-            Image(systemName: imgName)
-                .imageScale(.large)
-                .padding(.leading,5)
-                .padding(.trailing,5)
-                .padding(.bottom,10)
-                .symbolRenderingMode(optionData.renderingMode)
-                .symbolVariant(optionData.variants)
-                .fontWeight(optionData.fontWeight)
-                .foregroundColor(optionData.forgroundColor)
-            
-            Text(imgName)
-                .font(.system(size: 8, weight: isBold ? .heavy : .regular))
-                .padding(5)
-            Spacer()
+        NavigationLink  {
+            SFSymbolDetailView(imageName: imgName, optionData: $optionData)
+        } label: {
+            VStack {
+                let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+                let a = kwd.isEmpty
+                let b = imgName.contains(kwd)
+                let isBold = !a && b
+                Image(systemName: imgName)
+                    .imageScale(.large)
+                    .padding(.leading,5)
+                    .padding(.trailing,5)
+                    .padding(.bottom,10)
+                    .symbolRenderingMode(optionData.renderingMode)
+                    .symbolVariant(optionData.variants)
+                    .font(.system(size: 60))
+                    .fontWeight(optionData.fontWeight)
+                    .foregroundColor(optionData.forgroundColor)
+                
+                Text(imgName)
+                    .font(.system(size: 8, weight: isBold ? .heavy : .regular))
+                    .padding(5)
+                Spacer()
+            }
         }
     }
     
@@ -66,6 +70,7 @@ struct SymbolListView: View {
         .toolbar {
             NavigationLink {
                 OptionView(data: $optionData)
+                    .navigationTitle(Text("Option"))
             } label: {
                 Image(systemName:"line.3.horizontal")
             }
