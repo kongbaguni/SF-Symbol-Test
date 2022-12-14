@@ -120,6 +120,7 @@ struct OptionView: View {
             
             HStack {
                 Text("fontWeight")
+                    .fontWeight(data.fontWeight)
                 Picker(selection: $data.fontWeightSelect) {
                     ForEach(0..<fontWeights.count, id:\.self) { i in
                         Text(fontWeights[i].0)
@@ -132,6 +133,7 @@ struct OptionView: View {
             
             HStack {
                 Text("forground Color")
+                    .foregroundColor(data.forgroundColor)
                 Picker(selection: $data.forgroundColorSelect) {
                     ForEach(0..<colorList.count, id:\.self) { i in
                         Text(colorList[i].0)
