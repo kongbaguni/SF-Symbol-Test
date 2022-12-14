@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D96829929471E49006384E5 /* SFSymbolTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96829829471E49006384E5 /* SFSymbolTestApp.swift */; };
 		8D96829B29471E49006384E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96829A29471E49006384E5 /* ContentView.swift */; };
 		8D96829D29471E4E006384E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D96829C29471E4E006384E5 /* Assets.xcassets */; };
 		8D9682A029471E4E006384E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D96829F29471E4E006384E5 /* Preview Assets.xcassets */; };
+		8D9682A729471E71006384E5 /* SymbolNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9682A629471E71006384E5 /* SymbolNames.swift */; };
+		8D9F8588294837D700E35016 /* SymbolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F8587294837D700E35016 /* SymbolListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D96829529471E49006384E5 /* SFSymbolTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFSymbolTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D96829829471E49006384E5 /* SFSymbolTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolTestApp.swift; sourceTree = "<group>"; };
 		8D96829A29471E49006384E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D96829C29471E4E006384E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D96829F29471E4E006384E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8D9682A629471E71006384E5 /* SymbolNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolNames.swift; sourceTree = "<group>"; };
+		8D9F8587294837D700E35016 /* SymbolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +59,11 @@
 			children = (
 				8D96829829471E49006384E5 /* SFSymbolTestApp.swift */,
 				8D96829A29471E49006384E5 /* ContentView.swift */,
+				8D9F8587294837D700E35016 /* SymbolListView.swift */,
+				8D6AC70B2949A811003AABDA /* OptionView.swift */,
 				8D96829C29471E4E006384E5 /* Assets.xcassets */,
 				8D96829E29471E4E006384E5 /* Preview Content */,
+				8D9682A629471E71006384E5 /* SymbolNames.swift */,
 			);
 			path = SFSymbolTest;
 			sourceTree = "<group>";
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D9F8588294837D700E35016 /* SymbolListView.swift in Sources */,
+				8D9682A729471E71006384E5 /* SymbolNames.swift in Sources */,
 				8D96829B29471E49006384E5 /* ContentView.swift in Sources */,
+				8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */,
 				8D96829929471E49006384E5 /* SFSymbolTestApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
