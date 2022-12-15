@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */; };
+		8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */; };
 		8D96829929471E49006384E5 /* SFSymbolTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96829829471E49006384E5 /* SFSymbolTestApp.swift */; };
 		8D96829B29471E49006384E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96829A29471E49006384E5 /* ContentView.swift */; };
 		8D96829D29471E4E006384E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D96829C29471E4E006384E5 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolDetailView.swift; sourceTree = "<group>"; };
+		8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridItem+Extensions.swift"; sourceTree = "<group>"; };
 		8D96829529471E49006384E5 /* SFSymbolTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFSymbolTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D96829829471E49006384E5 /* SFSymbolTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolTestApp.swift; sourceTree = "<group>"; };
 		8D96829A29471E49006384E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				8D96829C29471E4E006384E5 /* Assets.xcassets */,
 				8D96829E29471E4E006384E5 /* Preview Content */,
 				8D9682A629471E71006384E5 /* SymbolNames.swift */,
+				8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */,
 			);
 			path = SFSymbolTest;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				8D9F8588294837D700E35016 /* SymbolListView.swift in Sources */,
 				8D9682A729471E71006384E5 /* SymbolNames.swift in Sources */,
+				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */,
 				8D96829B29471E49006384E5 /* ContentView.swift in Sources */,
 				8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */,

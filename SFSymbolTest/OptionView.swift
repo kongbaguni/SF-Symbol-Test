@@ -36,6 +36,8 @@ fileprivate let fontWeights:[(String,Font.Weight)] = [
 
 
 fileprivate let colorList:[(String,Color)] = [
+    ("primary",.primary),
+    ("secondary",.secondary),
     ("mint",.mint),
     ("black",.black),
     ("white",.white),
@@ -48,10 +50,8 @@ fileprivate let colorList:[(String,Color)] = [
     ("indigo",.indigo),
     ("orange",.orange),
     ("pink",.pink),
-    ("primary",.primary),
     ("purple",.purple),
     ("red",.red),
-    ("secondary",.secondary),
     ("teal",.teal),
     ("yellow",.yellow),
 ]
@@ -61,13 +61,18 @@ struct OptionView: View {
         var renderingModeSelect:Int
         var variantSelect:Int
         var fontWeightSelect:Int
-        var forgroundColorSelect:Int
-        
+        var forgroundColorSelect1:Int
+        var forgroundColorSelect2:Int
+        var forgroundColorSelect3:Int
+
         init() {
             renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
             variantSelect = UserDefaults.standard.integer(forKey: "variantSelect")
             fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
-            forgroundColorSelect = UserDefaults.standard.integer(forKey: "forgroundColorSelect")
+            forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
+            forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
+            forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
+            
         }
         
         var renderingMode:SymbolRenderingMode {
@@ -82,23 +87,49 @@ struct OptionView: View {
             fontWeights[fontWeightSelect].1
         }
         
-        var forgroundColor:Color {
-            colorList[forgroundColorSelect].1
+        var forgroundColor:(Color,Color,Color) {
+            (
+                colorList[forgroundColorSelect1].1,
+                colorList[forgroundColorSelect2].1,
+                colorList[forgroundColorSelect3].1
+            )
         }
         
         func save() {
             UserDefaults.standard.set(renderingModeSelect, forKey: "renderingModeSelect")
             UserDefaults.standard.set(variantSelect, forKey: "variantSelect")
             UserDefaults.standard.set(fontWeightSelect, forKey: "fontWeightSelect")
-            UserDefaults.standard.set(forgroundColorSelect, forKey: "forgroundColorSelect")
+            UserDefaults.standard.set(forgroundColorSelect1, forKey: "forgroundColorSelect1")
+            UserDefaults.standard.set(forgroundColorSelect2, forKey: "forgroundColorSelect2")
+            UserDefaults.standard.set(forgroundColorSelect3, forKey: "forgroundColorSelect3")
         }
         
     }
     
+    var isPallete : Bool {
+        switch symbolRenderingModes[data.renderingModeSelect].0 {
+            case "palette":
+                return true
+            default:
+                return false
+        }
+    }
+    
     @Binding var data:Data
-        
+    let previewNames:[String]
+
     var body: some View {
         ScrollView {
+            LazyVGrid(columns: GridItem.makeGridItems(number: previewNames.count)) {
+                ForEach(previewNames, id:\.self) { previewName in
+                    Image(systemName: previewName)
+                        .font(.system(size: 200 / CGFloat(previewNames.count)))
+                        .symbolRenderingMode(data.renderingMode)
+                        .symbolVariant(data.variants)
+                        .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
+                        .fontWeight(data.fontWeight)
+                }
+            }
             HStack {
                 Text("rendering mode")
                 Picker(selection: $data.renderingModeSelect) {
@@ -137,9 +168,9 @@ struct OptionView: View {
             }.padding(.leading,20)
             
             HStack {
-                Text("forground Color")
-                    .foregroundColor(data.forgroundColor)
-                Picker(selection: $data.forgroundColorSelect) {
+                Text(isPallete ? "forground Color1" : "forground Color")
+                    .foregroundColor(data.forgroundColor.0)
+                Picker(selection: $data.forgroundColorSelect1) {
                     ForEach(0..<colorList.count, id:\.self) { i in
                         Text(colorList[i].0)
                     }
@@ -148,6 +179,35 @@ struct OptionView: View {
                 }
                 Spacer()
             }.padding(.leading,20)
+            
+            if isPallete {
+                HStack {
+                    Text("forground Color2")
+                        .foregroundColor(data.forgroundColor.1)
+                    Picker(selection: $data.forgroundColorSelect2) {
+                        ForEach(0..<colorList.count, id:\.self) { i in
+                            Text(colorList[i].0)
+                        }
+                    } label: {
+                        Text("forground Color Select")
+                    }
+                    Spacer()
+                }.padding(.leading,20)
+                
+                HStack {
+                    Text("forground Color3")
+                        .foregroundColor(data.forgroundColor.2)
+                    Picker(selection: $data.forgroundColorSelect3) {
+                        ForEach(0..<colorList.count, id:\.self) { i in
+                            Text(colorList[i].0)
+                        }
+                    } label: {
+                        Text("forground Color Select")
+                    }
+                    Spacer()
+                }.padding(.leading,20)
+            }
+
         }
         .onDisappear {
             data.save()

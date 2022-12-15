@@ -13,16 +13,7 @@ struct SFSymbolDetailView: View {
     
     var body: some View {
         ScrollView {
-            Image(systemName: imageName)
-                .imageScale(.large)
-                .font(.system(size: 150))
-                .foregroundColor(optionData.forgroundColor)
-                .fontWeight(optionData.fontWeight)
-                .symbolRenderingMode(optionData.renderingMode)
-                .symbolVariant(optionData.variants)
-                .frame(width:300,height: 300)
-            
-            OptionView(data: $optionData)
+            OptionView(data: $optionData, previewNames: [imageName])
         }
         .navigationTitle(imageName)
     }

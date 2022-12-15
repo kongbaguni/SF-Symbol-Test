@@ -27,7 +27,6 @@ struct SymbolListView: View {
             SFSymbolDetailView(imageName: imgName, optionData: $optionData)
         } label: {
             VStack {
-                let isBold = isInKeyword(imgName: imgName) == true
                 Image(systemName: imgName)
                     .imageScale(.large)
                     .padding(.leading,5)
@@ -37,7 +36,7 @@ struct SymbolListView: View {
                     .symbolVariant(optionData.variants)
                     .font(.system(size: 60))
                     .fontWeight(optionData.fontWeight)
-                    .foregroundColor(optionData.forgroundColor)
+                    .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                 
                 Text(imgName)
                     .font(.system(size: 12))
@@ -69,7 +68,9 @@ struct SymbolListView: View {
         .searchable(text: $keyword)
         .toolbar {
             NavigationLink {
-                OptionView(data: $optionData)
+                OptionView(data: $optionData, previewNames: ["carbon.dioxide.cloud",
+                                                             "carbon.dioxide.cloud.fill",
+                                                             "bolt.trianglebadge.exclamationmark"])
                     .navigationTitle(Text("Option"))
             } label: {
                 Image(systemName:"line.3.horizontal")
