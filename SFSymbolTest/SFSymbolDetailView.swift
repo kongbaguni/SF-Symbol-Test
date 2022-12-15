@@ -10,6 +10,9 @@ import SwiftUI
 struct SFSymbolDetailView: View {
     let imageName:String
     @Binding var optionData:OptionView.Data
+    @State var isToast = false
+    @State var toastMessage = ""
+    @State var toastTitle:Text? = nil
     
     var body: some View {
         List {
@@ -34,6 +37,9 @@ struct SFSymbolDetailView: View {
                 
                 Button {
                     UIPasteboard.general.string = imageName
+                    toastTitle = Text("SF symbol name copyed")
+                    toastMessage = imageName
+                    isToast = true
                 } label : {
                     HStack {
                         Image(systemName: "doc.on.doc")
@@ -41,9 +47,9 @@ struct SFSymbolDetailView: View {
                     }
                 }
             }
-            
         }
         .navigationTitle(imageName.components(separatedBy: ".").first!)
+        .toast(title: toastTitle, message: toastMessage, isShowing: $isToast, duration: 4)
         
     }
 }
