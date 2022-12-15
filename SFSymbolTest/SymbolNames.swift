@@ -18,6 +18,10 @@ let SFSymbolCategorys:[(String,String,Text)] = [
     ("objectAndTools","folder",Text("objectAndTools")),
     ("device","desktopcomputer",Text("device")),
     ("game","gamecontroller",Text("game")),
+    ("connect","antenna.radiowaves.left.and.right",Text("connect")),
+    ("traffic","car",Text("traffic")),
+    ("car","steeringwheel",Text("car")),
+    ("assisitive","figure.roll",Text("assisitive"))
 ]
 
 struct SFSymbol {
