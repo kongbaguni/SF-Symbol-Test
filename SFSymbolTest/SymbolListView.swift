@@ -17,6 +17,7 @@ struct SymbolListView: View {
     @State var isPushView:Bool = false
     
     let category:String?
+    let title:Text?
     
     var filteredArray:[String]? {
         let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -60,8 +61,8 @@ struct SymbolListView: View {
                     ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
                         let category = SFSymbolCategorys[i]
                         NavigationLink {
-                            SymbolListView(category: category.0)
-                                .navigationTitle(category.0)
+                            SymbolListView(category: category.0, title: category.2)
+                                .navigationTitle(category.2)
                         } label: {
                             HStack {
                                 Image(systemName: category.1)
@@ -69,7 +70,7 @@ struct SymbolListView: View {
                                     .symbolVariant(optionData.variants)
                                     .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                                     
-                                Text(category.0)
+                                category.2
                                 Spacer()
                             }
                             .padding(5)
@@ -85,6 +86,7 @@ struct SymbolListView: View {
             }
         }
         .onAppear {
+            optionData.load()
             SFSymbol(names: $names).loadData(category: category ?? "all")
         }
         .searchable(text: $keyword)
@@ -105,8 +107,3 @@ struct SymbolListView: View {
     }
 }
 
-struct SymbolListView_Previews: PreviewProvider {
-    static var previews: some View {
-        SymbolListView(category: nil)
-    }
-}

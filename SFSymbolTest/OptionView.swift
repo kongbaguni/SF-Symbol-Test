@@ -58,12 +58,39 @@ fileprivate let colorList:[(String,Color)] = [
 
 struct OptionView: View {
     struct Data {
-        var renderingModeSelect:Int
-        var variantSelect:Int
-        var fontWeightSelect:Int
-        var forgroundColorSelect1:Int
-        var forgroundColorSelect2:Int
-        var forgroundColorSelect3:Int
+        var renderingModeSelect:Int {
+            didSet {
+                save()
+            }
+        }
+        var variantSelect:Int {
+            didSet {
+                save()
+            }
+        }
+        
+        var fontWeightSelect:Int {
+            didSet {
+                save()
+            }
+        }
+        var forgroundColorSelect1:Int {
+            didSet {
+                save()
+            }
+        }
+        
+        var forgroundColorSelect2:Int {
+            didSet {
+                save()
+            }
+        }
+        
+        var forgroundColorSelect3:Int {
+            didSet {
+                save()
+            }
+        }
 
         init() {
             renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
@@ -72,8 +99,8 @@ struct OptionView: View {
             forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
             forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
             forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
-            
         }
+        
         
         var renderingMode:SymbolRenderingMode {
             symbolRenderingModes[renderingModeSelect].1
@@ -93,6 +120,15 @@ struct OptionView: View {
                 colorList[forgroundColorSelect2].1,
                 colorList[forgroundColorSelect3].1
             )
+        }
+        
+        mutating func load() {
+            renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
+            variantSelect = UserDefaults.standard.integer(forKey: "variantSelect")
+            fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
+            forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
+            forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
+            forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
         }
         
         func save() {
@@ -116,6 +152,7 @@ struct OptionView: View {
     }
     
     @Binding var data:Data
+    
     let previewNames:[String]
 
     var body: some View {

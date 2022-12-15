@@ -11,7 +11,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            SymbolListView(category: nil)
+            SymbolListView(category: nil,title: nil)
                 .navigationTitle("SF Symbols")
         }
         

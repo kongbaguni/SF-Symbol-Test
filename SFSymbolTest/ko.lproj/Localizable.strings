@@ -18,11 +18,10 @@
 "copy symbol name" = "심볼 이름 복사";
 "SF symbol name copyed" = "SF 심볼 이름을 복사했습니다.";
 
-"new symbol" = "새로운 기호";
-"multiple color" = "여러가지 색상";
-"weather" = "날씨";
+"all" = "전체";
+"new" = "새로운 기호";
+"multipleColor" = "여러 가지 색상";
 "variable" = "가변";
 "communication" = "통신";
-"objects and tools" = "사물 및 도구";
-"device" = "기기";
-"camera and photo" = "카메라 및 사진";
+"objectAndTools" = "사물 및 도구";
+"weather" = "날씨";

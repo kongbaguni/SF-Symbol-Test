@@ -8,12 +8,14 @@
 import Foundation
 import SwiftUI
 
-let SFSymbolCategorys:[(String,String)] = [
-    ("all","square.grid.2x2"),
-    ("new","sparkles"),
-    ("multipleColor","paintpalette"),
-    ("variable","square.stack.3d.up"),
-    ("communication","message"),
+let SFSymbolCategorys:[(String,String,Text)] = [
+    ("all","square.grid.2x2",Text("all")),
+    ("new","sparkles",Text("new")),
+    ("multipleColor","paintpalette",Text("multipleColor")),
+    ("variable","square.stack.3d.up",Text("variable")),
+    ("communication","message",Text("communication")),
+    ("weather","cloud.sun",Text("weather")),
+    ("objectAndTools","folder",Text("objectAndTools"))
 ]
 
 struct SFSymbol {
