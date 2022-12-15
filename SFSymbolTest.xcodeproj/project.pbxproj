@@ -10,6 +10,8 @@
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */; };
 		8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */; };
+		8D6AC713294AB257003AABDA /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC712294AB257003AABDA /* View+Extensions.swift */; };
+		8D6AC715294AD8F3003AABDA /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC714294AD8F3003AABDA /* UIApplication+Extensions.swift */; };
 		8D96829929471E49006384E5 /* SFSymbolTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96829829471E49006384E5 /* SFSymbolTestApp.swift */; };
 		8D96829B29471E49006384E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96829A29471E49006384E5 /* ContentView.swift */; };
 		8D96829D29471E4E006384E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D96829C29471E4E006384E5 /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolDetailView.swift; sourceTree = "<group>"; };
 		8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridItem+Extensions.swift"; sourceTree = "<group>"; };
+		8D6AC712294AB257003AABDA /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		8D6AC714294AD8F3003AABDA /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		8D96829529471E49006384E5 /* SFSymbolTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFSymbolTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D96829829471E49006384E5 /* SFSymbolTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolTestApp.swift; sourceTree = "<group>"; };
 		8D96829A29471E49006384E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +46,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D6AC711294AB241003AABDA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */,
+				8D6AC712294AB257003AABDA /* View+Extensions.swift */,
+				8D6AC714294AD8F3003AABDA /* UIApplication+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8D96828C29471E49006384E5 = {
 			isa = PBXGroup;
 			children = (
@@ -69,7 +83,7 @@
 				8D96829C29471E4E006384E5 /* Assets.xcassets */,
 				8D96829E29471E4E006384E5 /* Preview Content */,
 				8D9682A629471E71006384E5 /* SymbolNames.swift */,
-				8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */,
+				8D6AC711294AB241003AABDA /* Extensions */,
 			);
 			path = SFSymbolTest;
 			sourceTree = "<group>";
@@ -154,10 +168,12 @@
 			files = (
 				8D9F8588294837D700E35016 /* SymbolListView.swift in Sources */,
 				8D9682A729471E71006384E5 /* SymbolNames.swift in Sources */,
+				8D6AC715294AD8F3003AABDA /* UIApplication+Extensions.swift in Sources */,
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */,
 				8D96829B29471E49006384E5 /* ContentView.swift in Sources */,
 				8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */,
+				8D6AC713294AB257003AABDA /* View+Extensions.swift in Sources */,
 				8D96829929471E49006384E5 /* SFSymbolTestApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,11 +306,14 @@
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "SF Symbols";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,11 +338,14 @@
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "SF Symbols";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

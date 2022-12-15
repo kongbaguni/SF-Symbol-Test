@@ -125,11 +125,10 @@ struct OptionView: View {
                     ForEach(previewNames, id:\.self) { previewName in
                         VStack {
                             Image(systemName: previewName)
-                                .font(.system(size: 150 / CGFloat(previewNames.count)))
+                                .font(.system(size: 150 / CGFloat(previewNames.count), weight: data.fontWeight))
                                 .symbolRenderingMode(data.renderingMode)
                                 .symbolVariant(data.variants)
                                 .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
-                                .fontWeight(data.fontWeight)
                             if previewNames.count == 1 {
                                 Text(previewName)
                             }

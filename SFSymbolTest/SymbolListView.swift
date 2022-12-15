@@ -34,8 +34,7 @@ struct SymbolListView: View {
                     .padding(.bottom,10)
                     .symbolRenderingMode(optionData.renderingMode)
                     .symbolVariant(optionData.variants)
-                    .font(.system(size: 20))
-                    .fontWeight(optionData.fontWeight)
+                    .font(.system(size: 20, weight: optionData.fontWeight))
                     .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                 
                 Text(imgName)
