@@ -12,10 +12,19 @@ struct SFSymbolDetailView: View {
     @Binding var optionData:OptionView.Data
     
     var body: some View {
-        ScrollView {
+        List {            
             OptionView(data: $optionData, previewNames: [imageName])
+            Section {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "square.and.arrow.up.fill")
+                }
+            }
+            
         }
-        .navigationTitle(imageName)
+        .navigationTitle(imageName.components(separatedBy: ".").first!)
+        
     }
 }
 

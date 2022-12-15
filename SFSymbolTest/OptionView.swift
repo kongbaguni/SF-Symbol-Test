@@ -119,93 +119,80 @@ struct OptionView: View {
     let previewNames:[String]
 
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: GridItem.makeGridItems(number: previewNames.count)) {
-                ForEach(previewNames, id:\.self) { previewName in
-                    Image(systemName: previewName)
-                        .font(.system(size: 200 / CGFloat(previewNames.count)))
-                        .symbolRenderingMode(data.renderingMode)
-                        .symbolVariant(data.variants)
-                        .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
-                        .fontWeight(data.fontWeight)
+        Group {
+            Section {
+                LazyVGrid(columns: GridItem.makeGridItems(number: previewNames.count)) {
+                    ForEach(previewNames, id:\.self) { previewName in
+                        VStack {
+                            Image(systemName: previewName)
+                                .font(.system(size: 150 / CGFloat(previewNames.count)))
+                                .symbolRenderingMode(data.renderingMode)
+                                .symbolVariant(data.variants)
+                                .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
+                                .fontWeight(data.fontWeight)
+                            if previewNames.count == 1 {
+                                Text(previewName)
+                            }
+                        }
+                    }
                 }
             }
-            HStack {
-                Text("rendering mode")
+            Section {
                 Picker(selection: $data.renderingModeSelect) {
                     ForEach(0..<symbolRenderingModes.count, id:\.self) { i in
                         Text(symbolRenderingModes[i].0)
                     }
                 } label: {
-                    Text("RenderingMode Select")
+                    Text("renderingMode")
                 }
-                Spacer()
-            }.padding(.leading,20)
-            
-            HStack {
-                Text("variant")
+                
                 Picker(selection: $data.variantSelect) {
                     ForEach(0..<symbolVariants.count, id:\.self) { i in
                         Text(symbolVariants[i].0)
                     }
                 } label: {
-                    Text("Variant Select")
+                    Text("variant")
                 }
-                Spacer()
-            }.padding(.leading,20)
-            
-            HStack {
-                Text("fontWeight")
-                    .fontWeight(data.fontWeight)
+                
                 Picker(selection: $data.fontWeightSelect) {
                     ForEach(0..<fontWeights.count, id:\.self) { i in
                         Text(fontWeights[i].0)
                     }
                 } label: {
-                    Text("fontWeights Select")
+                    Text("fontWeight")
+                        .fontWeight(data.fontWeight)
                 }
-                Spacer()
-            }.padding(.leading,20)
-            
-            HStack {
-                Text(isPallete ? "forground Color1" : "forground Color")
-                    .foregroundColor(data.forgroundColor.0)
+                
                 Picker(selection: $data.forgroundColorSelect1) {
                     ForEach(0..<colorList.count, id:\.self) { i in
                         Text(colorList[i].0)
                     }
                 } label: {
-                    Text("forground Color Select")
+                    Text(isPallete ? "forground Color 1" : "forground Color")
                 }
-                Spacer()
-            }.padding(.leading,20)
-            
-            if isPallete {
-                HStack {
-                    Text("forground Color2")
-                        .foregroundColor(data.forgroundColor.1)
+                .foregroundColor(data.forgroundColor.0)
+                
+                
+                if isPallete {
                     Picker(selection: $data.forgroundColorSelect2) {
                         ForEach(0..<colorList.count, id:\.self) { i in
                             Text(colorList[i].0)
                         }
                     } label: {
-                        Text("forground Color Select")
+                        Text("forground Color 2")
                     }
-                    Spacer()
-                }.padding(.leading,20)
-                
-                HStack {
-                    Text("forground Color3")
-                        .foregroundColor(data.forgroundColor.2)
+                    .foregroundColor(data.forgroundColor.1)
+                    
+                    
                     Picker(selection: $data.forgroundColorSelect3) {
                         ForEach(0..<colorList.count, id:\.self) { i in
                             Text(colorList[i].0)
                         }
                     } label: {
-                        Text("forground Color Select")
+                        Text("forground Color 3")
                     }
-                    Spacer()
-                }.padding(.leading,20)
+                    .foregroundColor(data.forgroundColor.2)
+                }
             }
 
         }

@@ -26,7 +26,7 @@ struct SymbolListView: View {
         NavigationLink  {
             SFSymbolDetailView(imageName: imgName, optionData: $optionData)
         } label: {
-            VStack {
+            HStack {
                 Image(systemName: imgName)
                     .imageScale(.large)
                     .padding(.leading,5)
@@ -34,7 +34,7 @@ struct SymbolListView: View {
                     .padding(.bottom,10)
                     .symbolRenderingMode(optionData.renderingMode)
                     .symbolVariant(optionData.variants)
-                    .font(.system(size: 60))
+                    .font(.system(size: 20))
                     .fontWeight(optionData.fontWeight)
                     .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                 
@@ -47,14 +47,10 @@ struct SymbolListView: View {
     }
     
     var body: some View {
-        ScrollView {
+        List {
             ForEach(symbolKeys, id:\.self) { key in
-                HStack {
-                    Text(key)
-                    Spacer()
-                }.padding(20)
-                if let names = symbolNames[key] {
-                    LazyVGrid(columns: columns) {
+                Section {
+                    if let names = symbolNames[key] {
                         ForEach(0..<names.count, id:\.self) { j in
                             if isInKeyword(imgName: names[j]) != false  {
                                 getImageView(imgName: names[j])
@@ -62,16 +58,20 @@ struct SymbolListView: View {
                             }
                         }
                     }
+                } header : {
+                    Text(key)
                 }
             }
         }
         .searchable(text: $keyword)
         .toolbar {
             NavigationLink {
-                OptionView(data: $optionData, previewNames: ["carbon.dioxide.cloud",
-                                                             "carbon.dioxide.cloud.fill",
-                                                             "bolt.trianglebadge.exclamationmark"])
-                    .navigationTitle(Text("Option"))
+                List {
+                    OptionView(data: $optionData, previewNames: ["carbon.dioxide.cloud",
+                                                                 "carbon.dioxide.cloud.fill",
+                                                                 "bolt.trianglebadge.exclamationmark"])
+                    
+                }.navigationTitle(Text("Option"))
             } label: {
                 Image(systemName:"line.3.horizontal")
             }
