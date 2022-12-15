@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  SFSymbolTest
+
+  Created by 서창열 on 2022/12/15.
+  
+*/
+"Option" = "Option";
+"renderingMode" = "rendering mode";
+"variant" = "variant";
+"fontWeight" = "font weight";
+"forground Color" = "forground color";
+"forground Color 1" = "forground color 1";
+"forground Color 2" = "forground color 2";
+"forground Color 3" = "forground color 3";
+
+"share image" = "share image";
+"copy symbol name" = "copy symbol name";
+"SF symbol name copyed" = "SF symbol name copyed.";
+
+

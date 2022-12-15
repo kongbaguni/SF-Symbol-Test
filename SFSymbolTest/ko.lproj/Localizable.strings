@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  SFSymbolTest
+
+  Created by 서창열 on 2022/12/15.
+  
+*/
+"Option" = "설정";
+"renderingMode" = "랜더링 모드";
+"variant" = "변형";
+"fontWeight" = "굵기";
+"forground Color" = "색상 선택";
+"forground Color 1" = "색상 선택 1";
+"forground Color 2" = "색상 선택 2";
+"forground Color 3" = "색상 선택 3";
+
+"share image" = "이미지 공유";
+"copy symbol name" = "심볼 이름 복사";
+"SF symbol name copyed" = "SF 심볼 이름을 복사했습니다.";
+
+"new symbol" = "새로운 기호";
+"multiple color" = "여러가지 색상";
+"weather" = "날씨";
+"variable" = "가변";
+"communication" = "통신";
+"objects and tools" = "사물 및 도구";
+"device" = "기기";
+"camera and photo" = "카메라 및 사진";

@@ -9,18 +9,23 @@ import SwiftUI
 
 struct SymbolListView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    @State var names:[String] = []
     
     @State var optionData:OptionView.Data = .init()
     @State var keyword:String = ""
     @State var isPushView:Bool = false
     
-    func isInKeyword(imgName:String)->Bool? {
+    var filteredArray:[String]? {
         let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if kwd.isEmpty {
             return nil
         }
-        return imgName.contains(kwd)
+        let result = names.filter { name in
+            return name.contains(kwd)
+        }
+        return result
     }
+    
     
     func getImageView(imgName:String)-> some View {
         NavigationLink  {
@@ -47,26 +52,35 @@ struct SymbolListView: View {
     
     var body: some View {
         List {
-            ForEach(symbolKeys, id:\.self) { key in
-                Section {
-                    if let names = symbolNames[key] {
-                        ForEach(0..<names.count, id:\.self) { j in
-                            if isInKeyword(imgName: names[j]) != false  {
-                                getImageView(imgName: names[j])
-                                    .padding(5)
-                            }
-                        }
-                    }
-                } header : {
-                    Text(key)
-                }
+            ForEach(filteredArray != nil ? filteredArray! : names, id:\.self) { name in
+                getImageView(imgName: name)
+                    .padding(5)
             }
+            
+//            ForEach(symbolKeys, id:\.self) { key in
+//                Section {
+//                    if let names = symbolNames[key] {
+//                        ForEach(0..<names.count, id:\.self) { j in
+//                            if isInKeyword(imgName: names[j]) != false  {
+//                                getImageView(imgName: names[j])
+//                                    .padding(5)
+//                            }
+//                        }
+//                    }
+//                } header : {
+//                    Text(key)
+//                }
+//            }
+        }
+        .onAppear {
+            SFSymbol(names: $names).loadData()
         }
         .searchable(text: $keyword)
         .toolbar {
             NavigationLink {
                 List {
-                    OptionView(data: $optionData, previewNames: ["carbon.dioxide.cloud",
+                    OptionView(data: $optionData, previewNames: ["mic",
+                                                                 "carbon.dioxide.cloud",
                                                                  "carbon.dioxide.cloud.fill",
                                                                  "bolt.trianglebadge.exclamationmark"])
                     
