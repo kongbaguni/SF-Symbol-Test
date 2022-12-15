@@ -9,11 +9,14 @@ import SwiftUI
 
 struct SymbolListView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     @State var names:[String] = []
     
     @State var optionData:OptionView.Data = .init()
     @State var keyword:String = ""
     @State var isPushView:Bool = false
+    
+    let category:String?
     
     var filteredArray:[String]? {
         let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -51,29 +54,38 @@ struct SymbolListView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(filteredArray != nil ? filteredArray! : names, id:\.self) { name in
-                getImageView(imgName: name)
-                    .padding(5)
+        ScrollView {
+            LazyVStack {
+                if category == nil && filteredArray == nil {
+                    ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
+                        let category = SFSymbolCategorys[i]
+                        NavigationLink {
+                            SymbolListView(category: category.0)
+                                .navigationTitle(category.0)
+                        } label: {
+                            HStack {
+                                Image(systemName: category.1)
+                                    .symbolRenderingMode(optionData.renderingMode)
+                                    .symbolVariant(optionData.variants)
+                                    .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
+                                    
+                                Text(category.0)
+                                Spacer()
+                            }
+                            .padding(5)
+                            .padding(.leading,10)
+                        }
+                    }
+                } else {
+                    ForEach(filteredArray != nil ? filteredArray! : names, id:\.self) { name in
+                        getImageView(imgName: name)
+                            .padding(5)
+                    }
+                }
             }
-            
-//            ForEach(symbolKeys, id:\.self) { key in
-//                Section {
-//                    if let names = symbolNames[key] {
-//                        ForEach(0..<names.count, id:\.self) { j in
-//                            if isInKeyword(imgName: names[j]) != false  {
-//                                getImageView(imgName: names[j])
-//                                    .padding(5)
-//                            }
-//                        }
-//                    }
-//                } header : {
-//                    Text(key)
-//                }
-//            }
         }
         .onAppear {
-            SFSymbol(names: $names).loadData()
+            SFSymbol(names: $names).loadData(category: category ?? "all")
         }
         .searchable(text: $keyword)
         .toolbar {
@@ -95,6 +107,6 @@ struct SymbolListView: View {
 
 struct SymbolListView_Previews: PreviewProvider {
     static var previews: some View {
-        SymbolListView()
+        SymbolListView(category: nil)
     }
 }
