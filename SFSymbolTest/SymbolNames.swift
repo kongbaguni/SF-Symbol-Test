@@ -15,7 +15,9 @@ let SFSymbolCategorys:[(String,String,Text)] = [
     ("variable","square.stack.3d.up",Text("variable")),
     ("communication","message",Text("communication")),
     ("weather","cloud.sun",Text("weather")),
-    ("objectAndTools","folder",Text("objectAndTools"))
+    ("objectAndTools","folder",Text("objectAndTools")),
+    ("device","desktopcomputer",Text("device")),
+    ("game","gamecontroller",Text("game")),
 ]
 
 struct SFSymbol {

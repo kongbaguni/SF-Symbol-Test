@@ -18,4 +18,12 @@
 "copy symbol name" = "copy symbol name";
 "SF symbol name copyed" = "SF symbol name copyed.";
 
-
+"all" = "All";
+"new" = "New";
+"multipleColor" = "Multiple Color";
+"variable" = "Variable";
+"communication" = "Communication";
+"objectAndTools" = "Object & Tools";
+"weather" = "Weather";
+"device" = "Device";
+"game" = "Game";
