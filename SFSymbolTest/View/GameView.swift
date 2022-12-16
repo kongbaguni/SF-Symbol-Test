@@ -276,8 +276,8 @@ struct GameView: View {
                     timer.stop()
                     current = game.답번호
                     worrongAnser = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                        if GameManager.shared.insert(문제: game.정답, 맞춤: false, duration: duration) {
+                    if GameManager.shared.insert(문제: game.정답, 맞춤: false, duration: duration) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                             makeNewGame()
                         }
                     }
