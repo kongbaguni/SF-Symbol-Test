@@ -50,6 +50,7 @@ struct SFSymbol {
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 if let array = jsonResult as? [String] {
                     names = array
+                    GameManager.shared.insert(names: names)
                 }
             }
         } catch {

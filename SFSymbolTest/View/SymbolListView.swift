@@ -48,14 +48,27 @@ struct SymbolListView: View {
                     .foregroundColor(.primary)
                 Spacer()
             }
+            .padding(10)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.secondary,lineWidth: 3)
+                    .opacity(0.7)
+            }
             .padding(5)
-            .padding(.leading,10)
+            .padding(.leading,15)
+            .padding(.trailing,15)
         }
     }
     
     var body: some View {
         ScrollView {
             LazyVStack {
+                NavigationLink {
+                    GameView()
+                } label: {
+                    Text("Game")
+                }
+
                 if category == nil && filteredArray == nil {
                     ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
                         let category = SFSymbolCategorys[i]
