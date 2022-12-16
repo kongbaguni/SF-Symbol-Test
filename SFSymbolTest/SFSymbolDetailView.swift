@@ -47,7 +47,7 @@ struct SFSymbolDetailView: View {
                 }
             }
         }
-        .navigationTitle(imageName.components(separatedBy: ".").first!)
+        .navigationTitle(imageName)
         .toast(title: toastTitle, message: toastMessage, isShowing: $isToast, duration: 4)
         
     }

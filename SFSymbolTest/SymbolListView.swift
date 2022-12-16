@@ -31,25 +31,25 @@ struct SymbolListView: View {
     }
     
     
-    func getImageView(imgName:String)-> some View {
+    func getImageView(destination:some View,imgName:String, text:Text? = nil)-> some View {
         NavigationLink  {
-            SFSymbolDetailView(imageName: imgName, optionData: $optionData)
+            destination
+//
         } label: {
             HStack {
                 Image(systemName: imgName)
                     .imageScale(.large)
-                    .padding(.leading,5)
-                    .padding(.trailing,5)
-                    .padding(.bottom,10)
                     .symbolRenderingMode(optionData.renderingMode)
-                    .font(.system(size: 20, weight: optionData.fontWeight))
+                    .font(.system(size: 25, weight: optionData.fontWeight))
                     .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                 
-                Text(imgName)
+                (text != nil ? text! : Text(imgName))
                     .font(.system(size: 12))
-                    .padding(5)
+                    .foregroundColor(.primary)
                 Spacer()
             }
+            .padding(5)
+            .padding(.leading,10)
         }
     }
     
@@ -59,26 +59,13 @@ struct SymbolListView: View {
                 if category == nil && filteredArray == nil {
                     ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
                         let category = SFSymbolCategorys[i]
-                        NavigationLink {
-                            SymbolListView(category: category.0, title: category.2)
-                                .navigationTitle(category.2)
-                        } label: {
-                            HStack {
-                                Image(systemName: category.1)
-                                    .symbolRenderingMode(optionData.renderingMode)
-                                    .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
-                                    
-                                category.2
-                                Spacer()
-                            }
-                            .padding(5)
-                            .padding(.leading,10)
-                        }
+                        getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
+                                     imgName: category.1, text: category.2)
                     }
                 } else {
                     ForEach(filteredArray != nil ? filteredArray! : names, id:\.self) { name in
-                        getImageView(imgName: name)
-                            .padding(5)
+                        getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
+                                     imgName: name)
                     }
                 }
             }
