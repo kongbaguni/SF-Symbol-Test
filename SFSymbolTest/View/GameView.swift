@@ -285,7 +285,7 @@ struct GameView: View {
         NotificationCenter.default.addObserver(forName: .sTimerDidUpdate, object: nil, queue: nil) { noti in
             DispatchQueue.main.async {
                 isGameOver = GameManager.shared.isGameOver
-                if isGameOver {
+                if isGameOver || onYourMark {
                     return
                 }
                 self.timeInterval = timer.duration
