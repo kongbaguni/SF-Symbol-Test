@@ -9,30 +9,33 @@ import SwiftUI
 
 struct GameView: View {
     let option:OptionView.Data = .init()
-    let timer = STimmer()
-    
+    let timer = STimer.shared
+    @State var onYourMark = true
     @State var gameModel:GameModel? = nil
     @State var current:Int? = nil
     @State var worrongAnser = false
-    @State var timeInterval:TimeInterval = 0.0
+    @State var timeInterval:TimeInterval = 0.0 {
+        didSet {
+            var getDiscount: Text {
+                let count = 10 - timeInterval
+                if count < 0 {
+                    return Text("0.0")
+                } else {
+                    return Text(String(format: "%0.1f", 10.0 - timeInterval))
+                }
+            }
+            discount = getDiscount
+        }
+    }
+    @State var discount:Text = Text("0.0")
     @State var isPause = false
     
     @State var 맞춘문제들:[String] = []
     @State var 틀린문제들:[String] = []
     
-    var isGameOver:Bool {
-        맞춘문제들.count >= GameManager.게임오버기준 || 틀린문제들.count >= GameManager.게임오버기준
-    }
-    
-    var discount: Text {
-        let count = 10 - timeInterval
-        if count < 0 {
-            return Text("0.0")
-        } else {
-            return Text(String(format: "%0.1f", 10.0 - timeInterval))
-        }
-    }
-    
+    @State var isGameOver:Bool = false
+        
+        
     var pausedView : some View {
         VStack {
             Text("Paused!")
@@ -106,6 +109,9 @@ struct GameView: View {
                         .opacity(0.7)
                 }
                 .padding(5)
+                .onAppear {
+                    regTimerObserver()
+                }
             }
         }
     }
@@ -149,18 +155,62 @@ struct GameView: View {
         }
     }
     
+    var onYourMarkView : some View {
+        Group {
+            Text("Readay")
+                .font(.system(size: 20, weight: .heavy))
+                .foregroundColor(Color.mint)
+                .padding(20)
+            
+            Image(systemName: "flag.checkered")
+                .symbolRenderingMode(option.renderingMode)
+                .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
+                .font(.system(size: 100,weight: option.fontWeight))
+            
+            Button {
+                makeNewGame()
+                onYourMark = false
+            } label: {
+                Text("Start!")
+                    .font(.system(size: 20, weight: .heavy))
+            }.padding(20)
+        }
+    }
     var gameOverView: some View {
         Group {
             Text("Game Over")
+                .font(.system(size: 20,weight: .heavy))
+                .foregroundColor(.red)
+                .padding(20)
+            
+            Image(systemName: "flag.checkered.2.crossed")
+                .symbolRenderingMode(option.renderingMode)
+                .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
+                .font(.system(size: 100,weight: option.fontWeight))
+                .padding(.bottom,20)
+            
             HStack {
                 Text("duration : ")
                 Text(String(format: "%0.1f",GameManager.shared.duration))
             }
+            HStack {
+                Text("point : ")
+                Text(GameManager.shared.point.decimalFormatted)
+            }
+            HStack {
+                Text("time bonus : ")
+                Text(GameManager.shared.timeBonus.decimalFormatted)
+            }
+            HStack {
+                Text("total : ")
+                Text(GameManager.shared.totalPoint.decimalFormatted)
+            }
+
             Button {
                 GameManager.shared.clear()
                 맞춘문제들.removeAll()
                 틀린문제들.removeAll()
-                makeNewGame()
+                onYourMark = true
             } label : {
                 Text("retry")
             }
@@ -172,6 +222,9 @@ struct GameView: View {
             if isGameOver {
                 gameOverView
             }
+            else if onYourMark {
+                onYourMarkView
+            }
             else if isPause {
                 pausedView
             }
@@ -180,9 +233,8 @@ struct GameView: View {
             }
             historyView
         }
-        .onAppear {
-            makeNewGame()
-            regTimerObserver()
+        .onDisappear{
+            timer.stop()
         }
         .navigationTitle(Text("Game"))
     }
@@ -201,21 +253,24 @@ struct GameView: View {
         timeInterval = timer.duration
     }
     
-    @State var isRegTimerObserver = false
+    @State var isRegTimmerObserver = false
     func regTimerObserver() {
-        if isRegTimerObserver {
+        if isRegTimmerObserver {
             return
         }
+        isRegTimmerObserver = true
         NotificationCenter.default.addObserver(forName: .sTimerDidUpdate, object: nil, queue: nil) { noti in
-            if isGameOver {
-                return
-            }
-            guard let game = gameModel else {
-                return
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-                timeInterval = timer.duration
+            DispatchQueue.main.async {
+                isGameOver = GameManager.shared.isGameOver
+                if isGameOver {
+                    return
+                }
+                self.timeInterval = timer.duration
                 isPause = timer.isPause
+                print("\(#function) \(timer.id) \(timer.duration)")
+                guard let game = gameModel else {
+                    return
+                }
                 if timeInterval > 10 {
                     let duration = timer.duration
                     timer.stop()
@@ -228,9 +283,9 @@ struct GameView: View {
                     }
                     
                 }
+
             }
         }
-        isRegTimerObserver = true
     }
         
 }

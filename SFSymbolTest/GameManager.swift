@@ -44,7 +44,7 @@ class GameManager {
         }
         return result
     }
-    
+        
     private var _맞춤:[String] = []
     public var 맞춤:[String] {
         get {
@@ -87,4 +87,34 @@ class GameManager {
         _틀림.removeAll()
         _durations.removeAll()
     }
+    
+    public var point:Int {
+        var result = 0
+        result += 맞춤.count * 100
+        result -= 틀림.count * 50
+        if result < 0 {
+            return 0
+        }
+        return result
+    }
+    
+    public var timeBonus:Int {
+        if 맞춤.count == GameManager.게임오버기준 {
+            let result = 10 * Int(100 - duration)
+            if result < 0 {
+                return 0
+            }
+            return result  
+        }
+        return 0
+    }
+    
+    public var totalPoint:Int {
+        point + timeBonus
+    }
+
+    public var isGameOver:Bool {
+        맞춤.count >= GameManager.게임오버기준 || 틀림.count >= GameManager.게임오버기준 
+    }
 }
+

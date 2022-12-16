@@ -10,15 +10,18 @@ extension Notification.Name {
     static let sTimerDidUpdate = Notification.Name("sTimerDidUpdate_observer")
 }
 
-class STimmer {
+class STimer {
+    static let shared = STimer()
     init() {
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: nil) { [weak self] noti in
             self?.pause()
         }
-        update()
     }
-    
+    let id = UUID().uuidString
     func update() {
+        guard begainDate != nil && stopDate == nil else {
+            return
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) { [weak self] in
             NotificationCenter.default.post(name: .sTimerDidUpdate, object: self?.duration)
             self?.update()
@@ -36,6 +39,7 @@ class STimmer {
         pauseDate = nil
         stopDate = nil
         pauses.removeAll()
+        update()
     }
     
     public func stop() {

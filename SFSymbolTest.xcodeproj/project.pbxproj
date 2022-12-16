@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E0F294C1EC100BD039C /* Timer.swift */; };
+		8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E11294C47F000BD039C /* Int+Extensions.swift */; };
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */; };
 		8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		8D0B8E0F294C1EC100BD039C /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		8D0B8E11294C47F000BD039C /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolDetailView.swift; sourceTree = "<group>"; };
 		8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridItem+Extensions.swift"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				8D6AC712294AB257003AABDA /* View+Extensions.swift */,
 				8D6AC714294AD8F3003AABDA /* UIApplication+Extensions.swift */,
 				8D6AC718294ADDA7003AABDA /* Notification.Name+Extensions.swift */,
+				8D0B8E11294C47F000BD039C /* Int+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				8D6AC715294AD8F3003AABDA /* UIApplication+Extensions.swift in Sources */,
 				8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */,
 				8D6AC72C294C0307003AABDA /* GameManager.swift in Sources */,
+				8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */,
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC719294ADDA7003AABDA /* Notification.Name+Extensions.swift in Sources */,
 				8D6AC728294C000C003AABDA /* GameModel.swift in Sources */,

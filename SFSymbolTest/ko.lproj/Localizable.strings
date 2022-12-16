@@ -47,3 +47,10 @@
 "arrow" = "화살표";
 "index" = "인덱스";
 "math" = "수학";
+
+"Game" = "게임";
+"Readay" = "준비하세요";
+"Start!" = "시작!";
+"Game Over" = "게임 오버";
+
+"retry" = "한판 더";
