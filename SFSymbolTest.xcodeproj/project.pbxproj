@@ -52,6 +52,8 @@
 		8D96829F29471E4E006384E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D9682A629471E71006384E5 /* SymbolNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolNames.swift; sourceTree = "<group>"; };
 		8D9F8587294837D700E35016 /* SymbolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolListView.swift; sourceTree = "<group>"; };
+		8DECC6A5294C5CA800063BC4 /* SFSymbolTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SFSymbolTest.entitlements; sourceTree = "<group>"; };
+		8DECC6A6294C5D3600063BC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,8 @@
 		8D96829729471E49006384E5 /* SFSymbolTest */ = {
 			isa = PBXGroup;
 			children = (
+				8DECC6A6294C5D3600063BC4 /* Info.plist */,
+				8DECC6A5294C5CA800063BC4 /* SFSymbolTest.entitlements */,
 				8D6AC722294B0A19003AABDA /* resorces */,
 				8D6AC71E294AEC73003AABDA /* Localizable.strings */,
 				8D96829829471E49006384E5 /* SFSymbolTestApp.swift */,
@@ -368,12 +372,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SFSymbolTest/SFSymbolTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SFSymbolTest/Preview Content\"";
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SFSymbolTest/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SF Symbols";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -387,7 +393,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.SFSymbolTest;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.SFSymbolBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -400,12 +406,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SFSymbolTest/SFSymbolTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SFSymbolTest/Preview Content\"";
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SFSymbolTest/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SF Symbols";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -419,7 +427,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.SFSymbolTest;
+				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.SFSymbolBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

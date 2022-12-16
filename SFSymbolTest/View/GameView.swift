@@ -10,7 +10,7 @@ import SwiftUI
 struct GameView: View {
     let option:OptionView.Data = .init()
     let timer = STimer.shared
-    @State var onYourMark = true
+    @State var onYourMark = GameManager.shared.isGameOver == false
     @State var gameModel:GameModel? = nil
     @State var current:Int? = nil
     @State var worrongAnser = false
@@ -60,9 +60,17 @@ struct GameView: View {
     
     func makeGameView(gameModel:GameModel)-> some View {
         VStack {
-            discount
-                .font(.system(size:30, weight: .heavy))
-                .foregroundColor(timeInterval > 7 ? .red : .primary)
+            HStack {
+                Image(systemName: "timer")
+                    .symbolRenderingMode(option.renderingMode)
+                    .font(.system(size: 30, weight: option.fontWeight))
+                    .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
+
+                discount
+                    .font(.system(size:30, weight: .heavy))
+                    .foregroundColor(timeInterval > 7 ? .red : .primary)
+                Spacer()
+            }.padding(15)
             
             Image(systemName: gameModel.정답)
                 .symbolRenderingMode(option.renderingMode)
@@ -179,9 +187,9 @@ struct GameView: View {
     var gameOverView: some View {
         Group {
             Text("Game Over")
-                .font(.system(size: 20,weight: .heavy))
+                .font(.system(size: 25,weight: .heavy))
                 .foregroundColor(.red)
-                .padding(20)
+                .padding(25)
             
             Image(systemName: "flag.checkered.2.crossed")
                 .symbolRenderingMode(option.renderingMode)
@@ -191,19 +199,27 @@ struct GameView: View {
             
             HStack {
                 Text("duration : ")
+                    .foregroundColor(.secondary)
                 Text(String(format: "%0.1f",GameManager.shared.duration))
+                    .foregroundColor(.primary)
             }
             HStack {
                 Text("point : ")
+                    .foregroundColor(.secondary)
                 Text(GameManager.shared.point.decimalFormatted)
+                    .foregroundColor(.primary)
             }
             HStack {
                 Text("time bonus : ")
+                    .foregroundColor(.secondary)
                 Text(GameManager.shared.timeBonus.decimalFormatted)
+                    .foregroundColor(.primary)
             }
             HStack {
                 Text("total : ")
+                    .foregroundColor(.secondary)
                 Text(GameManager.shared.totalPoint.decimalFormatted)
+                    .foregroundColor(.primary)
             }
 
             Button {
@@ -211,8 +227,11 @@ struct GameView: View {
                 맞춘문제들.removeAll()
                 틀린문제들.removeAll()
                 onYourMark = true
+                isGameOver = false
             } label : {
                 Text("retry")
+                    .padding(20)
+                    .font(.system(size:20))
             }
         }
     }
@@ -232,6 +251,10 @@ struct GameView: View {
                 makeGameView(gameModel: gameModel)
             }
             historyView
+        }
+        .onAppear {
+            onYourMark = GameManager.shared.isGameOver == false
+            isGameOver = GameManager.shared.isGameOver
         }
         .onDisappear{
             timer.stop()

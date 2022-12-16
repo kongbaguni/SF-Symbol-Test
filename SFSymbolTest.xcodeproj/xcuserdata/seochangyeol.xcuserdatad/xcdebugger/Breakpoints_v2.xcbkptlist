@@ -30,8 +30,8 @@
             filePath = "SFSymbolTest/View/GameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "makeNewGame()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "SFSymbolTest/View/GameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "regTimerObserver()"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "SFSymbolTest/View/GameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "regTimerObserver()"
             landmarkType = "7">
          </BreakpointContent>
