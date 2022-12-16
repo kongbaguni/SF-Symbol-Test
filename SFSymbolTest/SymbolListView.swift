@@ -42,7 +42,6 @@ struct SymbolListView: View {
                     .padding(.trailing,5)
                     .padding(.bottom,10)
                     .symbolRenderingMode(optionData.renderingMode)
-                    .symbolVariant(optionData.variants)
                     .font(.system(size: 20, weight: optionData.fontWeight))
                     .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                 
@@ -67,7 +66,6 @@ struct SymbolListView: View {
                             HStack {
                                 Image(systemName: category.1)
                                     .symbolRenderingMode(optionData.renderingMode)
-                                    .symbolVariant(optionData.variants)
                                     .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                                     
                                 category.2
@@ -100,7 +98,7 @@ struct SymbolListView: View {
                     
                 }.navigationTitle(Text("Option"))
             } label: {
-                Image(systemName:"line.3.horizontal")
+                Image(systemName:"gear")
             }
             
         }

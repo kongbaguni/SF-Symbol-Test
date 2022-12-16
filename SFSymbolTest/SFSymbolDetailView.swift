@@ -22,7 +22,6 @@ struct SFSymbolDetailView: View {
                 Button {
                     let image = Image(systemName: imageName)
                         .symbolRenderingMode(optionData.renderingMode)
-                        .symbolVariant(optionData.variants)
                         .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
                         .font(.system(size: 200,weight: optionData.fontWeight))
                         .frame(width: 300,height: 300)

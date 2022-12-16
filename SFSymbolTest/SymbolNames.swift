@@ -21,7 +21,23 @@ let SFSymbolCategorys:[(String,String,Text)] = [
     ("connect","antenna.radiowaves.left.and.right",Text("connect")),
     ("traffic","car",Text("traffic")),
     ("car","steeringwheel",Text("car")),
-    ("assisitive","figure.roll",Text("assisitive"))
+    ("assisitive","figure.roll",Text("assisitive")),
+    ("privacyAndSecurity","lock",Text("privacyAndSecurity")),
+    ("person","person.circle",Text("person")),
+    ("home","house",Text("home")),
+    ("fitness","figure.cooldown",Text("fitness")),
+    ("nature","tree",Text("nature")),
+    ("edit","slider.horizontal.3",Text("edit")),
+    ("textFormat","textformat",Text("textFormat")),
+    ("media","playpause",Text("media")),
+    ("keyboard","command",Text("keyboard")),
+    ("commerce","cart",Text("commerce")),
+    ("time","timer",Text("time")),
+    ("health","heart",Text("health")),
+    ("figure","square.on.square",Text("figure")),
+    ("arrow","arrow.right",Text("arrow")),
+    ("index","a.circle",Text("index")),
+    ("math","x.squareroot",Text("math"))
 ]
 
 struct SFSymbol {

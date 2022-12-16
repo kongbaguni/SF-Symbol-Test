@@ -13,15 +13,6 @@ fileprivate let symbolRenderingModes:[(String,SymbolRenderingMode)] = [
     ("palette",.palette)
 ]
 
-fileprivate let symbolVariants:[(String,SymbolVariants)] = [
-    ("none",.none),
-    ("circle",.circle),
-    ("fill",.fill),
-    ("rectangle",.rectangle),
-    ("slash",.slash),
-    ("square",.square)
-]
-
 fileprivate let fontWeights:[(String,Font.Weight)] = [
     ("ultraLight",.ultraLight),
     ("light",.light),
@@ -60,41 +51,35 @@ struct OptionView: View {
     struct Data {
         var renderingModeSelect:Int {
             didSet {
-                save()
-            }
-        }
-        var variantSelect:Int {
-            didSet {
-                save()
+                UserDefaults.standard.set(renderingModeSelect, forKey: "renderingModeSelect")
             }
         }
         
         var fontWeightSelect:Int {
             didSet {
-                save()
+                UserDefaults.standard.set(fontWeightSelect, forKey: "fontWeightSelect")
             }
         }
         var forgroundColorSelect1:Int {
             didSet {
-                save()
+                UserDefaults.standard.set(forgroundColorSelect1, forKey: "forgroundColorSelect1")
             }
         }
         
         var forgroundColorSelect2:Int {
             didSet {
-                save()
+                UserDefaults.standard.set(forgroundColorSelect2, forKey: "forgroundColorSelect2")
             }
         }
         
         var forgroundColorSelect3:Int {
             didSet {
-                save()
+                UserDefaults.standard.set(forgroundColorSelect3, forKey: "forgroundColorSelect3")
             }
         }
 
         init() {
             renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
-            variantSelect = UserDefaults.standard.integer(forKey: "variantSelect")
             fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
             forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
             forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
@@ -106,9 +91,6 @@ struct OptionView: View {
             symbolRenderingModes[renderingModeSelect].1
         }
         
-        var variants:SymbolVariants {
-            symbolVariants[variantSelect].1
-        }
         
         var fontWeight:Font.Weight {
             fontWeights[fontWeightSelect].1
@@ -124,22 +106,12 @@ struct OptionView: View {
         
         mutating func load() {
             renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
-            variantSelect = UserDefaults.standard.integer(forKey: "variantSelect")
             fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
             forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
             forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
             forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
         }
-        
-        func save() {
-            UserDefaults.standard.set(renderingModeSelect, forKey: "renderingModeSelect")
-            UserDefaults.standard.set(variantSelect, forKey: "variantSelect")
-            UserDefaults.standard.set(fontWeightSelect, forKey: "fontWeightSelect")
-            UserDefaults.standard.set(forgroundColorSelect1, forKey: "forgroundColorSelect1")
-            UserDefaults.standard.set(forgroundColorSelect2, forKey: "forgroundColorSelect2")
-            UserDefaults.standard.set(forgroundColorSelect3, forKey: "forgroundColorSelect3")
-        }
-        
+                
     }
     
     var isPallete : Bool {
@@ -163,8 +135,7 @@ struct OptionView: View {
                         VStack {
                             Image(systemName: previewName)
                                 .font(.system(size: 150 / CGFloat(previewNames.count), weight: data.fontWeight))
-                                .symbolRenderingMode(data.renderingMode)
-                                .symbolVariant(data.variants)
+                                .symbolRenderingMode(data.renderingMode)                                
                                 .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
                             if previewNames.count == 1 {
                                 Text(previewName)
@@ -181,15 +152,7 @@ struct OptionView: View {
                 } label: {
                     Text("renderingMode")
                 }
-                
-                Picker(selection: $data.variantSelect) {
-                    ForEach(0..<symbolVariants.count, id:\.self) { i in
-                        Text(symbolVariants[i].0)
-                    }
-                } label: {
-                    Text("variant")
-                }
-                
+                                
                 Picker(selection: $data.fontWeightSelect) {
                     ForEach(0..<fontWeights.count, id:\.self) { i in
                         Text(fontWeights[i].0)
@@ -230,10 +193,6 @@ struct OptionView: View {
                     .foregroundColor(data.forgroundColor.2)
                 }
             }
-
-        }
-        .onDisappear {
-            data.save()
         }
     }
 }
