@@ -48,12 +48,10 @@ struct GameView: View {
                 .font(.system(size: 150, weight: option.fontWeight))
                 .frame(width: 300,height: 200)
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
-            
-            Button {
+                        
+            RoundedButtonView(text: Text("Resume Game"), style: .normalStyle) {
                 timer.resume()
                 isPause = false
-            } label: {
-                Text("Resume Game")
             }
         }
     }
@@ -61,14 +59,19 @@ struct GameView: View {
     func makeGameView(gameModel:GameModel)-> some View {
         VStack {
             HStack {
-                Image(systemName: "timer")
-                    .symbolRenderingMode(option.renderingMode)
-                    .font(.system(size: 30, weight: option.fontWeight))
-                    .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
-
-                discount
-                    .font(.system(size:30, weight: .heavy))
-                    .foregroundColor(timeInterval > 7 ? .red : .primary)
+                Button {
+                    timer.pause()
+                    isPause = true
+                } label : {
+                    Image(systemName: "timer")
+                        .symbolRenderingMode(option.renderingMode)
+                        .font(.system(size: 30, weight: option.fontWeight))
+                        .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
+                    
+                    discount
+                        .font(.system(size:30, weight: .heavy))
+                        .foregroundColor(timeInterval > 7 ? .red : .primary)
+                }
                 Spacer()
             }.padding(15)
             
@@ -79,7 +82,12 @@ struct GameView: View {
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
             
             ForEach(0..<gameModel.제시어.count, id:\.self) { i in
-                Button {
+                MultiFontWeightTextButtonView(title: gameModel.제시어[i],
+                                              separatedBy: ".",
+                                              style: .init(strokeColor: (i == current ? .yellow : worrongAnser ? .orange : .gray, .blue),
+                                                           backgroundColor: ( i == current ? .blue : worrongAnser ? .red : .white, .yellow),
+                                                           foregroundColor: ( i == current ? .yellow : worrongAnser ? .white : .black, .blue))) {
+                    
                     if worrongAnser {
                         return
                     }
@@ -104,19 +112,8 @@ struct GameView: View {
                             }
                         }
                     }
-                    
-                } label: {
-                    Text(gameModel.제시어[i])
-                        .foregroundColor(.primary)
-                        .font(.system(size: 15))
-                }
-                .padding(10)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke( i == current ? .green : worrongAnser ? .red : .secondary, lineWidth: 4)
-                        .opacity(0.7)
-                }
-                .padding(5)
+                }.padding(5)
+                                               
                 .onAppear {
                     regTimerObserver()
                 }
@@ -175,11 +172,7 @@ struct GameView: View {
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
                 .font(.system(size: 100,weight: option.fontWeight))
             
-            RoundedButtonView(text: Text("Start!"),
-                              style: .init(strokeColor: (Color.blue, Color.green),
-                                           backgroundColor: (Color.mint, Color.yellow),
-                                           foregroundColor: (Color.blue, Color.red))) {
-                
+            RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
                 makeNewGame()
                 onYourMark = false
             }
@@ -233,9 +226,7 @@ struct GameView: View {
                     }
                 
                 RoundedButtonView(text: Text("retry"),
-                                  style: .init(strokeColor: (Color.blue, Color.green),
-                                               backgroundColor: (Color.green, Color.blue),
-                                               foregroundColor: (Color.blue, Color.yellow))) {
+                                  style: .normalStyle) {
                     GameManager.shared.clear()
                     맞춘문제들.removeAll()
                     틀린문제들.removeAll()
@@ -243,7 +234,7 @@ struct GameView: View {
                     isGameOver = false
 
                 }
-            }
+            }.padding(10)
         }
     }
     
@@ -301,23 +292,6 @@ struct GameView: View {
                 }
                 self.timeInterval = timer.duration
                 isPause = timer.isPause
-//                print("\(#function) \(timer.id) \(timer.duration)")
-//                guard let game = gameModel else {
-//                    return
-//                }
-//                if timeInterval > 10 {
-//                    let duration = timer.duration
-//                    timer.stop()
-//                    current = game.답번호
-//                    worrongAnser = true
-//                    if GameManager.shared.insert(문제: game.정답, 맞춤: false, duration: duration) {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-//                            makeNewGame()
-//                        }
-//                    }
-//
-//                }
-
             }
         }
     }
