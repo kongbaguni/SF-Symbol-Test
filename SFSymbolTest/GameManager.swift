@@ -4,7 +4,7 @@
 //
 //  Created by 서창열 on 2022/12/16.
 //
-
+import GameplayKit
 import Foundation
 class GameManager {
     static let 게임오버기준 = 10
@@ -22,7 +22,7 @@ class GameManager {
     func newGame()->GameModel? {
         if backup.count == 0 {
             return nil
-        }
+        }        
         if names.count < GameManager.문항갯수 {
             names = backup.shuffled()
         }
@@ -90,8 +90,8 @@ class GameManager {
     
     public var point:Int {
         var result = 0
-        result += 맞춤.count * 100
-        result -= 틀림.count * 50
+        result += 맞춤.count * 10000
+        result -= 틀림.count * 10000
         if result < 0 {
             return 0
         }
@@ -100,11 +100,14 @@ class GameManager {
     
     public var timeBonus:Int {
         if 맞춤.count == GameManager.게임오버기준 {
-            let result = 10 * Int(100 - duration)
-            if result < 0 {
-                return 0
+            var result:Int = 0
+            for duration in _durations {
+                if duration < 10 {
+                    let a = Int(10 - duration)
+                    result += (a * a) * 100
+                }
             }
-            return result  
+            return result
         }
         return 0
     }

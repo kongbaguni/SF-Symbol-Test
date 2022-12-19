@@ -175,13 +175,15 @@ struct GameView: View {
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
                 .font(.system(size: 100,weight: option.fontWeight))
             
-            Button {
+            RoundedButtonView(text: Text("Start!"),
+                              style: .init(strokeColor: (Color.blue, Color.green),
+                                           backgroundColor: (Color.mint, Color.yellow),
+                                           foregroundColor: (Color.blue, Color.red))) {
+                
                 makeNewGame()
                 onYourMark = false
-            } label: {
-                Text("Start!")
-                    .font(.system(size: 20, weight: .heavy))
-            }.padding(20)
+            }
+                                           .padding(20)
         }
     }
     var gameOverView: some View {
@@ -221,17 +223,26 @@ struct GameView: View {
                 Text(GameManager.shared.totalPoint.decimalFormatted)
                     .foregroundColor(.primary)
             }
+            
+            HStack {
+                RoundedButtonView(text: Text("leaderboard"), style: .init(
+                    strokeColor: (Color.blue, Color.green),
+                    backgroundColor: (Color.yellow, Color.red),
+                    foregroundColor: (Color.blue, Color.yellow))) {
+                        
+                    }
+                
+                RoundedButtonView(text: Text("retry"),
+                                  style: .init(strokeColor: (Color.blue, Color.green),
+                                               backgroundColor: (Color.green, Color.blue),
+                                               foregroundColor: (Color.blue, Color.yellow))) {
+                    GameManager.shared.clear()
+                    맞춘문제들.removeAll()
+                    틀린문제들.removeAll()
+                    onYourMark = true
+                    isGameOver = false
 
-            Button {
-                GameManager.shared.clear()
-                맞춘문제들.removeAll()
-                틀린문제들.removeAll()
-                onYourMark = true
-                isGameOver = false
-            } label : {
-                Text("retry")
-                    .padding(20)
-                    .font(.system(size:20))
+                }
             }
         }
     }
@@ -290,22 +301,22 @@ struct GameView: View {
                 }
                 self.timeInterval = timer.duration
                 isPause = timer.isPause
-                print("\(#function) \(timer.id) \(timer.duration)")
-                guard let game = gameModel else {
-                    return
-                }
-                if timeInterval > 10 {
-                    let duration = timer.duration
-                    timer.stop()
-                    current = game.답번호
-                    worrongAnser = true
-                    if GameManager.shared.insert(문제: game.정답, 맞춤: false, duration: duration) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                            makeNewGame()
-                        }
-                    }
-                    
-                }
+//                print("\(#function) \(timer.id) \(timer.duration)")
+//                guard let game = gameModel else {
+//                    return
+//                }
+//                if timeInterval > 10 {
+//                    let duration = timer.duration
+//                    timer.stop()
+//                    current = game.답번호
+//                    worrongAnser = true
+//                    if GameManager.shared.insert(문제: game.정답, 맞춤: false, duration: duration) {
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+//                            makeNewGame()
+//                        }
+//                    }
+//
+//                }
 
             }
         }

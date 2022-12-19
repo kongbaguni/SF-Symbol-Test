@@ -27,6 +27,7 @@
 		8D9682A029471E4E006384E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D96829F29471E4E006384E5 /* Preview Assets.xcassets */; };
 		8D9682A729471E71006384E5 /* SymbolNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9682A629471E71006384E5 /* SymbolNames.swift */; };
 		8D9F8588294837D700E35016 /* SymbolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F8587294837D700E35016 /* SymbolListView.swift */; };
+		8DECC6A8294FF26D00063BC4 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECC6A7294FF26D00063BC4 /* RoundedButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		8D9F8587294837D700E35016 /* SymbolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolListView.swift; sourceTree = "<group>"; };
 		8DECC6A5294C5CA800063BC4 /* SFSymbolTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SFSymbolTest.entitlements; sourceTree = "<group>"; };
 		8DECC6A6294C5D3600063BC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8DECC6A7294FF26D00063BC4 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				8D96829A29471E49006384E5 /* ContentView.swift */,
 				8D6AC70B2949A811003AABDA /* OptionView.swift */,
 				8D6AC729294C017B003AABDA /* GameView.swift */,
+				8DECC6A7294FF26D00063BC4 /* RoundedButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				8D6AC715294AD8F3003AABDA /* UIApplication+Extensions.swift in Sources */,
 				8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */,
 				8D6AC72C294C0307003AABDA /* GameManager.swift in Sources */,
+				8DECC6A8294FF26D00063BC4 /* RoundedButtonView.swift in Sources */,
 				8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */,
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC719294ADDA7003AABDA /* Notification.Name+Extensions.swift in Sources */,
