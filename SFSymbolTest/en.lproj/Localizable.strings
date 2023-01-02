@@ -33,6 +33,7 @@
 "assisitive" = "Assisitive";
 "privacyAndSecurity" = "Privacy & Security";
 "person" = "Person";
+
 "home" = "Home";
 "fitness" = "Fitness";
 "nature" = "Nature";
@@ -46,6 +47,5 @@
 "arrow" = "Arrow";
 "index" = "Index";
 "math" = "Math";
-
-
-
+"game 1" = "Choose a picture by word";
+"game 2" = "Choose words by pictures";

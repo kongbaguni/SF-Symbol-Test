@@ -4,13 +4,51 @@
 //
 //  Created by 서창열 on 2022/12/16.
 //
-import GameplayKit
+import GameKit
 import Foundation
+
 class GameManager {
     static let 게임오버기준 = 10
     static let 문항갯수 = 5
     
     static let shared = GameManager()
+    
+    func authuser(complete:@escaping()->Void) {
+        let localplayer = GKLocalPlayer.local
+        localplayer.authenticateHandler = { _, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            GKAccessPoint.shared.location = .topLeading
+            GKAccessPoint.shared.isActive = localplayer.isAuthenticated
+            complete()
+        }
+    }
+    
+    func updateLeaderboard(totalPoint:Int, complete:@escaping()->Void) {
+        if GKLocalPlayer.local.isAuthenticated {
+            GKLeaderboard.submitScore(1000, context: 0, player: GKLocalPlayer.local, leaderboardIDs: ["grp.SFSymbol.leaderboard"]) { error in
+                if error == nil {
+                    complete()
+                    self.getLeadeeboard()
+                }
+            }
+        } else {
+            complete()
+        }
+    }
+    
+    func getLeadeeboard() {
+        GKLeaderboard.loadLeaderboards(IDs: ["grp.SFSymbol.leaderboard"]) { leaderboards, error in
+            for leaderboard in leaderboards ?? [] {
+                print(leaderboard.title ?? "")
+                print(leaderboard.startDate?.formatted(.dateTime) ?? "")
+            }
+            if error == nil {
+            }
+        }
+    }
     var names:[String] = []
     var backup:[String] = []
     

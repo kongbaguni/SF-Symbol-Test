@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import GameKit
 
 struct GameView: View {
+    enum GameMode {
+        case 글자고르기
+        case 그림고르기
+    }
+    let mode:GameMode
     let option:OptionView.Data = .init()
     let timer = STimer.shared
     @State var onYourMark = GameManager.shared.isGameOver == false
@@ -74,50 +80,102 @@ struct GameView: View {
                 }
                 Spacer()
             }.padding(15)
-            
-            Image(systemName: gameModel.정답)
-                .symbolRenderingMode(option.renderingMode)
-                .font(.system(size: 150, weight: option.fontWeight))
-                .frame(width: 300,height: 200)
-                .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
-            
-            ForEach(0..<gameModel.제시어.count, id:\.self) { i in
-                MultiFontWeightTextButtonView(title: gameModel.제시어[i],
-                                              separatedBy: ".",
-                                              style: .init(strokeColor: (i == current ? .yellow : worrongAnser ? .orange : .gray, .blue),
-                                                           backgroundColor: ( i == current ? .blue : worrongAnser ? .red : .white, .yellow),
-                                                           foregroundColor: ( i == current ? .yellow : worrongAnser ? .white : .black, .blue))) {
-                    
-                    if worrongAnser {
-                        return
+            switch mode {
+                case .글자고르기:
+                    Image(systemName: gameModel.정답)
+                        .symbolRenderingMode(option.renderingMode)
+                        .font(.system(size: 150, weight: option.fontWeight))
+                        .frame(width: 300,height: 200)
+                        .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
+                case .그림고르기:
+                    MultiFontWeightTextButtonView(title: gameModel.정답, separatedBy: ".", style: .init(strokeColor: (Color.clear,Color.clear), backgroundColor: (.clear,.clear), foregroundColor: (.black,.black))) {
+                        
                     }
-                    let duration = timer.duration
-                    if gameModel.답안제시(번호: i) {
-                        print("정답")
-                        current = i
-                        timer.stop()
-                        if GameManager.shared.insert(문제: gameModel.정답, 맞춤: true, duration: duration) {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                                makeNewGame()
-                            }
-                        }
-                    } else {
-                        print("오답")
-                        worrongAnser = true
-                        current = gameModel.답번호
-                        timer.stop()
-                        if GameManager.shared.insert(문제: gameModel.정답, 맞춤: false, duration : duration) {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                                makeNewGame()
-                            }
-                        }
-                    }
-                }.padding(5)
-                                               
-                .onAppear {
-                    regTimerObserver()
-                }
             }
+            switch mode {
+                case .글자고르기:
+                    ForEach(0..<gameModel.제시어.count, id:\.self) { i in
+                        MultiFontWeightTextButtonView(title: gameModel.제시어[i],
+                                                      separatedBy: ".",
+                                                      style: .init(strokeColor: (i == current ? .yellow : worrongAnser ? .orange : .gray, .blue),
+                                                                   backgroundColor: ( i == current ? .blue : worrongAnser ? .red : .white, .yellow),
+                                                                   foregroundColor: ( i == current ? .yellow : worrongAnser ? .white : .black, .blue))) {
+                            
+                            if worrongAnser {
+                                return
+                            }
+                            let duration = timer.duration
+                            if gameModel.답안제시(번호: i) {
+                                print("정답")
+                                current = i
+                                timer.stop()
+                                if GameManager.shared.insert(문제: gameModel.정답, 맞춤: true, duration: duration) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                                        makeNewGame()
+                                    }
+                                }
+                            } else {
+                                print("오답")
+                                worrongAnser = true
+                                current = gameModel.답번호
+                                timer.stop()
+                                if GameManager.shared.insert(문제: gameModel.정답, 맞춤: false, duration : duration) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                                        makeNewGame()
+                                    }
+                                }
+                            }
+                        }.padding(5)
+                    }
+                case .그림고르기:
+                    LazyVGrid(columns: [.init(.flexible()),.init(.flexible()),.init(.flexible())]) {
+                        ForEach(0..<gameModel.제시어.count, id:\.self) { i in
+                            Button {
+                                if worrongAnser {
+                                    return
+                                }
+                                let duration = timer.duration
+                                if gameModel.답안제시(번호: i) {
+                                    print("정답")
+                                    current = i
+                                    timer.stop()
+                                    if GameManager.shared.insert(문제: gameModel.정답, 맞춤: true, duration: duration) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                                            makeNewGame()
+                                        }
+                                    }
+                                } else {
+                                    print("오답")
+                                    worrongAnser = true
+                                    current = gameModel.답번호
+                                    timer.stop()
+                                    if GameManager.shared.insert(문제: gameModel.정답, 맞춤: false, duration : duration) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                                            makeNewGame()
+                                        }
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: gameModel.제시어[i])
+                                    .symbolRenderingMode(option.renderingMode)
+                                    .font(.system(size: 50, weight: option.fontWeight))
+                                    .frame(width: 80,height: 80)
+                                    .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(i == current ? Color.blue : worrongAnser ? Color.red : Color.secondary, lineWidth:6)
+                                            .opacity(i == current || worrongAnser ? 1.0 : 0.2)
+                                    }
+                                    .padding(.bottom,20)
+                            }
+                        }
+
+                    }
+
+            }
+        }
+        .onAppear {
+            regTimerObserver()
         }
     }
     
@@ -161,24 +219,12 @@ struct GameView: View {
     }
     
     var onYourMarkView : some View {
-        Group {
-            Text("Readay")
-                .font(.system(size: 20, weight: .heavy))
-                .foregroundColor(Color.mint)
-                .padding(20)
-            
-            Image(systemName: "flag.checkered")
-                .symbolRenderingMode(option.renderingMode)
-                .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
-                .font(.system(size: 100,weight: option.fontWeight))
-            
-            RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
-                makeNewGame()
-                onYourMark = false
-            }
-                                           .padding(20)
+        OnYourMarkView(option:option) {
+            makeNewGame()
+            onYourMark = false
         }
     }
+    
     var gameOverView: some View {
         Group {
             Text("Game Over")
@@ -218,13 +264,6 @@ struct GameView: View {
             }
             
             HStack {
-                RoundedButtonView(text: Text("leaderboard"), style: .init(
-                    strokeColor: (Color.blue, Color.green),
-                    backgroundColor: (Color.yellow, Color.red),
-                    foregroundColor: (Color.blue, Color.yellow))) {
-                        
-                    }
-                
                 RoundedButtonView(text: Text("retry"),
                                   style: .normalStyle) {
                     GameManager.shared.clear()
@@ -232,7 +271,6 @@ struct GameView: View {
                     틀린문제들.removeAll()
                     onYourMark = true
                     isGameOver = false
-
                 }
             }.padding(10)
         }
@@ -257,6 +295,7 @@ struct GameView: View {
         .onAppear {
             onYourMark = GameManager.shared.isGameOver == false
             isGameOver = GameManager.shared.isGameOver
+            submitLeaderboard()
         }
         .onDisappear{
             timer.stop()
@@ -293,6 +332,12 @@ struct GameView: View {
                 self.timeInterval = timer.duration
                 isPause = timer.isPause
             }
+        }
+    }
+    
+    private func submitLeaderboard() {
+        GameManager.shared.updateLeaderboard(totalPoint: GameManager.shared.totalPoint) {
+            
         }
     }
         

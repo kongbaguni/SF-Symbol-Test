@@ -10,12 +10,19 @@ import SwiftUI
 struct SymbolListView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
+    enum ActionSheetMode {
+        case 개임선택
+    }
+    
     @State var names:[String] = []
     
     @State var optionData:OptionView.Data = .init()
-    @State var keyword:String = ""
-    @State var isPushView:Bool = false
-    
+    @State var keyword = ""
+    @State var isPushView = false
+    @State var isActionSheet = false
+    @State var actionSheetMode:ActionSheetMode? = nil
+    @State var pushGame1 = false
+    @State var pushGame2 = false
     let category:String?
     let title:Text?
     
@@ -63,11 +70,19 @@ struct SymbolListView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                NavigationLink {
-                    GameView()
-                } label: {
-                    Text("Game")
+                Button {
+                    isActionSheet = true
+                    actionSheetMode = .개임선택
+                } label : {
+                    Text("game")
                 }
+                NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
+                    
+                }
+                NavigationLink(destination: GameView(mode: .글자고르기), isActive: $pushGame2) {
+                    
+                }
+
 
                 if category == nil && filteredArray == nil {
                     ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
@@ -100,8 +115,24 @@ struct SymbolListView: View {
             } label: {
                 Image(systemName:"gear")
             }
-            
         }
+        .actionSheet(isPresented: $isActionSheet, content: {
+            switch actionSheetMode {
+                case .개임선택:
+                    return ActionSheet(title: Text("Choose Game") ,buttons: [
+                        .default(Text("game 1")) {
+                            pushGame1 = true
+                        },
+                        .default(Text("game 2")) {
+                            pushGame2 = true
+                        },
+                        .cancel()
+                    ])
+                default:
+                    return ActionSheet(title: Text(""))
+            }
+            
+        })
     }
 }
 
