@@ -88,14 +88,14 @@ struct GameView: View {
                         .frame(width: 300,height: 200)
                         .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
                 case .그림고르기:
-                    MultiFontWeightTextButtonView(title: gameModel.정답, separatedBy: ".", style: .init(strokeColor: (Color.clear,Color.clear), backgroundColor: (.clear,.clear), foregroundColor: (.black,.black))) {
+                    MultiFontWeightTextButtonView(title: gameModel.정답.uppercased(), separatedBy: ".", style: .init(strokeColor: (Color.clear,Color.clear), backgroundColor: (.clear,.clear), foregroundColor: (.primary,.primary))) {
                         
                     }
             }
             switch mode {
                 case .글자고르기:
                     ForEach(0..<gameModel.제시어.count, id:\.self) { i in
-                        MultiFontWeightTextButtonView(title: gameModel.제시어[i],
+                        MultiFontWeightTextButtonView(title: gameModel.제시어[i].uppercased(),
                                                       separatedBy: ".",
                                                       style: .init(strokeColor: (i == current ? .yellow : worrongAnser ? .orange : .gray, .blue),
                                                                    backgroundColor: ( i == current ? .blue : worrongAnser ? .red : .white, .yellow),

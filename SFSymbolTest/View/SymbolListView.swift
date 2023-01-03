@@ -68,35 +68,47 @@ struct SymbolListView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                Button {
-                    isActionSheet = true
-                    actionSheetMode = .개임선택
-                } label : {
-                    Text("game")
-                }
-                NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
-                    
-                }
-                NavigationLink(destination: GameView(mode: .글자고르기), isActive: $pushGame2) {
-                    
-                }
+        GeometryReader { geomentry in
+            ScrollView {
+                LazyVStack {
+                    Button {
+                        isActionSheet = true
+                        actionSheetMode = .개임선택
+                    } label : {
+                        Text("game")
+                    }
+                    NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
+                        
+                    }
+                    NavigationLink(destination: GameView(mode: .글자고르기), isActive: $pushGame2) {
+                        
+                    }
 
 
-                if category == nil && filteredArray == nil {
-                    ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
-                        let category = SFSymbolCategorys[i]
-                        getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
-                                     imgName: category.1, text: category.2)
-                    }
-                } else {
-                    ForEach(filteredArray != nil ? filteredArray! : names, id:\.self) { name in
-                        getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
-                                     imgName: name)
+                    if category == nil && filteredArray == nil {
+                        ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
+                            if i % 10 == 0 {
+                                AdView(size: geomentry.size, numberOfAds: 1)
+                            }
+                            let category = SFSymbolCategorys[i]
+                            getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
+                                         imgName: category.1, text: category.2)
+                        }
+                    } else {
+                        let array = filteredArray != nil ? filteredArray! : names
+                        ForEach(0..<array.count, id:\.self) { i in
+                            if i % 10 == 0 {
+                                AdView(size: geomentry.size, numberOfAds: 1)
+                            }
+                            let name = array[i]
+                            getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
+                                         imgName: name)
+                        }
                     }
                 }
+                AdView(size:geomentry.size, numberOfAds: 3)
             }
+
         }
         .onAppear {
             optionData.load()

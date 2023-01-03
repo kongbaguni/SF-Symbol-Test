@@ -24,13 +24,13 @@ struct OnYourMarkView: View {
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
                 .font(.system(size: 100,weight: option.fontWeight))
             
-            if isShowGameCenterSigninBtn {
-                RoundedButtonView(text: Text("gameCenter"), style: .normalStyle) {
-                    GameManager.shared.authuser {
-                        isShowGameCenterSigninBtn = GKLocalPlayer.local.isAuthenticated == false
-                    }
-                }
-            }
+//            if isShowGameCenterSigninBtn {
+//                RoundedButtonView(text: Text("gameCenter"), style: .normalStyle) {
+//                    GameManager.shared.authuser {
+//                        isShowGameCenterSigninBtn = GKLocalPlayer.local.isAuthenticated == false
+//                    }
+//                }
+//            }
             RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
                 onTouchupStartBtn()
             }
