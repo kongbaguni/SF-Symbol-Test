@@ -77,56 +77,75 @@ extension GADNativeAd {
                 if let image = self.icon?.image {
                     Image(uiImage: image)
                         .resizable()
-                        .frame(width: 15,height: 15)
-                    
-                    if let headline = self.headline {
-                        Text(headline)
-                            .font(.system(size: 10))
-                            .foregroundColor(.secondary)
+                        .frame(width: 20,height: 20)
+                        .padding(.trailing,10)
+                    VStack {
+                        HStack {
+                            Text(self.headline ?? "headline")
+                                .font(.system(size: 10))
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        HStack {
+                            Text(self.advertiser ?? "advertiser")
+                                .font(.system(size: 10))
+                                .foregroundColor(.blue)
+                            Spacer()
+                        }
                     }
-                    Spacer()
                 }
+            }
+            HStack {
+                Text(self.body ?? "")
+                    .font(.system(size:12))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+                Spacer()
             }
             if let images = self.images {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(0..<images.count, id:\.self) { i in
-                            Button {
-                                print(self.callToAction ?? "액션 없네")
-                            } label: {
-                                Image(uiImage: images[i].image!)
+                            Image(uiImage: images[i].image!)
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        if let media = self.mediaContent {
+                            if let image = media.mainImage {
+                                Image(uiImage: image)
                                     .resizable()
                                     .scaledToFit()
-                                    .cornerRadius(10)
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(.secondary,lineWidth: 3)
-                                    }
                             }
-                            
                         }
                     }
                 }
             }
-
-            if let body = self.body {
-                HStack {
-                    Text(body)
-                        .font(.system(size:12))
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.leading)
-                    Spacer()
+           
+            HStack {
+                StarView(numberOfStar: starRating ?? 0.0, forgroundColor: .yellow)
+                Spacer()
+            }
+            HStack {
+                Spacer()
+                if let price = self.price {
+                    Text(price)
+                }
+                Button {
+                    
+                    
+                } label : {
+                    if let store = self.store {
+                        Text(store)
+                    }
+                    if let action = self.callToAction {
+                        Text(action)
+                    }
                 }
             }
-            if let rating = self.starRating {
-                HStack {
-                    StarView(numberOfStar: rating, forgroundColor: .yellow)
-                    Spacer()
-                }
-            }
 
 
-        }.frame(width:size.width, height: size.height)
+        }
+        .frame(height: size.height)
         
     }
 }
@@ -139,10 +158,16 @@ struct AdView: View {
     var body: some View {
         VStack {
             if isLoading {
-                HStack {
-                    Spacer()
-                    Text("Ad Loading...")
-                    Spacer()
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("Ad Loading...")
+                        Spacer()
+                    }
+                    RandomSFImageView()
+                        .padding(.top,10)
+                        .frame(height:80)
+                        .foregroundColor(.secondary)
                 }
                 .frame(height: size.height * CGFloat(numberOfAds))
                 .overlay {
@@ -150,12 +175,12 @@ struct AdView: View {
                         .stroke(Color.secondary, lineWidth: 6)
                         .opacity(0.5)
                 }
-                .padding(10)
+                .padding(20)
                 
             } else {
                 ForEach(0..<(adLoader?.ads.count ?? 0), id:\.self) { i in
                     adLoader!.ads[i].makeView(size: .init(width: size.width - 20, height: size.height))
-                        .padding(10)
+                        .padding(20)
                     
                 }
             }
