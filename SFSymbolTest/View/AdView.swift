@@ -88,20 +88,24 @@ extension GADNativeAd {
                 }
             }
             if let images = self.images {
-                ForEach(0..<images.count, id:\.self) { i in
-                    Button {
-                        print(self.callToAction ?? "액션 없네")
-                    } label: {
-                        Image(uiImage: images[i].image!)
-                            .resizable()
-                            .frame(width:size.width, height: size.height)
-                            .cornerRadius(10)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.secondary,lineWidth: 3)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(0..<images.count, id:\.self) { i in
+                            Button {
+                                print(self.callToAction ?? "액션 없네")
+                            } label: {
+                                Image(uiImage: images[i].image!)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .cornerRadius(10)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(.secondary,lineWidth: 3)
+                                    }
                             }
+                            
+                        }
                     }
-                    
                 }
             }
 
@@ -122,7 +126,7 @@ extension GADNativeAd {
             }
 
 
-        }.frame(width:size.width)
+        }.frame(width:size.width, height: size.height)
         
     }
 }
@@ -140,9 +144,17 @@ struct AdView: View {
                     Text("Ad Loading...")
                     Spacer()
                 }
+                .frame(height: size.height * CGFloat(numberOfAds))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.secondary, lineWidth: 6)
+                        .opacity(0.5)
+                }
+                .padding(10)
+                
             } else {
                 ForEach(0..<(adLoader?.ads.count ?? 0), id:\.self) { i in
-                    adLoader!.ads[i].makeView(size: .init(width: size.width - 20, height: 100))
+                    adLoader!.ads[i].makeView(size: .init(width: size.width - 20, height: size.height))
                         .padding(10)
                     
                 }
