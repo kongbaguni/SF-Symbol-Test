@@ -31,7 +31,6 @@ extension GoogleAdLoader : GADNativeAdLoaderDelegate {
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         print("GoogleAdLoader did Recive Ad : \(nativeAd)")
-        nativeAd.delegate = self
         ads.append(nativeAd)
     }
     
@@ -42,38 +41,20 @@ extension GoogleAdLoader : GADNativeAdLoaderDelegate {
     
 }
 
-extension GoogleAdLoader : GADNativeAdDelegate {
-    func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
-      // The native ad was shown.
-    }
 
-    func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
-      // The native ad was clicked on.
-    }
-
-    func nativeAdWillPresentScreen(_ nativeAd: GADNativeAd) {
-      // The native ad will present a full screen view.
-    }
-
-    func nativeAdWillDismissScreen(_ nativeAd: GADNativeAd) {
-      // The native ad will dismiss a full screen view.
-    }
-
-    func nativeAdDidDismissScreen(_ nativeAd: GADNativeAd) {
-      // The native ad did dismiss a full screen view.
-    }
-
-    func nativeAdWillLeaveApplication(_ nativeAd: GADNativeAd) {
-      // The native ad will cause the application to become inactive and
-      // open a new application.
-    }
-}
 
 extension GADNativeAd {
      
     func makeView(size:CGSize)-> some View {
         VStack {
             HStack {
+                Text("Ad")
+                    .font(.system(size: 12, weight: .bold))
+                    .padding(3)
+                    .foregroundColor(.white)
+                    .background(.orange)
+                    .cornerRadius(3)
+                
                 if let image = self.icon?.image {
                     Image(uiImage: image)
                         .resizable()
@@ -122,11 +103,9 @@ extension GADNativeAd {
             }
            
             HStack {
-                StarView(numberOfStar: starRating ?? 0.0, forgroundColor: .yellow)
                 Spacer()
-            }
-            HStack {
-                Spacer()
+                StarView(numberOfStar: starRating ?? 0.0, forgroundColor: .yellow, size:.init(width: 10, height: 10))
+
                 if let price = self.price {
                     Text(price)
                 }
@@ -142,7 +121,6 @@ extension GADNativeAd {
                     }
                 }
             }
-
 
         }
         .frame(height: size.height)
@@ -176,12 +154,12 @@ struct AdView: View {
                         .opacity(0.5)
                 }
                 .padding(20)
-                
+
             } else {
                 ForEach(0..<(adLoader?.ads.count ?? 0), id:\.self) { i in
                     adLoader!.ads[i].makeView(size: .init(width: size.width - 20, height: size.height))
                         .padding(20)
-                    
+
                 }
             }
         }
