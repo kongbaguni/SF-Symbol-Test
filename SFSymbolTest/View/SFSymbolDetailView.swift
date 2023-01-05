@@ -13,20 +13,23 @@ struct SFSymbolDetailView: View {
     @State var isToast = false
     @State var toastMessage = ""
     @State var toastTitle:Text? = nil
-    
+    let ad = GoogleAd()
     var body: some View {
         List {
             OptionView(data: $optionData, previewNames: [imageName])
             
             Section {
                 Button {
-                    let image = Image(systemName: imageName)
-                        .symbolRenderingMode(optionData.renderingMode)
-                        .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
-                        .font(.system(size: 200,weight: optionData.fontWeight))
-                        .frame(width: 300,height: 300)
-                        .asUIImage()
-                    showShareSheet(with: [image])
+                    ad.showAd { sucess, time in
+                        let image = Image(systemName: imageName)
+                            .symbolRenderingMode(optionData.renderingMode)
+                            .foregroundStyle(optionData.forgroundColor.0,optionData.forgroundColor.1,optionData.forgroundColor.2)
+                            .font(.system(size: 200,weight: optionData.fontWeight))
+                            .frame(width: 300,height: 300)
+                            .asUIImage()
+                        showShareSheet(with: [image])
+                    }
+                    
                 } label: {
                     HStack {
                         Image(systemName: "square.and.arrow.up")
