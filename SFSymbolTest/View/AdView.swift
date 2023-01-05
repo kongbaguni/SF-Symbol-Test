@@ -14,10 +14,13 @@ class GoogleAdLoader : NSObject {
     init(numberOfAds:Int,complete:@escaping(_ ads:[GADNativeAd])->Void) {
         let multipleAdsOptions = GADMultipleAdsAdLoaderOptions()
             multipleAdsOptions.numberOfAds = numberOfAds
+        let viewOption = GADNativeAdViewAdOptions()
+        viewOption.preferredAdChoicesPosition = .topRightCorner
+        
         self.complete = complete
         loader = .init(adUnitID: Consts.admob_nativeAdId,
                          rootViewController: UIApplication.shared.rootViewController,
-                         adTypes: [.native], options: [multipleAdsOptions])
+                         adTypes: [.native], options: [multipleAdsOptions, viewOption])
         super.init()
         loader.delegate = self
         loader.load(GADRequest())
@@ -45,7 +48,7 @@ extension GoogleAdLoader : GADNativeAdLoaderDelegate {
 
 extension GADNativeAd {
      
-    func makeView(size:CGSize)-> some View {
+    var adView : some View {
         VStack {
             HStack {
                 Text("Ad")
@@ -83,34 +86,40 @@ extension GADNativeAd {
                     .multilineTextAlignment(.leading)
                 Spacer()
             }
+            
             if let images = self.images {
-                ScrollView(.horizontal) {
+                if images.count == 1 {
                     HStack {
-                        ForEach(0..<images.count, id:\.self) { i in
-                            Image(uiImage: images[i].image!)
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        if let media = self.mediaContent {
-                            if let image = media.mainImage {
-                                Image(uiImage: image)
+                        Spacer()
+                        Image(uiImage: images.first!.image!)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+                else {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(0..<images.count, id:\.self) { i in
+                                Image(uiImage: images[i].image!)
                                     .resizable()
                                     .scaledToFit()
                             }
                         }
                     }
+                    
                 }
             }
-           
+            
             HStack {
                 Spacer()
-                StarView(numberOfStar: starRating ?? 0.0, forgroundColor: .yellow, size:.init(width: 10, height: 10))
-
+                
                 if let price = self.price {
                     Text(price)
                 }
+                
+                StarView(numberOfStar: starRating ?? 0.0, forgroundColor: .yellow, size:.init(width: 10, height: 10))
+                
                 Button {
-                    
                     
                 } label : {
                     if let store = self.store {
@@ -120,10 +129,20 @@ extension GADNativeAd {
                         Text(action)
                     }
                 }
+                if isCustomMuteThisAdAvailable {
+                    Button {
+                        
+                        
+                    } label : {
+                        Text("Mute")
+                    }
+                }
             }
-
         }
-        .frame(height: size.height)
+    }
+    
+    func makeView(size:CGSize)-> some View {
+        adView.frame(height: size.height)
         
     }
 }
@@ -170,6 +189,7 @@ struct AdView: View {
                     print(ads)
                     isLoading = false
                 }
+                
             }
         }
     }

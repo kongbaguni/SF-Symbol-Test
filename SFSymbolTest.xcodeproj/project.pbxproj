@@ -13,6 +13,9 @@
 		8D2E593B2962ADB9001A8F21 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2E593A2962ADB9001A8F21 /* AdView.swift */; };
 		8D2EEB812962A6FA003ECA66 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2EEB802962A6FA003ECA66 /* Consts.swift */; };
 		8D4E95572954294D0066AD66 /* OnYourMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E95562954294D0066AD66 /* OnYourMarkView.swift */; };
+		8D5150222966BAFF00823687 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150212966BAFF00823687 /* GoogleAd.swift */; };
+		8D5150242966BC1500823687 /* Userdefault+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150232966BC1500823687 /* Userdefault+Extensions.swift */; };
+		8D5150262966BF2800823687 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150252966BF2800823687 /* BannerAdView.swift */; };
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */; };
 		8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */; };
@@ -42,6 +45,9 @@
 		8D2E593A2962ADB9001A8F21 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
 		8D2EEB802962A6FA003ECA66 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		8D4E95562954294D0066AD66 /* OnYourMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnYourMarkView.swift; sourceTree = "<group>"; };
+		8D5150212966BAFF00823687 /* GoogleAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
+		8D5150232966BC1500823687 /* Userdefault+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Userdefault+Extensions.swift"; sourceTree = "<group>"; };
+		8D5150252966BF2800823687 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolDetailView.swift; sourceTree = "<group>"; };
 		8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridItem+Extensions.swift"; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 		8D6AC711294AB241003AABDA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8D5150232966BC1500823687 /* Userdefault+Extensions.swift */,
 				8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */,
 				8D6AC712294AB257003AABDA /* View+Extensions.swift */,
 				8D6AC714294AD8F3003AABDA /* UIApplication+Extensions.swift */,
@@ -144,6 +151,8 @@
 				8D6AC71E294AEC73003AABDA /* Localizable.strings */,
 				8D96829829471E49006384E5 /* SFSymbolTestApp.swift */,
 				8D2EEB802962A6FA003ECA66 /* Consts.swift */,
+				8D5150212966BAFF00823687 /* GoogleAd.swift */,
+				8D5150252966BF2800823687 /* BannerAdView.swift */,
 				8D6AC716294ADCAB003AABDA /* Toast.swift */,
 				8D6AC72B294C0307003AABDA /* GameManager.swift */,
 				8D0B8E0F294C1EC100BD039C /* Timer.swift */,
@@ -249,14 +258,17 @@
 				8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */,
 				8D6AC72C294C0307003AABDA /* GameManager.swift in Sources */,
 				8DECC6A8294FF26D00063BC4 /* RoundedButtonView.swift in Sources */,
+				8D5150242966BC1500823687 /* Userdefault+Extensions.swift in Sources */,
 				8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */,
 				8D4E95572954294D0066AD66 /* OnYourMarkView.swift in Sources */,
 				8D70FD962963DBE9000742A1 /* RandomSFImageView.swift in Sources */,
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC719294ADDA7003AABDA /* Notification.Name+Extensions.swift in Sources */,
 				8D6AC728294C000C003AABDA /* GameModel.swift in Sources */,
+				8D5150222966BAFF00823687 /* GoogleAd.swift in Sources */,
 				8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */,
 				8D70FD942963BB9A000742A1 /* StarView.swift in Sources */,
+				8D5150262966BF2800823687 /* BannerAdView.swift in Sources */,
 				8D96829B29471E49006384E5 /* ContentView.swift in Sources */,
 				8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */,
 				8D6AC717294ADCAB003AABDA /* Toast.swift in Sources */,
@@ -426,6 +438,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.SFSymbolBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -461,8 +474,10 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.SFSymbolBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

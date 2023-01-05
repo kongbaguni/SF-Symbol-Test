@@ -88,7 +88,8 @@ struct SymbolListView: View {
                     if category == nil && filteredArray == nil {
                         ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
                             if i % 10 == 0 {
-                                AdView(size: CGSizeMake(geomentry.size.width, 250), numberOfAds: 1)
+                                BannerAdView(sizeType: .GADAdSizeLargeBanner, padding: .zero)
+//                                AdView(size: CGSizeMake(geomentry.size.width, 250), numberOfAds: 1)
                             }
                             let category = SFSymbolCategorys[i]
                             getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
@@ -98,7 +99,8 @@ struct SymbolListView: View {
                         let array = filteredArray != nil ? filteredArray! : names
                         ForEach(0..<array.count, id:\.self) { i in
                             if i % 10 == 0 {
-                                AdView(size: CGSizeMake(geomentry.size.width, 250), numberOfAds: 1)
+                                BannerAdView(sizeType: .GADAdSizeLargeBanner, padding: .zero)
+//                                AdView(size: CGSizeMake(geomentry.size.width, 250), numberOfAds: 1)
                             }
                             let name = array[i]
                             getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
@@ -106,7 +108,7 @@ struct SymbolListView: View {
                         }
                     }
                 }
-                AdView(size: CGSizeMake(geomentry.size.width, 250) ,numberOfAds: 3)
+                BannerAdView(sizeType: .GADAdSizeLargeBanner, padding: .zero)
             }
 
         }
