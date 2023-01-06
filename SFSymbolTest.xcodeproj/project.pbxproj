@@ -13,7 +13,7 @@
 		8D2E593B2962ADB9001A8F21 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2E593A2962ADB9001A8F21 /* AdView.swift */; };
 		8D2EEB812962A6FA003ECA66 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2EEB802962A6FA003ECA66 /* Consts.swift */; };
 		8D4E95572954294D0066AD66 /* OnYourMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E95562954294D0066AD66 /* OnYourMarkView.swift */; };
-		8D5150222966BAFF00823687 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150212966BAFF00823687 /* GoogleAd.swift */; };
+		8D5150222966BAFF00823687 /* GoogleFullscreenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */; };
 		8D5150242966BC1500823687 /* Userdefault+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150232966BC1500823687 /* Userdefault+Extensions.swift */; };
 		8D5150262966BF2800823687 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150252966BF2800823687 /* BannerAdView.swift */; };
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
@@ -45,7 +45,7 @@
 		8D2E593A2962ADB9001A8F21 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
 		8D2EEB802962A6FA003ECA66 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		8D4E95562954294D0066AD66 /* OnYourMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnYourMarkView.swift; sourceTree = "<group>"; };
-		8D5150212966BAFF00823687 /* GoogleAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
+		8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleFullscreenAd.swift; sourceTree = "<group>"; };
 		8D5150232966BC1500823687 /* Userdefault+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Userdefault+Extensions.swift"; sourceTree = "<group>"; };
 		8D5150252966BF2800823687 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 				8D6AC71E294AEC73003AABDA /* Localizable.strings */,
 				8D96829829471E49006384E5 /* SFSymbolTestApp.swift */,
 				8D2EEB802962A6FA003ECA66 /* Consts.swift */,
-				8D5150212966BAFF00823687 /* GoogleAd.swift */,
+				8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */,
 				8D5150252966BF2800823687 /* BannerAdView.swift */,
 				8D6AC716294ADCAB003AABDA /* Toast.swift */,
 				8D6AC72B294C0307003AABDA /* GameManager.swift */,
@@ -265,7 +265,7 @@
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC719294ADDA7003AABDA /* Notification.Name+Extensions.swift in Sources */,
 				8D6AC728294C000C003AABDA /* GameModel.swift in Sources */,
-				8D5150222966BAFF00823687 /* GoogleAd.swift in Sources */,
+				8D5150222966BAFF00823687 /* GoogleFullscreenAd.swift in Sources */,
 				8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */,
 				8D70FD942963BB9A000742A1 /* StarView.swift in Sources */,
 				8D5150262966BF2800823687 /* BannerAdView.swift in Sources */,

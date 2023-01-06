@@ -11,21 +11,23 @@ import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
 
-
-class GoogleAd : NSObject {
-    
-    var interstitial:GADRewardedAd? = nil
-    func requestTrackingAuthorization(complete:@escaping()->Void) {
+struct GoogleAd {
+    static func requestTrackingAuthorization(complete:@escaping()->Void) {
         ATTrackingManager.requestTrackingAuthorization { status in
             print("google ad tracking status : \(status)")
             complete()
         }
     }
+}
+
+class GoogleFullScreenAd: NSObject {
+    
+    var interstitial:GADInterstitialAd? = nil
     
     private func loadAd(complete:@escaping(_ isSucess:Bool)->Void) {
         let request = GADRequest()
-        requestTrackingAuthorization {
-            GADRewardedAd.load(withAdUnitID: Consts.admob_rewordAdId, request: request) { [weak self] ad, error in
+        GoogleAd.requestTrackingAuthorization {
+            GADInterstitialAd.load(withAdUnitID: Consts.admob_fullscreenAd, request: request) { [weak self] ad, error in
                 if let err = error {
                     print("google ad load error : \(err.localizedDescription)")
                 }
@@ -57,15 +59,13 @@ class GoogleAd : NSObject {
             }
             UserDefaults.standard.lastAdWatchTime = Date()
                         
-            if let vc = UIApplication.shared.rootViewController {
-                self?.interstitial?.present(fromRootViewController: vc, userDidEarnRewardHandler: {
-                    
-                })
+            if let vc = UIApplication.shared.lastViewController {
+                self?.interstitial?.present(fromRootViewController: vc)
             }
         }
     }
 }
-extension GoogleAd : GADFullScreenContentDelegate {
+extension GoogleFullScreenAd: GADFullScreenContentDelegate {
     //광고 실패
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("google ad \(#function)")

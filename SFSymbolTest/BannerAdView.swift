@@ -44,7 +44,7 @@ struct BannerAdView: View {
     }
     
     @State var bannerView:GADBannerView? = nil
-    let gad = GoogleAd()
+    let gad = GoogleFullScreenAd()
     var body: some View {
         VStack {
             if let view = bannerView {
@@ -112,7 +112,7 @@ struct BannerAdView: View {
             return
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            GoogleAd().requestTrackingAuthorization {
+            GoogleAd.requestTrackingAuthorization {
                 var bView:GADBannerView? {
                     switch sizeType {
                         case .GADAdSizeBanner:

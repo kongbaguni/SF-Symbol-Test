@@ -18,7 +18,7 @@ class GoogleAdLoader : NSObject {
         viewOption.preferredAdChoicesPosition = .topRightCorner
         
         self.complete = complete
-        loader = .init(adUnitID: Consts.admob_nativeAdId,
+        loader = .init(adUnitID: "",
                          rootViewController: UIApplication.shared.rootViewController,
                          adTypes: [.native], options: [multipleAdsOptions, viewOption])
         super.init()

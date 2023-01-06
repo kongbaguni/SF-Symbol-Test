@@ -12,6 +12,7 @@ struct OnYourMarkView: View {
     @State var isShowGameCenterSigninBtn = false
     let option:OptionView.Data
     let onTouchupStartBtn:()->Void
+    let ad = GoogleFullScreenAd()
     var body: some View {
 
         VStack {
@@ -35,7 +36,9 @@ struct OnYourMarkView: View {
             
             
             RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
-                onTouchupStartBtn()
+                ad.showAd { sucess, time in
+                    onTouchupStartBtn()
+                }
             }
             BannerAdView(sizeType: .GADAdSizeMediumRectangle)
                 .padding(.top,50)

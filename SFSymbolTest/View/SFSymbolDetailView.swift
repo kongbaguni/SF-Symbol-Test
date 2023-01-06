@@ -13,7 +13,7 @@ struct SFSymbolDetailView: View {
     @State var isToast = false
     @State var toastMessage = ""
     @State var toastTitle:Text? = nil
-    let ad = GoogleAd()
+    let ad = GoogleFullScreenAd()
     var body: some View {
         List {
             OptionView(data: $optionData, previewNames: [imageName])
