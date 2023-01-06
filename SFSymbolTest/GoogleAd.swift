@@ -10,17 +10,7 @@ import UIKit
 import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
-#if DEBUG || TEST
-fileprivate let gaid = "ca-app-pub-3940256099942544/6978759866" // test ga id
-#else
-fileprivate let gaid = "ca-app-pub-7714069006629518/8047751100" // real ga id
-#endif
 
-#if DEBUG || TEST
-fileprivate let bannerGaId = "ca-app-pub-3940256099942544/2934735716" // test ga id
-#else
-fileprivate let bannerGaId = "ca-app-pub-7714069006629518/6357047878" // real ga id
-#endif 
 
 class GoogleAd : NSObject {
     
@@ -35,7 +25,7 @@ class GoogleAd : NSObject {
     private func loadAd(complete:@escaping(_ isSucess:Bool)->Void) {
         let request = GADRequest()
         requestTrackingAuthorization {
-            GADRewardedAd.load(withAdUnitID: gaid, request: request) { [weak self] ad, error in
+            GADRewardedAd.load(withAdUnitID: Consts.admob_rewordAdId, request: request) { [weak self] ad, error in
                 if let err = error {
                     print("google ad load error : \(err.localizedDescription)")
                 }
@@ -103,7 +93,7 @@ extension GoogleAd : GADFullScreenContentDelegate {
 struct GoogleAdBannerView: UIViewRepresentable {
     let bannerView:GADBannerView
     func makeUIView(context: Context) -> GADBannerView {
-        bannerView.adUnitID = bannerGaId
+        bannerView.adUnitID = Consts.admob_bannerAdId
         bannerView.rootViewController = UIApplication.shared.rootViewController
         return bannerView
     }
