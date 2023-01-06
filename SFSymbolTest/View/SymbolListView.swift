@@ -18,6 +18,7 @@ struct SymbolListView: View {
     
     @State var optionData:OptionView.Data = .init()
     @State var keyword = ""
+    
     @State var isPushView = false
     @State var isActionSheet = false
     @State var actionSheetMode:ActionSheetMode? = nil
@@ -37,6 +38,16 @@ struct SymbolListView: View {
         return result
     }
     
+    var data:[Any] {
+        if let arr = filteredArray {
+            return arr
+        }
+        else if category != nil {
+            return names
+        }
+
+        return SFSymbolCategorys
+    }
     
     func getImageView(destination:some View,imgName:String, text:Text? = nil)-> some View {
         NavigationLink  {
@@ -84,31 +95,27 @@ struct SymbolListView: View {
                         
                     }
 
-
-                    if category == nil && filteredArray == nil {
-                        ForEach(0..<SFSymbolCategorys.count, id:\.self) { i in
-                            if i % 10 == 0 {
-                                BannerAdView(sizeType: .GADAdSizeLargeBanner, padding: .zero)
-//                                AdView(size: CGSizeMake(geomentry.size.width, 250), numberOfAds: 1)
-                            }
-                            let category = SFSymbolCategorys[i]
+                    ForEach(0..<data.count, id:\.self) { i in
+                        if i % 10 == 0 {
+                            BannerAdView(sizeType: .GADAdSizeLargeBanner)
+                                .padding(.top,10)
+                                .padding(.bottom,10)
+                        }
+                        if let category = data[i] as? (String,String,Text) {
                             getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
                                          imgName: category.1, text: category.2)
+
                         }
-                    } else {
-                        let array = filteredArray != nil ? filteredArray! : names
-                        ForEach(0..<array.count, id:\.self) { i in
-                            if i % 10 == 0 {
-                                BannerAdView(sizeType: .GADAdSizeLargeBanner, padding: .zero)
-//                                AdView(size: CGSizeMake(geomentry.size.width, 250), numberOfAds: 1)
-                            }
-                            let name = array[i]
+                        if let name = data[i] as? String {
                             getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
                                          imgName: name)
                         }
                     }
+
                 }
-                BannerAdView(sizeType: .GADAdSizeLargeBanner, padding: .zero)
+                BannerAdView(sizeType: .GADAdSizeLargeBanner)
+                    .padding(.top,10)
+                    .padding(.bottom,10)
             }
 
         }

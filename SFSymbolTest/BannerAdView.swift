@@ -26,8 +26,6 @@ struct BannerAdView: View {
     }
     let sizeType:SizeType
     
-    let padding:UIEdgeInsets
-    
     private var bannerSize:CGSize {
         switch sizeType {
         case .GADAdSizeBanner:
@@ -50,14 +48,35 @@ struct BannerAdView: View {
     var body: some View {
         VStack {
             if let view = bannerView {
-                GoogleAdBannerView(bannerView: view)
-                    .frame(width: bannerSize.width, height: bannerSize.height, alignment: .center)
-                    .padding(.top,padding.top)
-                    .padding(.bottom,padding.bottom)
-                    .padding(.leading, padding.left)
-                    .padding(.trailing, padding.right)
+                ZStack {
+                    GoogleAdBannerView(bannerView: view)
+                        .frame(width: bannerSize.width, height: bannerSize.height, alignment: .center)
+                        .cornerRadius(20)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.blue,lineWidth:6)
+                        }
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text("Ad")
+                                .padding(5)
+                                .background(Color.orange)
+                                .foregroundColor(Color.white)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.blue,lineWidth:6)
+                                }
+                                .cornerRadius(10)
+                                .padding(.leading,-(bannerSize.width/2) - 5)
+                                .shadow(color:.blue,radius: 10)
+                            Spacer()
+                        }.padding(.top,-(bannerSize.height/2) - 5)
+                        Spacer()
+                    }
+                }
             } else {
-                
                 Button {
                     initAdView()
                 } label: {
