@@ -16,6 +16,7 @@
 		8D5150222966BAFF00823687 /* GoogleFullscreenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */; };
 		8D5150242966BC1500823687 /* Userdefault+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150232966BC1500823687 /* Userdefault+Extensions.swift */; };
 		8D5150262966BF2800823687 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150252966BF2800823687 /* BannerAdView.swift */; };
+		8D5150282967D7D100823687 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5150272967D7D100823687 /* Launch Screen.storyboard */; };
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */; };
 		8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */; };
@@ -48,6 +49,7 @@
 		8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleFullscreenAd.swift; sourceTree = "<group>"; };
 		8D5150232966BC1500823687 /* Userdefault+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Userdefault+Extensions.swift"; sourceTree = "<group>"; };
 		8D5150252966BF2800823687 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		8D5150272967D7D100823687 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolDetailView.swift; sourceTree = "<group>"; };
 		8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridItem+Extensions.swift"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				8D6AC711294AB241003AABDA /* Extensions */,
 				8D6AC726294BFFAD003AABDA /* model */,
 				8D96829E29471E4E006384E5 /* Preview Content */,
+				8D5150272967D7D100823687 /* Launch Screen.storyboard */,
 			);
 			path = SFSymbolTest;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				8D9682A029471E4E006384E5 /* Preview Assets.xcassets in Resources */,
 				8D6AC71C294AEC73003AABDA /* Localizable.strings in Resources */,
 				8D96829D29471E4E006384E5 /* Assets.xcassets in Resources */,
+				8D5150282967D7D100823687 /* Launch Screen.storyboard in Resources */,
 				8D6AC723294B0A1A003AABDA /* resorces in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,9 +430,11 @@
 				INFOPLIST_FILE = SFSymbolTest/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SF Symbols";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -462,9 +468,11 @@
 				INFOPLIST_FILE = SFSymbolTest/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "SF Symbols";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
