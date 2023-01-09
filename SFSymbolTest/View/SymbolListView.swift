@@ -77,43 +77,58 @@ struct SymbolListView: View {
             .padding(.trailing,15)
         }
     }
+    var isiPad : Bool {
+        return UIDevice.current.model.lowercased().contains("ipad") == true
+    }
+    
+    var list : some View {
+        Group {
+            ForEach(0..<data.count, id:\.self) { i in
+                if i % 10 == 0 {
+                    if !Consts.isNotShowAd {
+                        BannerAdView(sizeType: .GADAdSizeLargeBanner)
+                            .padding(.top,10)
+                            .padding(.bottom,10)
+                    }
+                }
+                if let category = data[i] as? (String,String,Text) {
+                    getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
+                                 imgName: category.1, text: category.2)
+
+                }
+                if let name = data[i] as? String {
+                    getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
+                                 imgName: name)
+                }
+            }
+        }
+    }
     
     var body: some View {
         GeometryReader { geomentry in
             ScrollView {
-                LazyVStack {
-                    Button {
-                        isActionSheet = true
-                        actionSheetMode = .개임선택
-                    } label : {
-                        Text("game")
+                Button {
+                    isActionSheet = true
+                    actionSheetMode = .개임선택
+                } label : {
+                    Text("game")
+                }
+                .padding(50)
+                NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
+                    
+                }
+                NavigationLink(destination: GameView(mode: .글자고르기), isActive: $pushGame2) {
+                    
+                }
+                
+                if isiPad {
+                    LazyVGrid(columns: GridItem.makeGridItems(number: 4)) {
+                        list
                     }
-                    NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
-                        
+                } else {
+                    LazyVStack {
+                        list
                     }
-                    NavigationLink(destination: GameView(mode: .글자고르기), isActive: $pushGame2) {
-                        
-                    }
-
-                    ForEach(0..<data.count, id:\.self) { i in
-                        if i % 10 == 0 {
-                            if !Consts.isNotShowAd {
-                                BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                                    .padding(.top,10)
-                                    .padding(.bottom,10)
-                            }
-                        }
-                        if let category = data[i] as? (String,String,Text) {
-                            getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
-                                         imgName: category.1, text: category.2)
-
-                        }
-                        if let name = data[i] as? String {
-                            getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
-                                         imgName: name)
-                        }
-                    }
-
                 }
                 if !Consts.isNotShowAd {
                     BannerAdView(sizeType: .GADAdSizeLargeBanner)

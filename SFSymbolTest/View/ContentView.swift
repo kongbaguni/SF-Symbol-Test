@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationView {
             SymbolListView(category: nil,title: nil)
                 .navigationTitle("SF Symbols")
-        }
+        }.navigationViewStyle(.stack)
     }
 }
 

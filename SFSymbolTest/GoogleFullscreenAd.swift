@@ -13,6 +13,10 @@ import AppTrackingTransparency
 
 struct GoogleAd {
     static func requestTrackingAuthorization(complete:@escaping()->Void) {
+        if Consts.isNotShowAd == true {
+            complete()
+            return
+        }
         ATTrackingManager.requestTrackingAuthorization { status in
             print("google ad tracking status : \(status)")
             complete()
@@ -25,6 +29,10 @@ class GoogleFullScreenAd: NSObject {
     var interstitial:GADInterstitialAd? = nil
     
     private func loadAd(complete:@escaping(_ isSucess:Bool)->Void) {
+        if Consts.isNotShowAd == true {
+            complete(false)
+            return
+        }
         let request = GADRequest()
         GoogleAd.requestTrackingAuthorization {
             GADInterstitialAd.load(withAdUnitID: Consts.admob_fullscreenAd, request: request) { [weak self] ad, error in
@@ -41,6 +49,10 @@ class GoogleFullScreenAd: NSObject {
     var callback:(_ isSucess:Bool, _ time:TimeInterval?)->Void = { _,_ in}
     
     func showAd(complete:@escaping(_ isSucess:Bool, _ time:TimeInterval?)->Void) {
+        if Consts.isNotShowAd == true {
+            complete(false,0)
+            return
+        }
         let now = Date()
         if let lastTime = UserDefaults.standard.lastAdWatchTime {
             let interval = now.timeIntervalSince1970 - lastTime.timeIntervalSince1970
