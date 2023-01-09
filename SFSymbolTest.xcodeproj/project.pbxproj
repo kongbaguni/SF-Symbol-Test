@@ -17,6 +17,9 @@
 		8D5150242966BC1500823687 /* Userdefault+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150232966BC1500823687 /* Userdefault+Extensions.swift */; };
 		8D5150262966BF2800823687 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150252966BF2800823687 /* BannerAdView.swift */; };
 		8D5150282967D7D100823687 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5150272967D7D100823687 /* Launch Screen.storyboard */; };
+		8D51502B296BDF9100823687 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D51502A296BDF9100823687 /* FirebaseAnalytics */; };
+		8D51502D296BDF9100823687 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D51502C296BDF9100823687 /* FirebaseCrashlytics */; };
+		8D51502F296BE07D00823687 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D51502E296BE07D00823687 /* GoogleService-Info.plist */; };
 		8D6AC70C2949A812003AABDA /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70B2949A811003AABDA /* OptionView.swift */; };
 		8D6AC70E2949B9F7003AABDA /* SFSymbolDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */; };
 		8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */; };
@@ -50,6 +53,7 @@
 		8D5150232966BC1500823687 /* Userdefault+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Userdefault+Extensions.swift"; sourceTree = "<group>"; };
 		8D5150252966BF2800823687 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		8D5150272967D7D100823687 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		8D51502E296BE07D00823687 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D6AC70B2949A811003AABDA /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		8D6AC70D2949B9F7003AABDA /* SFSymbolDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolDetailView.swift; sourceTree = "<group>"; };
 		8D6AC70F294AA42A003AABDA /* GridItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridItem+Extensions.swift"; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D51502D296BDF9100823687 /* FirebaseCrashlytics in Frameworks */,
+				8D51502B296BDF9100823687 /* FirebaseAnalytics in Frameworks */,
 				8D00E0C329629C0B00295F55 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				8DECC6A6294C5D3600063BC4 /* Info.plist */,
+				8D51502E296BE07D00823687 /* GoogleService-Info.plist */,
 				8DECC6A5294C5CA800063BC4 /* SFSymbolTest.entitlements */,
 				8D6AC722294B0A19003AABDA /* resorces */,
 				8D6AC71E294AEC73003AABDA /* Localizable.strings */,
@@ -186,6 +193,7 @@
 				8D96829129471E49006384E5 /* Sources */,
 				8D96829229471E49006384E5 /* Frameworks */,
 				8D96829329471E49006384E5 /* Resources */,
+				8D515030296BE17100823687 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -194,6 +202,8 @@
 			name = SFSymbolTest;
 			packageProductDependencies = (
 				8D00E0C229629C0B00295F55 /* GoogleMobileAds */,
+				8D51502A296BDF9100823687 /* FirebaseAnalytics */,
+				8D51502C296BDF9100823687 /* FirebaseCrashlytics */,
 			);
 			productName = SFSymbolTest;
 			productReference = 8D96829529471E49006384E5 /* SFSymbolTest.app */;
@@ -226,6 +236,7 @@
 			mainGroup = 8D96828C29471E49006384E5;
 			packageReferences = (
 				8D00E0C129629C0B00295F55 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				8D515029296BDF9000823687 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 8D96829629471E49006384E5 /* Products */;
 			projectDirPath = "";
@@ -246,10 +257,33 @@
 				8D96829D29471E4E006384E5 /* Assets.xcassets in Resources */,
 				8D5150282967D7D100823687 /* Launch Screen.storyboard in Resources */,
 				8D6AC723294B0A1A003AABDA /* resorces in Resources */,
+				8D51502F296BE07D00823687 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D515030296BE17100823687 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D96829129471E49006384E5 /* Sources */ = {
@@ -423,6 +457,7 @@
 				CODE_SIGN_ENTITLEMENTS = SFSymbolTest/SFSymbolTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"SFSymbolTest/Preview Content\"";
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
@@ -524,6 +559,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		8D515029296BDF9000823687 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -531,6 +574,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D00E0C129629C0B00295F55 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		8D51502A296BDF9100823687 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D515029296BDF9000823687 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8D51502C296BDF9100823687 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D515029296BDF9000823687 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

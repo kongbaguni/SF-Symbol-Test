@@ -40,8 +40,10 @@ struct OnYourMarkView: View {
                     onTouchupStartBtn()
                 }
             }
-            BannerAdView(sizeType: .GADAdSizeMediumRectangle)
-                .padding(.top,50)
+            if !Consts.isNotShowAd {
+                BannerAdView(sizeType: .GADAdSizeMediumRectangle)
+                    .padding(.top,50)
+            }
             
         }
         .onAppear {

@@ -97,9 +97,11 @@ struct SymbolListView: View {
 
                     ForEach(0..<data.count, id:\.self) { i in
                         if i % 10 == 0 {
-                            BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                                .padding(.top,10)
-                                .padding(.bottom,10)
+                            if !Consts.isNotShowAd {
+                                BannerAdView(sizeType: .GADAdSizeLargeBanner)
+                                    .padding(.top,10)
+                                    .padding(.bottom,10)
+                            }
                         }
                         if let category = data[i] as? (String,String,Text) {
                             getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
@@ -113,9 +115,11 @@ struct SymbolListView: View {
                     }
 
                 }
-                BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                    .padding(.top,10)
-                    .padding(.bottom,10)
+                if !Consts.isNotShowAd {
+                    BannerAdView(sizeType: .GADAdSizeLargeBanner)
+                        .padding(.top,10)
+                        .padding(.bottom,10)
+                }
             }
 
         }
