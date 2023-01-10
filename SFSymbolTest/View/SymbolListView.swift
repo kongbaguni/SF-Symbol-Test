@@ -107,13 +107,11 @@ struct SymbolListView: View {
     var body: some View {
         GeometryReader { geomentry in
             ScrollView {
-                Button {
+                RoundedButtonView(text: Text("game"), style: .normalStyle) {
                     isActionSheet = true
                     actionSheetMode = .개임선택
-                } label : {
-                    Text("game")
                 }
-                .padding(50)
+                .padding(20)
                 NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
                     
                 }

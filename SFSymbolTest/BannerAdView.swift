@@ -51,10 +51,10 @@ struct BannerAdView: View {
                 ZStack {
                     GoogleAdBannerView(bannerView: view)
                         .frame(width: bannerSize.width, height: bannerSize.height, alignment: .center)
-                        .cornerRadius(20)
+                        .cornerRadius(5)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(.blue,lineWidth:6)
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(.blue,lineWidth:4)
                         }
                     VStack {
                         Spacer()
@@ -70,7 +70,8 @@ struct BannerAdView: View {
                                 }
                                 .cornerRadius(10)
                                 .padding(.leading,-(bannerSize.width/2) - 5)
-                                .shadow(color:.blue,radius: 10)
+                                .shadow(color:.blue.opacity(0.5),radius: 5,x:2.5,y:2.5)
+                                
                             Spacer()
                         }.padding(.top,-(bannerSize.height/2) - 5)
                         Spacer()

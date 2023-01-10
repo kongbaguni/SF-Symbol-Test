@@ -8,8 +8,8 @@
 import Foundation
 
 struct Consts {
-    static let isNotShowAd = true
-#if DEBUG || TEST
+    static let isNotShowAd = false
+#if DEBUG 
     static let admob_bannerAdId = "ca-app-pub-3940256099942544/2934735716"
     static let admob_fullscreenAd = "ca-app-pub-3940256099942544/4411468910"
 #else
