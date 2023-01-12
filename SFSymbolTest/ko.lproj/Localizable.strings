@@ -59,3 +59,12 @@
 "game 1" = "단어보고 그림 고르기";
 "game 2" = "그림보고 단어 고르기";
 "Ad Loading..." = "광고 준비중...";
+
+
+"select share image Size" = "공유할 이미지 사이즈 선택";
+"share_small_title" = "작은 사이즈 (200*200)";
+"share_medeum_title" = "중간 사이즈 (400*400)";
+"share_large_title" = "큰 사이즈 (600*600)";
+"share_all_title" = "모든 사이즈";
+
+"select background Color" = "배경색 선택";

@@ -50,3 +50,11 @@
 "game 1" = "Choose a picture by word";
 "game 2" = "Choose words by pictures";
 "Ad Loading..." = "Ad Loading...";
+
+"select share image Size" = "select share image Size";
+"share_small_title" = "small size (200*200)";
+"share_medeum_title" = "medium size (400*400)";
+"share_large_title" = "large size (600*600)";
+"share_all_title" = "all size";
+
+"select background Color" = "select background Color";
