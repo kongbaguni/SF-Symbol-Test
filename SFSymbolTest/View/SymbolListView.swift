@@ -84,7 +84,7 @@ struct SymbolListView: View {
     var list : some View {
         Group {
             ForEach(0..<data.count, id:\.self) { i in
-                if i % 10 == 0 {
+                if i % (isiPad ? 30 : 10) == 0 {
                     if !Consts.isNotShowAd {
                         BannerAdView(sizeType: .GADAdSizeLargeBanner)
                             .padding(.top,10)
@@ -112,6 +112,24 @@ struct SymbolListView: View {
                     actionSheetMode = .개임선택
                 }
                 .padding(20)
+                .actionSheet(isPresented: $isActionSheet, content: {
+                    switch actionSheetMode {
+                        case .개임선택:
+                            return ActionSheet(title: Text("Choose Game") ,buttons: [
+                                .default(Text("game 1")) {
+                                    pushGame1 = true
+                                },
+                                .default(Text("game 2")) {
+                                    pushGame2 = true
+                                },
+                                .cancel()
+                            ])
+                        default:
+                            return ActionSheet(title: Text(""))
+                    }
+                    
+                })
+
                 NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
                     
                 }
@@ -120,7 +138,7 @@ struct SymbolListView: View {
                 }
                 
                 if isiPad {
-                    LazyVGrid(columns: GridItem.makeGridItems(number: 4)) {
+                    LazyVGrid(columns: GridItem.makeGridItems(number: 2)) {
                         list
                     }
                 } else {
@@ -128,13 +146,12 @@ struct SymbolListView: View {
                         list
                     }
                 }
-                if !Consts.isNotShowAd {
+                if !Consts.isNotShowAd && !isiPad{
                     BannerAdView(sizeType: .GADAdSizeLargeBanner)
                         .padding(.top,10)
                         .padding(.bottom,10)
                 }
             }
-
         }
         .onAppear {
             optionData.load()
@@ -154,23 +171,6 @@ struct SymbolListView: View {
                 Image(systemName:"gear")
             }
         }
-        .actionSheet(isPresented: $isActionSheet, content: {
-            switch actionSheetMode {
-                case .개임선택:
-                    return ActionSheet(title: Text("Choose Game") ,buttons: [
-                        .default(Text("game 1")) {
-                            pushGame1 = true
-                        },
-                        .default(Text("game 2")) {
-                            pushGame2 = true
-                        },
-                        .cancel()
-                    ])
-                default:
-                    return ActionSheet(title: Text(""))
-            }
-            
-        })
     }
 }
 

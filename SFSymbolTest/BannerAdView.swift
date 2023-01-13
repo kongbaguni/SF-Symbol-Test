@@ -109,28 +109,32 @@ struct BannerAdView: View {
     }
     
     private func initAdView() {
+        var bView:GADBannerView? {
+            switch sizeType {
+                case .GADAdSizeBanner:
+                    return GADBannerView(adSize : GADAdSizeBanner)
+                case .GADAdSizeLargeBanner:
+                    return GADBannerView(adSize : GADAdSizeLargeBanner)
+                case .GADAdSizeMediumRectangle:
+                    return GADBannerView(adSize : GADAdSizeMediumRectangle)
+                case .GADAdSizeFullBanner:
+                    return GADBannerView(adSize : GADAdSizeFullBanner)
+                case .GADAdSizeLeaderboard:
+                    return GADBannerView(adSize : GADAdSizeLeaderboard)
+                case .GADAdSizeSkyscraper:
+                    return GADBannerView(adSize : GADAdSizeSkyscraper)
+            }
+        }
+
         guard bannerView == nil else {
             return
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             GoogleAd.requestTrackingAuthorization {
-                var bView:GADBannerView? {
-                    switch sizeType {
-                        case .GADAdSizeBanner:
-                            return GADBannerView(adSize : GADAdSizeBanner)
-                        case .GADAdSizeLargeBanner:
-                            return GADBannerView(adSize : GADAdSizeLargeBanner)
-                        case .GADAdSizeMediumRectangle:
-                            return GADBannerView(adSize : GADAdSizeMediumRectangle)
-                        case .GADAdSizeFullBanner:
-                            return GADBannerView(adSize : GADAdSizeFullBanner)
-                        case .GADAdSizeLeaderboard:
-                            return GADBannerView(adSize : GADAdSizeLeaderboard)
-                        case .GADAdSizeSkyscraper:
-                            return GADBannerView(adSize : GADAdSizeSkyscraper)
-                    }
+                DispatchQueue.main.async {
+                    bannerView = bView
                 }
-                bannerView = bView
             }
         }
     }
