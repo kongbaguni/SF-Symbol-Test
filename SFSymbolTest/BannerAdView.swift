@@ -93,13 +93,13 @@ struct BannerAdView: View {
                             .frame(height:50)
                             .foregroundColor(.secondary)
                     }
+                    .frame(width: bannerSize.width, height:bannerSize.height)
                     .overlay {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.secondary, lineWidth: 6)
                             .opacity(0.5)
                     }
-                    .padding(20)
-                }
+                    UIInterfaceOrientationPortraitUpsideDown                }
 
             }
         }.onAppear {
