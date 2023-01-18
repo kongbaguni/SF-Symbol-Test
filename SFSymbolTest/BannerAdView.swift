@@ -99,7 +99,7 @@ struct BannerAdView: View {
                             .stroke(Color.secondary, lineWidth: 6)
                             .opacity(0.5)
                     }
-                    UIInterfaceOrientationPortraitUpsideDown                }
+                }
 
             }
         }.onAppear {
