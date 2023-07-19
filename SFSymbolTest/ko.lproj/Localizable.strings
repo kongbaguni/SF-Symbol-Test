@@ -68,3 +68,5 @@
 "share_all_title" = "모든 사이즈";
 
 "select background Color" = "배경색 선택";
+"add favorites" = "즐겨찾기 추가";
+"remove favorites" = "즐겨찾기 취소";

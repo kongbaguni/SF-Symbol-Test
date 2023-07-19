@@ -20,6 +20,7 @@ struct SFSymbolDetailView: View {
     @State var isShowActionSheet = false
     @State var actionSheetType:ActionSheetType? = nil
     @State var bgColor:Color = .white
+    @State var isFavorite = false
     let ad = GoogleFullScreenAd()
     var body: some View {
         List {
@@ -101,10 +102,33 @@ struct SFSymbolDetailView: View {
                         Text("copy symbol name")
                     }
                 }
+                
+                Button {
+                    UserDefaults.standard.toggleFavorits(name: imageName)
+                    isFavorite = UserDefaults.standard.isFavorites(name: imageName)
+                } label: {
+                    HStack {
+                        Image(systemName: isFavorite ? "star.fill" : "star")
+                        Text(isFavorite ? "remove favorites" : "add favorites")
+                    }
+                }
             }
         }
         .navigationTitle(imageName)
         .toast(title: toastTitle, message: toastMessage, isShowing: $isToast, duration: 4)
+        .toolbar {
+            Button  {
+                UserDefaults.standard.toggleFavorits(name: imageName)
+                isFavorite = UserDefaults.standard.isFavorites(name: imageName)
+            } label: {
+                Image(systemName: isFavorite ? "star.fill" : "star").foregroundColor(.orange)
+            }
+
+        }
+        .onAppear {
+            isFavorite = UserDefaults.standard.isFavorites(name: imageName)
+        }
+        
     }
     private func selectBgColor(color:Color) {
         bgColor = color

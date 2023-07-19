@@ -20,4 +20,35 @@ extension UserDefaults {
             }
         }
     }
+    
+    var favorites:[String] {
+        set {            
+            let str = Set(newValue).joined(separator: ",")
+            set(str, forKey: "favorites")
+        }
+        get {
+            if let str = string(forKey: "favorites") {
+                return str.components(separatedBy: ",")
+            }
+            return []
+        }
+    }
+    
+    func isFavorites(name:String)->Bool {
+        return favorites.filter { str in
+            return str == name
+        }.count > 0
+    }
+    
+    func toggleFavorits(name:String) {
+        if isFavorites(name: name) == false {
+            favorites.append(name)
+        } else {
+            var list = favorites
+            if let idx = list.firstIndex(of: name) {
+                list.remove(at: idx)
+                favorites = list
+            }
+        }
+    }
 }
