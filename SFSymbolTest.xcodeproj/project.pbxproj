@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B692AF12A676A7F0007F5FB /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1B692AF02A676A7F0007F5FB /* ActivityIndicatorView */; };
 		8D00E0C329629C0B00295F55 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00E0C229629C0B00295F55 /* GoogleMobileAds */; };
 		8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E0F294C1EC100BD039C /* Timer.swift */; };
 		8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E11294C47F000BD039C /* Int+Extensions.swift */; };
@@ -88,6 +89,7 @@
 			files = (
 				8D51502D296BDF9100823687 /* FirebaseCrashlytics in Frameworks */,
 				8D51502B296BDF9100823687 /* FirebaseAnalytics in Frameworks */,
+				1B692AF12A676A7F0007F5FB /* ActivityIndicatorView in Frameworks */,
 				8D00E0C329629C0B00295F55 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +206,7 @@
 				8D00E0C229629C0B00295F55 /* GoogleMobileAds */,
 				8D51502A296BDF9100823687 /* FirebaseAnalytics */,
 				8D51502C296BDF9100823687 /* FirebaseCrashlytics */,
+				1B692AF02A676A7F0007F5FB /* ActivityIndicatorView */,
 			);
 			productName = SFSymbolTest;
 			productReference = 8D96829529471E49006384E5 /* SFSymbolTest.app */;
@@ -237,6 +240,7 @@
 			packageReferences = (
 				8D00E0C129629C0B00295F55 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				8D515029296BDF9000823687 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1B692AEF2A676A7F0007F5FB /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = 8D96829629471E49006384E5 /* Products */;
 			projectDirPath = "";
@@ -549,6 +553,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1B692AEF2A676A7F0007F5FB /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		8D00E0C129629C0B00295F55 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -568,6 +580,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1B692AF02A676A7F0007F5FB /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B692AEF2A676A7F0007F5FB /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
 		8D00E0C229629C0B00295F55 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8D00E0C129629C0B00295F55 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;

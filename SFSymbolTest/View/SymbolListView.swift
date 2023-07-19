@@ -45,14 +45,14 @@ struct SymbolListView: View {
         else if category != nil {
             return names
         }
-
+        
         return SFSymbolCategorys
     }
     
     func getImageView(destination:some View,imgName:String, text:Text? = nil)-> some View {
         NavigationLink  {
             destination
-//
+            //
         } label: {
             HStack {
                 Image(systemName: imgName)
@@ -94,7 +94,7 @@ struct SymbolListView: View {
                 if let category = data[i] as? (String,String,Text) {
                     getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
                                  imgName: category.1, text: category.2)
-
+                    
                 }
                 if let name = data[i] as? String {
                     getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
@@ -114,28 +114,21 @@ struct SymbolListView: View {
                 .padding(20)
                 .actionSheet(isPresented: $isActionSheet, content: {
                     switch actionSheetMode {
-                        case .개임선택:
-                            return ActionSheet(title: Text("Choose Game") ,buttons: [
-                                .default(Text("game 1")) {
-                                    pushGame1 = true
-                                },
-                                .default(Text("game 2")) {
-                                    pushGame2 = true
-                                },
-                                .cancel()
-                            ])
-                        default:
-                            return ActionSheet(title: Text(""))
+                    case .개임선택:
+                        return ActionSheet(title: Text("Choose Game") ,buttons: [
+                            .default(Text("game 1")) {
+                                pushGame1 = true
+                            },
+                            .default(Text("game 2")) {
+                                pushGame2 = true
+                            },
+                            .cancel()
+                        ])
+                    default:
+                        return ActionSheet(title: Text(""))
                     }
                     
                 })
-
-                NavigationLink(destination: GameView(mode: .그림고르기), isActive: $pushGame1) {
-                    
-                }
-                NavigationLink(destination: GameView(mode: .글자고르기), isActive: $pushGame2) {
-                    
-                }
                 
                 if isiPad {
                     LazyVGrid(columns: GridItem.makeGridItems(number: 2)) {
@@ -153,22 +146,33 @@ struct SymbolListView: View {
                 }
             }
         }
+        
+        .navigationDestination(isPresented: $pushGame1) {
+            GameView(mode: .그림고르기)
+        }
+        .navigationDestination(isPresented: $pushGame2) {
+            GameView(mode: .글자고르기)
+        }
+        
         .onAppear {
             optionData.load()
             SFSymbol(names: $names).loadData(category: category ?? "all")
         }
         .searchable(text: $keyword)
         .toolbar {
-            NavigationLink {
-                List {
-                    OptionView(data: $optionData, previewNames: ["mic",
-                                                                 "carbon.dioxide.cloud",
-                                                                 "carbon.dioxide.cloud.fill",
-                                                                 "bolt.trianglebadge.exclamationmark"])
-                    
-                }.navigationTitle(Text("Option"))
-            } label: {
-                Image(systemName:"gear")
+            ToolbarItem(placement: .automatic) {                
+                NavigationLink {
+                    List {
+                        OptionView(data: $optionData, previewNames: ["mic",
+                                                                     "carbon.dioxide.cloud",
+                                                                     "carbon.dioxide.cloud.fill",
+                                                                     "bolt.trianglebadge.exclamationmark"])
+                        
+                    }.navigationTitle(Text("Option"))
+                } label: {
+                    Image(systemName:"gear")
+                }
+
             }
         }
     }
