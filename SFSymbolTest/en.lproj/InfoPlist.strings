@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  SFSymbolTest
+
+  Created by Changyeol Seo on 2023/07/19.
+  
+*/
+"CFBundleName" = "SF Symbols Navigator";
+"CFBundleDisplayName" = "SF Symbols";
+"NSUserTrackingUsageDescription" = "Permission is required to provide customized services.";

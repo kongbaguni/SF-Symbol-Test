@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B692AF12A676A7F0007F5FB /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1B692AF02A676A7F0007F5FB /* ActivityIndicatorView */; };
+		1B692AF42A67A29A0007F5FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B692AF62A67A29A0007F5FB /* InfoPlist.strings */; };
 		8D00E0C329629C0B00295F55 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00E0C229629C0B00295F55 /* GoogleMobileAds */; };
 		8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E0F294C1EC100BD039C /* Timer.swift */; };
 		8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E11294C47F000BD039C /* Int+Extensions.swift */; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B692AF52A67A29A0007F5FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1B692AF72A67A29F0007F5FB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8D0B8E0F294C1EC100BD039C /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		8D0B8E11294C47F000BD039C /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8D2E593A2962ADB9001A8F21 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 				8D6AC726294BFFAD003AABDA /* model */,
 				8D96829E29471E4E006384E5 /* Preview Content */,
 				8D5150272967D7D100823687 /* Launch Screen.storyboard */,
+				1B692AF62A67A29A0007F5FB /* InfoPlist.strings */,
 			);
 			path = SFSymbolTest;
 			sourceTree = "<group>";
@@ -257,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9682A029471E4E006384E5 /* Preview Assets.xcassets in Resources */,
+				1B692AF42A67A29A0007F5FB /* InfoPlist.strings in Resources */,
 				8D6AC71C294AEC73003AABDA /* Localizable.strings in Resources */,
 				8D96829D29471E4E006384E5 /* Assets.xcassets in Resources */,
 				8D5150282967D7D100823687 /* Launch Screen.storyboard in Resources */,
@@ -325,6 +330,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1B692AF62A67A29A0007F5FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B692AF52A67A29A0007F5FB /* en */,
+				1B692AF72A67A29F0007F5FB /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		8D6AC71E294AEC73003AABDA /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
