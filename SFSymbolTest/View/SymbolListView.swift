@@ -33,6 +33,12 @@ struct SymbolListView: View {
         if kwd.isEmpty {
             return nil
         }
+        if isFavorite {
+            let result = favorites.filter { name in
+                return name.contains(kwd)
+            }
+            return result
+        }
         let result = names.filter { name in
             return name.contains(kwd)
         }
@@ -40,14 +46,14 @@ struct SymbolListView: View {
     }
     
     var data:[Any] {
-        if isFavorite {
-            return favorites
-        }
         if let arr = filteredArray {
             return arr
         }
         else if category != nil {
             return names
+        }
+        else if isFavorite {
+            return favorites
         }
         return SFSymbolCategorys
     }
