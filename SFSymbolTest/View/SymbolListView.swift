@@ -97,7 +97,7 @@ struct SymbolListView: View {
     
     var list : some View {
         Group {
-            if favorites.count > 0 && isFavorite == false {
+            if favorites.count > 0 && isFavorite == false && category == nil {
                 getImageView(destination: SymbolListView(category: nil, title: nil, isFavorite: true),
                              imgName: "star.fill",
                              text: Text("favorites")
