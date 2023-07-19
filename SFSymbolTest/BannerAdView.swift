@@ -42,8 +42,8 @@ struct BannerAdView: View {
             return .init(width: 120, height: 600)
         }
     }
+    let bannerView:GADBannerView?
     @State var isLoading:Bool = true
-    @State var bannerView:GADBannerView? = nil
     
     let gad = GoogleFullScreenAd()
     var body: some View {
@@ -81,14 +81,13 @@ struct BannerAdView: View {
                 .padding(.leading,-(bannerSize.width/2) - 5)
                 .shadow(color:.blue.opacity(0.5),radius: 5,x:2.5,y:2.5)
             
-        }.onAppear {
-            initAdView()
         }
         
     }
     
-    private func initAdView() {
-        print("initAdView")
+    
+    init(sizeType: SizeType) {
+        self.sizeType = sizeType
         var bView:GADBannerView? {
             switch sizeType {
             case .GADAdSizeBanner:
@@ -105,7 +104,6 @@ struct BannerAdView: View {
                 return GADBannerView(adSize : GADAdSizeSkyscraper)
             }
         }
-        
         bannerView = bView
     }
 }
