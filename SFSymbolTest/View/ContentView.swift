@@ -19,10 +19,9 @@ struct ContentView: View {
         UMPConsentInformation.sharedInstance.reset()
         #endif
 
-        GoogleAd.requestTrackingAuthorization {
-            
+        GoogleAd.requestTrackingAuthorization {[self] in 
+            ump()
         }
-        ump()
     }
     
     func ump() {
