@@ -11,6 +11,7 @@ import UserMessagingPlatform
 
 
 struct ContentView: View {
+    @State var optionData:OptionView.Data = .init()
     init() {
         
         // Create a UMPRequestParameters object.
@@ -37,10 +38,26 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             NavigationStack {
-                SymbolListView(category: nil,title: nil)
-                    .navigationTitle("SF Symbols")
+                SymbolListView(category: nil,title: nil)                    
             }
-        }
+            .navigationTitle("SF Symbols")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        List {
+                            OptionView(data: $optionData, previewNames: ["mic",
+                                                                         "carbon.dioxide.cloud",
+                                                                         "carbon.dioxide.cloud.fill",
+                                                                         "bolt.trianglebadge.exclamationmark"])
+                            
+                        }.navigationTitle(Text("Option"))
+                    } label: {
+                        Image(systemName:"gear")
+                    }
+                }
+            }
+        }.navigationViewStyle(.stack)
     }
 }
 

@@ -105,44 +105,46 @@ struct SymbolListView: View {
     }
     
     var body: some View {
-        GeometryReader { geomentry in
-            ScrollView {
-                RoundedButtonView(text: Text("game"), style: .normalStyle) {
-                    isActionSheet = true
-                    actionSheetMode = .개임선택
-                }
-                .padding(20)
-                .actionSheet(isPresented: $isActionSheet, content: {
-                    switch actionSheetMode {
-                    case .개임선택:
-                        return ActionSheet(title: Text("Choose Game") ,buttons: [
-                            .default(Text("game 1")) {
-                                pushGame1 = true
-                            },
-                            .default(Text("game 2")) {
-                                pushGame2 = true
-                            },
-                            .cancel()
-                        ])
-                    default:
-                        return ActionSheet(title: Text(""))
+        VStack {          
+            GeometryReader { geomentry in
+                ScrollView {
+                    RoundedButtonView(text: Text("game"), style: .normalStyle) {
+                        isActionSheet = true
+                        actionSheetMode = .개임선택
                     }
+                    .padding(20)
+                    .actionSheet(isPresented: $isActionSheet, content: {
+                        switch actionSheetMode {
+                        case .개임선택:
+                            return ActionSheet(title: Text("Choose Game") ,buttons: [
+                                .default(Text("game 1")) {
+                                    pushGame1 = true
+                                },
+                                .default(Text("game 2")) {
+                                    pushGame2 = true
+                                },
+                                .cancel()
+                            ])
+                        default:
+                            return ActionSheet(title: Text(""))
+                        }
+                        
+                    })
                     
-                })
-                
-                if isiPad {
-                    LazyVGrid(columns: GridItem.makeGridItems(number: 2)) {
-                        list
+                    if isiPad {
+                        LazyVGrid(columns: GridItem.makeGridItems(number: 2)) {
+                            list
+                        }
+                    } else {
+                        LazyVStack {
+                            list
+                        }
                     }
-                } else {
-                    LazyVStack {
-                        list
+                    if !Consts.isNotShowAd && !isiPad{
+                        BannerAdView(sizeType: .GADAdSizeLargeBanner)
+                            .padding(.top,10)
+                            .padding(.bottom,10)
                     }
-                }
-                if !Consts.isNotShowAd && !isiPad{
-                    BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                        .padding(.top,10)
-                        .padding(.bottom,10)
                 }
             }
         }
@@ -158,23 +160,8 @@ struct SymbolListView: View {
             optionData.load()
             SFSymbol(names: $names).loadData(category: category ?? "all")
         }
-        .searchable(text: $keyword)
-        .toolbar {
-            ToolbarItem(placement: .automatic) {                
-                NavigationLink {
-                    List {
-                        OptionView(data: $optionData, previewNames: ["mic",
-                                                                     "carbon.dioxide.cloud",
-                                                                     "carbon.dioxide.cloud.fill",
-                                                                     "bolt.trianglebadge.exclamationmark"])
-                        
-                    }.navigationTitle(Text("Option"))
-                } label: {
-                    Image(systemName:"gear")
-                }
-
-            }
-        }
+        .searchable(text: $keyword)        
+        
     }
 }
 
