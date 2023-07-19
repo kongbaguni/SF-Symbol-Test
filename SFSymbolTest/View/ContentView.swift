@@ -38,7 +38,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             NavigationStack {
-                SymbolListView(category: nil,title: nil)                    
+                SymbolListView(category: nil,title: nil, isFavorite : false)                    
             }
             .navigationTitle("SF Symbols")
             .navigationBarTitleDisplayMode(.inline)

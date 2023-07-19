@@ -28,7 +28,12 @@ extension UserDefaults {
         }
         get {
             if let str = string(forKey: "favorites") {
-                return str.components(separatedBy: ",")
+                
+                var list = str.components(separatedBy: ",")
+                while list.last?.isEmpty == true {
+                    list.removeLast()
+                }
+                return list
             }
             return []
         }

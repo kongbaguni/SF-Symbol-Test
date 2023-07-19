@@ -26,6 +26,7 @@ struct SymbolListView: View {
     @State var pushGame2 = false
     let category:String?
     let title:Text?
+    let isFavorite:Bool
     
     var filteredArray:[String]? {
         let kwd = keyword.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -39,13 +40,15 @@ struct SymbolListView: View {
     }
     
     var data:[Any] {
+        if isFavorite {
+            return favorites
+        }
         if let arr = filteredArray {
             return arr
         }
         else if category != nil {
             return names
         }
-        
         return SFSymbolCategorys
     }
     
@@ -88,6 +91,15 @@ struct SymbolListView: View {
     
     var list : some View {
         Group {
+            if favorites.count > 0 && isFavorite == false {
+                getImageView(destination: SymbolListView(category: nil, title: nil, isFavorite: true),
+                             imgName: "star.fill",
+                             text: Text("favorites")
+                )
+            }
+            if isFavorite && favorites.count == 0 {
+                Text("There are no favorites.")
+            }
             ForEach(0..<data.count, id:\.self) { i in
                 if i % (isiPad ? 30 : 10) == 0 {
                     if !Consts.isNotShowAd {
@@ -98,7 +110,7 @@ struct SymbolListView: View {
                     }
                 }
                 if let category = data[i] as? (String,String,Text) {
-                    getImageView(destination: SymbolListView(category: category.0, title: category.2).navigationTitle(category.2),
+                    getImageView(destination: SymbolListView(category: category.0, title: category.2, isFavorite: false).navigationTitle(category.2),
                                  imgName: category.1, text: category.2)
                     
                 }
