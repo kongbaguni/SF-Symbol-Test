@@ -15,7 +15,7 @@ struct SymbolListView: View {
     }
     
     @State var names:[String] = []
-    
+    @State var favorites:[String] = UserDefaults.standard.favorites
     @State var optionData:OptionView.Data = .init()
     @State var keyword = ""
     
@@ -65,6 +65,11 @@ struct SymbolListView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.primary)
                 Spacer()
+                if favorites.firstIndex(of: imgName) != nil {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.orange)
+                    
+                }
             }
             .padding(10)
             .overlay {
@@ -160,6 +165,7 @@ struct SymbolListView: View {
         .onAppear {
             optionData.load()
             SFSymbol(names: $names).loadData(category: category ?? "all")
+            favorites = UserDefaults.standard.favorites
         }
         .searchable(text: $keyword)        
         
