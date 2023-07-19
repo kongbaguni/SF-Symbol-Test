@@ -7,6 +7,15 @@
 
 import SwiftUI
 import GoogleMobileAds
+
+
+#if DEBUG
+fileprivate let adId = "ca-app-pub-3940256099942544/3986624511"
+#else
+fileprivate let adId = "ca-app-pub-7714069006629518/8337557651"
+#endif
+
+
 class GoogleAdLoader : NSObject {
     let loader:GADAdLoader
     let complete:(_ ads:[GADNativeAd])->Void
@@ -18,7 +27,7 @@ class GoogleAdLoader : NSObject {
         viewOption.preferredAdChoicesPosition = .topRightCorner
         
         self.complete = complete
-        loader = .init(adUnitID: "",
+        loader = .init(adUnitID: adId,
                          rootViewController: UIApplication.shared.rootViewController,
                          adTypes: [.native], options: [multipleAdsOptions, viewOption])
         super.init()
@@ -49,95 +58,71 @@ extension GoogleAdLoader : GADNativeAdLoaderDelegate {
 extension GADNativeAd {
      
     var adView : some View {
-        VStack {
-            HStack {
-                Text("Ad")
-                    .font(.system(size: 12, weight: .bold))
-                    .padding(3)
-                    .foregroundColor(.white)
-                    .background(.orange)
-                    .cornerRadius(3)
-                
-                if let image = self.icon?.image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .frame(width: 20,height: 20)
-                        .padding(.trailing,10)
-                    VStack {
-                        HStack {
-                            Text(self.headline ?? "headline")
-                                .font(.system(size: 10))
-                                .foregroundColor(.secondary)
-                            Spacer()
-                        }
-                        HStack {
-                            Text(self.advertiser ?? "advertiser")
-                                .font(.system(size: 10))
-                                .foregroundColor(.blue)
-                            Spacer()
-                        }
-                    }
-                }
-            }
-            HStack {
-                Text(self.body ?? "")
-                    .font(.system(size:12))
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
-                Spacer()
-            }
-            
-            if let images = self.images {
-                if images.count == 1 {
-                    HStack {
-                        Spacer()
-                        Image(uiImage: images.first!.image!)
+        HStack {
+            VStack (alignment: .leading) {
+                HStack {
+                    Text("Ad")
+                        .font(.system(size: 12, weight: .bold))
+                        .padding(3)
+                        .foregroundColor(.white)
+                        .background(.orange)
+                        .cornerRadius(3)
+                    
+                    if let image = self.icon?.image {
+                        Image(uiImage: image)
                             .resizable()
-                            .scaledToFit()
-                    }
-                }
-                else {
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(0..<images.count, id:\.self) { i in
-                                Image(uiImage: images[i].image!)
-                                    .resizable()
-                                    .scaledToFit()
+                            .frame(width: 20,height: 20)
+                            .padding(.trailing,10)
+                        VStack(alignment: .leading) {
+                            if let headline = headline {
+                                Text(headline)
+                                    .font(.system(size: 10))
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(3)
+                            }
+                            if let advertiser = advertiser {
+                                Text(advertiser)
+                                    .font(.system(size: 10))
+                                    .foregroundColor(.blue)
+                                    .lineLimit(10)
                             }
                         }
                     }
+                    Spacer()
+                }
+                Text(self.body ?? "")
+                    .lineLimit(10)
+                    .font(.system(size:12))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+                
+                
+                HStack {
+                    Spacer()
                     
-                }
-            }
-            
-            HStack {
-                Spacer()
-                
-                if let price = self.price {
-                    Text(price)
-                }
-                
-                StarView(numberOfStar: starRating ?? 0.0, forgroundColor: .yellow, size:.init(width: 10, height: 10))
-                
-                Button {
+                    if let price = self.price {
+                        Text(price)
+                            .font(.system(size: 10))
+                    }
                     
-                } label : {
-                    if let store = self.store {
-                        Text(store)
-                    }
-                    if let action = self.callToAction {
-                        Text(action)
-                    }
-                }
-                if isCustomMuteThisAdAvailable {
-                    Button {
-                        
-                        
-                    } label : {
-                        Text("Mute")
+                    if let star = starRating {
+                        StarView(numberOfStar: star, forgroundColor: .yellow, size:.init(width: 10, height: 10))
                     }
                 }
             }
+            if let img = images?.first?.image {
+                Image(uiImage: img)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 80)
+                    .cornerRadius(5)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(.blue,lineWidth:4)
+                    }
+                    .padding(.leading, 5)
+            }
+
         }
     }
     
