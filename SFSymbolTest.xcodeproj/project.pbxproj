@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B5476322A68BED8003D5DD7 /* GoogleAdPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476312A68BED8003D5DD7 /* GoogleAdPrompt.swift */; };
 		1B692AF12A676A7F0007F5FB /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1B692AF02A676A7F0007F5FB /* ActivityIndicatorView */; };
 		1B692AF42A67A29A0007F5FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B692AF62A67A29A0007F5FB /* InfoPlist.strings */; };
 		8D00E0C329629C0B00295F55 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8D00E0C229629C0B00295F55 /* GoogleMobileAds */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B5476312A68BED8003D5DD7 /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
 		1B692AF52A67A29A0007F5FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B692AF72A67A29F0007F5FB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8D0B8E0F294C1EC100BD039C /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				8D6AC722294B0A19003AABDA /* resorces */,
 				8D6AC71E294AEC73003AABDA /* Localizable.strings */,
 				8D96829829471E49006384E5 /* SFSymbolTestApp.swift */,
+				1B5476312A68BED8003D5DD7 /* GoogleAdPrompt.swift */,
 				8D2EEB802962A6FA003ECA66 /* Consts.swift */,
 				8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */,
 				8D5150252966BF2800823687 /* BannerAdView.swift */,
@@ -309,6 +312,7 @@
 				8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */,
 				8D4E95572954294D0066AD66 /* OnYourMarkView.swift in Sources */,
 				8D70FD962963DBE9000742A1 /* RandomSFImageView.swift in Sources */,
+				1B5476322A68BED8003D5DD7 /* GoogleAdPrompt.swift in Sources */,
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
 				8D6AC719294ADDA7003AABDA /* Notification.Name+Extensions.swift in Sources */,
 				8D6AC728294C000C003AABDA /* GameModel.swift in Sources */,
