@@ -48,11 +48,16 @@ class GoogleFullScreenAd: NSObject {
     
     var callback:(_ isSucess:Bool, _ time:TimeInterval?)->Void = { _,_ in}
     
+    var requestAd = false
     func showAd(complete:@escaping(_ isSucess:Bool, _ time:TimeInterval?)->Void) {
         if Consts.isNotShowAd == true {
             complete(false,0)
             return
         }
+        if requestAd {
+            return
+        }
+        requestAd = true
         let now = Date()
         if let lastTime = UserDefaults.standard.lastAdWatchTime {
             let interval = now.timeIntervalSince1970 - lastTime.timeIntervalSince1970
@@ -69,8 +74,8 @@ class GoogleFullScreenAd: NSObject {
                 }
                 return
             }
+            self?.requestAd = false
             UserDefaults.standard.lastAdWatchTime = Date()
-                        
             if let vc = UIApplication.shared.lastViewController {
                 self?.interstitial?.present(fromRootViewController: vc)
             }
