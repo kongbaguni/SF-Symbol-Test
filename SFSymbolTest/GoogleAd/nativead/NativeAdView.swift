@@ -38,7 +38,10 @@ struct NativeAdView : View {
                 nativeAd = ad
                 loading = false
             })
-        }.padding(20)
+        }
+        .border(Color.blue, width:2)
+        .shadow(radius: 10, x:5, y:5)
+        .padding(20)
 
     }
 }
