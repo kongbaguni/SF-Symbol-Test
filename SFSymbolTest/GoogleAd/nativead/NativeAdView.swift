@@ -40,8 +40,8 @@ struct NativeAdView : View {
                 loading = false
             })
         }
-        .border(Color.blue, width:2)
-        .shadow(radius: 10, x:5, y:5)
+        .border(loading ? Color.clear : Color.blue, width:2)
+        .shadow(color: loading ? Color.clear : Color.blue, radius: 10, x:5, y:5)
         .padding(20)
 
     }
