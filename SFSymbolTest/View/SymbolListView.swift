@@ -160,10 +160,7 @@ struct SymbolListView: View {
                         LazyVStack {
                             list
                         }
-                    }
-                    if !Consts.isNotShowAd && !isiPad{
-                        NativeAdView()
-                    }
+                    }                    
                 }
             }
         }
