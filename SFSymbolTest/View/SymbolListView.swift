@@ -112,7 +112,7 @@ struct SymbolListView: View {
                         BannerAdView(sizeType: .GADAdSizeLargeBanner)
                             .padding(.top,10)
                             .padding(.bottom,10)
-                        AdView(size: .init(width: 300, height: 80), numberOfAds: 2)
+                        NativeAdView()
                     }
                 }
                 if let category = data[i] as? (String,String,Text) {
