@@ -54,8 +54,7 @@ struct MultiFontWeightTextButtonView  : View {
             }
             result.append("**\(str)**")
         }
-        var attr = try! AttributedString(markdown: result)
-        return attr
+        return try! AttributedString(markdown: result)
     }
     var body : some View {
         Button {
