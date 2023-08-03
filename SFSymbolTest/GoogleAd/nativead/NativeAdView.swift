@@ -31,6 +31,7 @@ struct NativeAdView : View {
             }
             VStack(alignment: .center) {
                 ActivityIndicatorView(isVisible: $loading, type: .default()).frame(width: 50, height: 50)
+                    .padding(50)
             }.frame(height:350)
         }.onAppear {
             loading = true
