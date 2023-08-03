@@ -32,7 +32,7 @@ class UnifiedNativeAdView : GADNativeAdView {
     
     func initUI() {
         
-        (iconView as! UIImageView).image = nativeAd?.icon?.image
+        (iconView as! UIImageView).image = nativeAd?.icon?.image ?? UIImage(named: "SF")
         (headlineView as! UILabel).text = nativeAd?.headline
         (advertiserView as! UILabel).text = nativeAd?.advertiser
         (bodyView as! UILabel).text = nativeAd?.body
