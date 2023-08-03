@@ -193,6 +193,9 @@ struct OptionView: View {
                     .foregroundColor(data.forgroundColor.2)
                 }
             }
+            Section {
+                NativeAdView()
+            }
         }
     }
 }

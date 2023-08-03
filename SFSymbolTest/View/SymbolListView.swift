@@ -108,10 +108,7 @@ struct SymbolListView: View {
             }
             ForEach(0..<data.count, id:\.self) { i in
                 if i % (isiPad ? 30 : 10) == 0 {
-                    if !Consts.isNotShowAd {
-                        BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                            .padding(.top,10)
-                            .padding(.bottom,10)
+                    if !Consts.isNotShowAd {                        
                         NativeAdView()
                     }
                 }
@@ -165,9 +162,7 @@ struct SymbolListView: View {
                         }
                     }
                     if !Consts.isNotShowAd && !isiPad{
-                        BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                            .padding(.top,10)
-                            .padding(.bottom,10)
+                        NativeAdView()
                     }
                 }
             }
