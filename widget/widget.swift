@@ -101,7 +101,7 @@ struct widget: Widget {
             widgetEntryView(entry: entry)
         }
         .configurationDisplayName("SF Symbols Navigator")
-        .description("SF Symbols Navigator's Widget ")
+        .description("SF Symbols Navigator's Widget")
     }
 }
 
