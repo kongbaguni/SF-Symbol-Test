@@ -19,6 +19,23 @@ fileprivate var favoritesRendom4:[String] {
             arr.remove(at: idx)
         }
     }
+    
+    let arr2 = ["scribble",
+                "circle",
+                "pencil",
+                "eraser",
+                "car",
+                "car.2",
+                "car.ferry",
+                "car.side",
+                "bolt.car"
+    ]
+    
+    while result.count < 4 {
+        if let item = arr2.randomElement() {
+            result.append(item)
+        }
+    }
     return result
 }
 
