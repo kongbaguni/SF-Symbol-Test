@@ -20,22 +20,6 @@ fileprivate var favoritesRendom4:[String] {
         }
     }
     
-    let arr2 = ["scribble",
-                "circle",
-                "pencil",
-                "eraser",
-                "car",
-                "car.2",
-                "car.ferry",
-                "car.side",
-                "bolt.car"
-    ]
-    
-    while result.count < 4 {
-        if let item = arr2.randomElement() {
-            result.append(item)
-        }
-    }
     return result
 }
 
@@ -90,23 +74,41 @@ struct widgetEntryView : View {
     var columns : [GridItem] = .init(repeating: .init(.flexible()), count: 2)
     var entry: Provider.Entry
 
+    func makeImage(str:String)-> some View {
+        Image(systemName: str)
+            .resizable()
+            .scaledToFit()
+            .padding(10)
+            .fontWeight(entry.option.fontWeight.1)
+            .symbolRenderingMode(entry.option.renderingMode.1)
+            .foregroundStyle(
+                entry.option.forgroundColor1.1,
+                entry.option.forgroundColor2.1,
+                entry.option.forgroundColor3.1)
+    }
+    
     var body: some View {
         VStack {
-            LazyVGrid(columns: columns) {
-                ForEach(entry.favorites, id:\.self) { str in
-                    Image(systemName: str)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(10)
-                        .fontWeight(entry.option.fontWeight.1)
-                        .symbolRenderingMode(entry.option.renderingMode.1)
-                        .foregroundStyle(
-                            entry.option.forgroundColor1.1,
-                            entry.option.forgroundColor2.1,
-                            entry.option.forgroundColor3.1)
+            switch favoritesRendom4.count {
+            case 0:
+                Text("App Title")
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
+                    .foregroundColor(entry.option.forgroundColor1.1)
+            case 4:
+                LazyVGrid(columns: columns) {
+                    ForEach(entry.favorites, id:\.self) { str in
+                        makeImage(str: str)
+                    }
+                }
+            default:
+                HStack {
+                    ForEach(entry.favorites, id:\.self) { str in
+                        makeImage(str: str)
+                    }
                 }
             }
-        }
+        }.padding(30)
     }
 }
 

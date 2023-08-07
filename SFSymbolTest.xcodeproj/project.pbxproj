@@ -12,6 +12,8 @@
 		1B692AF42A67A29A0007F5FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B692AF62A67A29A0007F5FB /* InfoPlist.strings */; };
 		1B7261102A80CE2800D74B03 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72610F2A80CE2800D74B03 /* Option.swift */; };
 		1B7261112A80CE2800D74B03 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72610F2A80CE2800D74B03 /* Option.swift */; };
+		1B7261122A80E68D00D74B03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D6AC71E294AEC73003AABDA /* Localizable.strings */; };
+		1B7261132A80E69200D74B03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B692AF62A67A29A0007F5FB /* InfoPlist.strings */; };
 		1BA5333C2A80C5F300C908F5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA5333B2A80C5F300C908F5 /* WidgetKit.framework */; };
 		1BA5333E2A80C5F300C908F5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA5333D2A80C5F300C908F5 /* SwiftUI.framework */; };
 		1BA533412A80C5F300C908F5 /* widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA533402A80C5F300C908F5 /* widgetBundle.swift */; };
@@ -410,6 +412,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA533482A80C5F400C908F5 /* Assets.xcassets in Resources */,
+				1B7261132A80E69200D74B03 /* InfoPlist.strings in Resources */,
+				1B7261122A80E68D00D74B03 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
