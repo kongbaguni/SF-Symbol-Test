@@ -8,12 +8,26 @@
 import WidgetKit
 import SwiftUI
 import Intents
+fileprivate var favoritesRendom4:[String] {
+    var arr = UserDefaults.standard.favorites
+    var result:[String] = []
+    let limit = arr.count > 4 ? 4 : arr.count
+    while result.count < limit {
+        if let el = arr.randomElement(),
+           let idx = arr.firstIndex(of: el) {
+            result.append(el)
+            arr.remove(at: idx)
+        }
+    }
+    return result
+}
+
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(
             date: Date(),
-            favorites: UserDefaults.standard.favorites,
+            favorites: favoritesRendom4,
             option: UserDefaults.standard.loadOption(),
             configuration: ConfigurationIntent())
     }
@@ -21,7 +35,7 @@ struct Provider: IntentTimelineProvider {
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(
             date: Date(),
-            favorites: UserDefaults.standard.favorites,
+            favorites: favoritesRendom4,
             option: UserDefaults.standard.loadOption(),
             configuration: configuration)
         completion(entry)
@@ -36,7 +50,7 @@ struct Provider: IntentTimelineProvider {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = SimpleEntry(
                 date: entryDate,
-                favorites: UserDefaults.standard.favorites,
+                favorites: favoritesRendom4,
                 option: UserDefaults.standard.loadOption(),
                 configuration: configuration
             )
@@ -86,8 +100,8 @@ struct widget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             widgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("SF Symbols Navigator")
+        .description("SF Symbols Navigator,s Widget ")
     }
 }
 
