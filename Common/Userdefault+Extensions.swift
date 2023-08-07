@@ -25,8 +25,12 @@ extension UserDefaults {
         set {            
             let str = Set(newValue).joined(separator: ",")
             set(str, forKey: "favorites")
+            AppGroup.save(filename: "favorites", key: "favorites", value: newValue)
         }
         get {
+            if let value = AppGroup.load(filename: "favorites", key: "favorites") as? [String] {
+                return value
+            }
             if let str = string(forKey: "favorites") {
                 
                 var list = str.components(separatedBy: ",")
@@ -56,4 +60,16 @@ extension UserDefaults {
             }
         }
     }
+    
+    func saveOption(data:Option) {
+        AppGroup.save(filename: "SFSymbolOption", key: "data", value: data.dicValue)
+    }
+    
+    func loadOption()->Option {
+        if let data = AppGroup.load(filename: "SFSymbolOption", key: "data") as? [String:Int] {
+            return Option(dic: data)
+        }
+        return .init(renderingModeSelect: 0, fontWeightSelect: 0, forgroundColorSelect1: 0, forgroundColorSelect2: 0, forgroundColorSelect3: 0)
+    }
 }
+

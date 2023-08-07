@@ -6,47 +6,11 @@
 //
 
 import SwiftUI
-fileprivate let symbolRenderingModes:[(String,SymbolRenderingMode)] = [
-    ("multicolor",.multicolor),
-    ("hierarchical",.hierarchical),
-    ("monochrome",.monochrome),
-    ("palette",.palette)
-]
 
-fileprivate let fontWeights:[(String,Font.Weight)] = [
-    ("ultraLight",.ultraLight),
-    ("light",.light),
-    ("thin",.thin),
-    ("regular",.regular),
-    ("medium",.medium),
-    ("semibold",.semibold),
-    ("bold",.bold),
-    ("heavy",.heavy),
-    ("black",.black)
-]
-
-
-fileprivate let colorList:[(String,Color)] = [
-    ("primary",.primary),
-    ("secondary",.secondary),
-    ("mint",.mint),
-    ("black",.black),
-    ("white",.white),
-    ("accentColor",.accentColor),
-    ("blue",.blue),
-    ("brown",.brown),
-    ("cyan",.cyan),
-    ("gray",.gray),
-    ("green",.green),
-    ("indigo",.indigo),
-    ("orange",.orange),
-    ("pink",.pink),
-    ("purple",.purple),
-    ("red",.red),
-    ("teal",.teal),
-    ("yellow",.yellow),
-]
-
+extension Notification.Name {
+    static let saveOption = Notification.Name("saveOption_observer")
+    
+}
 struct OptionView: View {
     struct Data {
         var renderingModeSelect:Int {
@@ -88,34 +52,41 @@ struct OptionView: View {
         
         
         var renderingMode:SymbolRenderingMode {
-            symbolRenderingModes[renderingModeSelect].1
+            Option.symbolRenderingModes[renderingModeSelect].1
         }
         
         
         var fontWeight:Font.Weight {
-            fontWeights[fontWeightSelect].1
+            Option.fontWeights[fontWeightSelect].1
         }
         
         var forgroundColor:(Color,Color,Color) {
             (
-                colorList[forgroundColorSelect1].1,
-                colorList[forgroundColorSelect2].1,
-                colorList[forgroundColorSelect3].1
+                Option.colorList[forgroundColorSelect1].1,
+                Option.colorList[forgroundColorSelect2].1,
+                Option.colorList[forgroundColorSelect3].1
             )
         }
         
         mutating func load() {
-            renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
-            fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
-            forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
-            forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
-            forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
+            let option = UserDefaults.standard.loadOption()
+            renderingModeSelect = option.renderingModeSelect
+            fontWeightSelect = option.fontWeightSelect
+            forgroundColorSelect1 = option.forgroundColorSelect1
+            forgroundColorSelect2 = option.forgroundColorSelect2
+            forgroundColorSelect3 = option.forgroundColorSelect3
+            
+//            renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
+//            fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
+//            forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
+//            forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
+//            forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
         }
                 
     }
     
     var isPallete : Bool {
-        switch symbolRenderingModes[data.renderingModeSelect].0 {
+        switch Option.symbolRenderingModes[data.renderingModeSelect].0 {
             case "palette":
                 return true
             default:
@@ -146,16 +117,16 @@ struct OptionView: View {
             }
             Section {
                 Picker(selection: $data.renderingModeSelect) {
-                    ForEach(0..<symbolRenderingModes.count, id:\.self) { i in
-                        Text(symbolRenderingModes[i].0)
+                    ForEach(0..<Option.symbolRenderingModes.count, id:\.self) { i in
+                        Text(Option.symbolRenderingModes[i].0)
                     }
                 } label: {
                     Text("renderingMode")
                 }
                                 
                 Picker(selection: $data.fontWeightSelect) {
-                    ForEach(0..<fontWeights.count, id:\.self) { i in
-                        Text(fontWeights[i].0)
+                    ForEach(0..<Option.fontWeights.count, id:\.self) { i in
+                        Text(Option.fontWeights[i].0)
                     }
                 } label: {
                     Text("fontWeight")
@@ -163,8 +134,8 @@ struct OptionView: View {
                 }
                 
                 Picker(selection: $data.forgroundColorSelect1) {
-                    ForEach(0..<colorList.count, id:\.self) { i in
-                        Text(colorList[i].0)
+                    ForEach(0..<Option.colorList.count, id:\.self) { i in
+                        Text(Option.colorList[i].0)
                     }
                 } label: {
                     Text(isPallete ? "forground Color 1" : "forground Color")
@@ -174,8 +145,8 @@ struct OptionView: View {
                 
                 if isPallete {
                     Picker(selection: $data.forgroundColorSelect2) {
-                        ForEach(0..<colorList.count, id:\.self) { i in
-                            Text(colorList[i].0)
+                        ForEach(0..<Option.colorList.count, id:\.self) { i in
+                            Text(Option.colorList[i].0)
                         }
                     } label: {
                         Text("forground Color 2")
@@ -184,8 +155,8 @@ struct OptionView: View {
                     
                     
                     Picker(selection: $data.forgroundColorSelect3) {
-                        ForEach(0..<colorList.count, id:\.self) { i in
-                            Text(colorList[i].0)
+                        ForEach(0..<Option.colorList.count, id:\.self) { i in
+                            Text(Option.colorList[i].0)
                         }
                     } label: {
                         Text("forground Color 3")
@@ -196,6 +167,16 @@ struct OptionView: View {
             Section {
                 NativeAdView()
             }
+        }
+        .onDisappear {
+            let option:Option = .init(
+                renderingModeSelect: data.renderingModeSelect,
+                fontWeightSelect: data.fontWeightSelect,
+                forgroundColorSelect1: data.forgroundColorSelect1,
+                forgroundColorSelect2: data.forgroundColorSelect2,
+                forgroundColorSelect3: data.forgroundColorSelect3)
+            UserDefaults.standard.saveOption(data: option)
+            NotificationCenter.default.post(name: .saveOption, object: option)
         }
     }
 }

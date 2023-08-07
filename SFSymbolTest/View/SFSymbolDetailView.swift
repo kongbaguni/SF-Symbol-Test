@@ -128,6 +128,15 @@ struct SFSymbolDetailView: View {
         .onAppear {
             isFavorite = UserDefaults.standard.isFavorites(name: imageName)
         }
+        .onReceive(NotificationCenter.default.publisher(for: .saveOption)) { noti in
+            if let option = noti.object as? Option {
+                optionData.fontWeightSelect = option.fontWeightSelect
+                optionData.renderingModeSelect = option.renderingModeSelect
+                optionData.forgroundColorSelect1 = option.forgroundColorSelect1
+                optionData.forgroundColorSelect2 = option.forgroundColorSelect2
+                optionData.forgroundColorSelect3 = option.forgroundColorSelect3
+            }
+        }
         
     }
     private func selectBgColor(color:Color) {
