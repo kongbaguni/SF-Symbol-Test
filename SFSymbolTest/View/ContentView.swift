@@ -7,13 +7,14 @@
 
 import SwiftUI
 import GoogleMobileAds
-
+import Firebase
 
 struct ContentView: View {
     @State var optionData:OptionView.Data = .init()
     
     
     init() {
+        FirebaseApp.configure()
         GoogleAdPrompt.promptWithDelay {
             
         }
