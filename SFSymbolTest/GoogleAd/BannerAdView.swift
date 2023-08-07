@@ -70,6 +70,7 @@ struct BannerAdView: View {
             }
 
             Text("Ad")
+                .font(.system(size:8))
                 .padding(5)
                 .background(Color.orange)
                 .foregroundColor(Color.white)
@@ -78,7 +79,7 @@ struct BannerAdView: View {
                         .stroke(.blue,lineWidth:6)
                 }
                 .cornerRadius(10)
-                .padding(.leading,-(bannerSize.width/2) - 5)
+                .padding(.leading,-(bannerSize.width/2) - 15)
                 .shadow(color:.blue.opacity(0.5),radius: 5,x:2.5,y:2.5)
             
         }

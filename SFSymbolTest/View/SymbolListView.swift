@@ -108,11 +108,8 @@ struct SymbolListView: View {
             }
             ForEach(0..<data.count, id:\.self) { i in
                 if i % (isiPad ? 30 : 10) == 0 {
-                    if !Consts.isNotShowAd {
-                        BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                            .padding(.top,10)
-                            .padding(.bottom,10)
-                        AdView(size: .init(width: 300, height: 80), numberOfAds: 2)
+                    if !Consts.isNotShowAd {                        
+                        NativeAdView()
                     }
                 }
                 if let category = data[i] as? (String,String,Text) {
@@ -163,12 +160,7 @@ struct SymbolListView: View {
                         LazyVStack {
                             list
                         }
-                    }
-                    if !Consts.isNotShowAd && !isiPad{
-                        BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                            .padding(.top,10)
-                            .padding(.bottom,10)
-                    }
+                    }                    
                 }
             }
         }

@@ -41,8 +41,7 @@ struct OnYourMarkView: View {
                 }
             }
             if !Consts.isNotShowAd {
-                BannerAdView(sizeType: .GADAdSizeMediumRectangle)
-                    .padding(.top,50)
+                NativeAdView()
             }
             
         }
