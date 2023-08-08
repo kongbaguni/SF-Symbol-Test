@@ -27,14 +27,16 @@ struct OnYourMarkView: View {
                 .symbolRenderingMode(option.renderingMode)
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
                 .font(.system(size: 100,weight: option.fontWeight))
-                        
-            RoundedButtonView(text: Text("leaderboard"), style: .normalStyle) {
-                isShowLeaderBoard = true
-            }
-            
-            RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
-                ad.showAd { sucess, time in
-                    onTouchupStartBtn()
+                     
+            HStack {
+                RoundedButtonView(text: Text("leaderboard"), style: .normalStyle) {
+                    isShowLeaderBoard = true
+                }
+                
+                RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
+                    ad.showAd { sucess, time in
+                        onTouchupStartBtn()
+                    }
                 }
             }
             if !Consts.isNotShowAd {

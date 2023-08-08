@@ -277,7 +277,7 @@ struct GameView: View {
                         submitLeaderboard()
                     }
                 } else {
-                    RoundedButtonView(text: Text("leaderboards"), style: .normalStyle) {
+                    RoundedButtonView(text: Text("leaderboard"), style: .normalStyle) {
                         isShowLeaderBoard = true
                     }
                 }
