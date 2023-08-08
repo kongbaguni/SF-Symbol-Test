@@ -10,7 +10,9 @@ import GameKit
 
 struct OnYourMarkView: View {
     @State var isShowGameCenterSigninBtn = false
+    @Binding var isShowLeaderBoard:Bool
     let option:OptionView.Data
+    let leaderBoardId:String
     let onTouchupStartBtn:()->Void
     let ad = GoogleFullScreenAd()
     var body: some View {
@@ -25,15 +27,10 @@ struct OnYourMarkView: View {
                 .symbolRenderingMode(option.renderingMode)
                 .foregroundStyle(option.forgroundColor.0,option.forgroundColor.1,option.forgroundColor.2)
                 .font(.system(size: 100,weight: option.fontWeight))
-            
-            //            if isShowGameCenterSigninBtn {
-            //                RoundedButtonView(text: Text("gameCenter"), style: .normalStyle) {
-            //                    GameManager.shared.authuser {
-            //                        isShowGameCenterSigninBtn = GKLocalPlayer.local.isAuthenticated == false
-            //                    }
-            //                }
-            //            }
-            
+                        
+            RoundedButtonView(text: Text("leaderboard"), style: .normalStyle) {
+                isShowLeaderBoard = true
+            }
             
             RoundedButtonView(text: Text("Start!"), style: .normalStyle) {
                 ad.showAd { sucess, time in

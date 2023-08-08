@@ -9,10 +9,17 @@ import SwiftUI
 import GameKit
 
 struct GameView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     enum GameMode {
         case 글자고르기
         case 그림고르기
     }
+    
+    var leaderBoardId:String {
+        return "grp.SFSymbol.leaderboard"
+    }
+    
     let mode:GameMode
     let option:OptionView.Data = .init()
     let timer = STimer.shared
@@ -20,6 +27,9 @@ struct GameView: View {
     @State var gameModel:GameModel? = nil
     @State var current:Int? = nil
     @State var worrongAnser = false
+    @State var isAlert = false
+    @State var alertMessage:Text? = nil
+    @State var isHaveFinalPoint = false
     @State var timeInterval:TimeInterval = 0.0 {
         didSet {
             var getDiscount: Text {
@@ -40,6 +50,7 @@ struct GameView: View {
     @State var 틀린문제들:[String] = []
     
     @State var isGameOver:Bool = false
+    @State var isShowLeaderBoard:Bool = false
         
         
     var pausedView : some View {
@@ -174,9 +185,6 @@ struct GameView: View {
 
             }
         }
-        .onAppear {
-            regTimerObserver()
-        }
     }
     
     var historyView: some View {
@@ -219,7 +227,7 @@ struct GameView: View {
     }
     
     var onYourMarkView : some View {
-        OnYourMarkView(option:option) {
+        OnYourMarkView(isShowLeaderBoard: $isShowLeaderBoard, option:option, leaderBoardId:leaderBoardId) {
             makeNewGame()
             onYourMark = false
         }
@@ -264,6 +272,15 @@ struct GameView: View {
             }
             
             HStack {
+                if isHaveFinalPoint {
+                    RoundedButtonView(text: Text("Report Points"), style: .normalStyle) {
+                        submitLeaderboard()
+                    }
+                } else {
+                    RoundedButtonView(text: Text("leaderboards"), style: .normalStyle) {
+                        isShowLeaderBoard = true
+                    }
+                }
                 RoundedButtonView(text: Text("retry"),
                                   style: .normalStyle) {
                     GameManager.shared.clear()
@@ -295,12 +312,44 @@ struct GameView: View {
         .onAppear {
             onYourMark = GameManager.shared.isGameOver == false
             isGameOver = GameManager.shared.isGameOver
-            submitLeaderboard()
+            isHaveFinalPoint = GameManager.shared.point > 0
+            GKLocalPlayer.local.authenticateHandler = { viewController, error in
+                if let err = error {
+                    isAlert = true
+                    alertMessage = Text(err.localizedDescription)
+                }
+                if let vc = viewController {
+                    UIApplication.shared.lastViewController?.present(vc, animated: true)
+                }
+                
+            }
         }
         .onDisappear{
             timer.stop()
         }
         .navigationTitle(Text("Game"))
+        .alert(isPresented: $isAlert) {
+            Alert(title: Text("alert"), message: alertMessage)
+        }
+        .sheet(isPresented: $isShowLeaderBoard, content: {
+            LeaderBoardViewController()
+        })
+        .onReceive(NotificationCenter.default.publisher(for: .sTimerDidUpdate)) { noti in
+            DispatchQueue.main.async {
+                isGameOver = GameManager.shared.isGameOver
+                if isGameOver || onYourMark {
+                    return
+                }
+                self.timeInterval = timer.duration
+                isPause = timer.isPause
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .gameOver)) { noti in
+            isHaveFinalPoint = true
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .pointPostFinish)) { noti in
+            isHaveFinalPoint = false
+        }
     }
     
     func makeNewGame() {
@@ -317,27 +366,12 @@ struct GameView: View {
         timeInterval = timer.duration
     }
     
-    @State var isRegTimmerObserver = false
-    func regTimerObserver() {
-        if isRegTimmerObserver {
-            return
-        }
-        isRegTimmerObserver = true
-        NotificationCenter.default.addObserver(forName: .sTimerDidUpdate, object: nil, queue: nil) { noti in
-            DispatchQueue.main.async {
-                isGameOver = GameManager.shared.isGameOver
-                if isGameOver || onYourMark {
-                    return
-                }
-                self.timeInterval = timer.duration
-                isPause = timer.isPause
-            }
-        }
-    }
     
     private func submitLeaderboard() {
-        GameManager.shared.updateLeaderboard(totalPoint: GameManager.shared.totalPoint) {
-            
+        GameManager.shared.updateLeaderboard(totalPoint: GameManager.shared.totalPoint, id: leaderBoardId) {isSucess in
+            if isSucess {
+                isHaveFinalPoint = false
+            }
         }
     }
         

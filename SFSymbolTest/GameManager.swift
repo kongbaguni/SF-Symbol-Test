@@ -6,13 +6,24 @@
 //
 import GameKit
 import Foundation
+import GameKit
+import SwiftUI
 
-class GameManager {
+fileprivate var leaderBoardId:String {
+    return "grp.SFSymbol.leaderboard"
+}
+extension Notification.Name {
+    static let gameOver = Notification.Name("gameOver_observer")
+    static let pointPostFinish = Notification.Name("pointPostFinish_observer")
+}
+
+class GameManager  : NSObject {
     static let 게임오버기준 = 10
     static let 문항갯수 = 5
     
     static let shared = GameManager()
-    
+    weak var leaderBoardController : UIViewController? = nil
+     
     func authuser(complete:@escaping()->Void) {
         let localplayer = GKLocalPlayer.local
         localplayer.authenticateHandler = { _, error in
@@ -26,29 +37,22 @@ class GameManager {
         }
     }
     
-    func updateLeaderboard(totalPoint:Int, complete:@escaping()->Void) {
-        if GKLocalPlayer.local.isAuthenticated {
-            GKLeaderboard.submitScore(1000, context: 0, player: GKLocalPlayer.local, leaderboardIDs: ["grp.SFSymbol.leaderboard"]) { error in
-                if error == nil {
-                    complete()
-                    self.getLeadeeboard()
-                }
-            }
-        } else {
-            complete()
+    func updateLeaderboard(totalPoint:Int, id:String, complete:@escaping(_ isSucess:Bool)->Void) {
+        guard GKLocalPlayer.local.isAuthenticated else {
+            complete(false)
+            return
         }
+        
+        GKLeaderboard.submitScore(totalPoint, context: 0, player: GKLocalPlayer.local, leaderboardIDs: [id]) { error in
+            complete(error == nil)
+            if error == nil {
+                NotificationCenter.default.post(name: .pointPostFinish, object: nil)
+            }
+        }
+        
     }
     
-    func getLeadeeboard() {
-        GKLeaderboard.loadLeaderboards(IDs: ["grp.SFSymbol.leaderboard"]) { leaderboards, error in
-            for leaderboard in leaderboards ?? [] {
-                print(leaderboard.title ?? "")
-                print(leaderboard.startDate?.formatted(.dateTime) ?? "")
-            }
-            if error == nil {
-            }
-        }
-    }
+    
     var names:[String] = []
     var backup:[String] = []
     
@@ -83,13 +87,26 @@ class GameManager {
         return result
     }
         
-    private var _맞춤:[String] = []
+    private var _맞춤:[String] = [] {
+        didSet {
+            if isGameOver {
+                NotificationCenter.default.post(name: .gameOver, object: nil)
+            }
+        }
+    }
     public var 맞춤:[String] {
         get {
             return _맞춤
         }
     }
-    private var _틀림:[String] = []
+    
+    private var _틀림:[String] = [] {
+        didSet {
+            if isGameOver {
+                NotificationCenter.default.post(name: .gameOver, object: nil)
+            }
+        }
+    }
     public  var 틀림:[String] {
         get {
             return _틀림
@@ -103,7 +120,7 @@ class GameManager {
         if 맞춤 {
             if _맞춤.last != 문제 {
                 _맞춤.append(문제)
-                _durations.append(duration)
+                _durations.append(duration)                            
                 return true
             } else {
                 return false
@@ -116,7 +133,6 @@ class GameManager {
             } else {
                 return false 
             }
-            
         }
     }
     
@@ -129,7 +145,7 @@ class GameManager {
     public var point:Int {
         var result = 0
         result += 맞춤.count * 10000
-        result -= 틀림.count * 10000
+        result -= 틀림.count * 1000
         if result < 0 {
             return 0
         }
@@ -156,6 +172,33 @@ class GameManager {
 
     public var isGameOver:Bool {
         맞춤.count >= GameManager.게임오버기준 || 틀림.count >= GameManager.게임오버기준 
+    }
+}
+
+
+
+
+
+
+struct LeaderBoardViewController: UIViewControllerRepresentable {
+    let delegate = GameCenterControllerDelegate()
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        let vc = GKGameCenterViewController(state: .leaderboards)
+        vc.gameCenterDelegate = delegate
+        delegate.vc = vc
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        // Update the view controller if needed
+    }
+    
+    class GameCenterControllerDelegate : NSObject, GKGameCenterControllerDelegate {
+        weak var vc:UIViewController? = nil
+        func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+            vc?.dismiss(animated: true)
+        }
     }
 }
 

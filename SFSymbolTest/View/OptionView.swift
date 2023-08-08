@@ -74,13 +74,7 @@ struct OptionView: View {
             fontWeightSelect = option.fontWeightSelect
             forgroundColorSelect1 = option.forgroundColorSelect1
             forgroundColorSelect2 = option.forgroundColorSelect2
-            forgroundColorSelect3 = option.forgroundColorSelect3
-            
-//            renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
-//            fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
-//            forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
-//            forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
-//            forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
+            forgroundColorSelect3 = option.forgroundColorSelect3            
         }
                 
     }
