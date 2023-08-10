@@ -346,6 +346,13 @@ struct GameView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .gameOver)) { noti in
             isHaveFinalPoint = true
+            if GameManager.shared.isPerfectClear {
+                GKAchievement.report([GKAchievement.init(identifier: "grp.SFSymbol.perfectClear", player: GKLocalPlayer.local)])
+            }
+            if GameManager.shared.allFaild {
+                GKAchievement.report([GKAchievement.init(identifier: "grp.SFSymbol.allFaild", player: GKLocalPlayer.local)])
+            }
+
         }
         .onReceive(NotificationCenter.default.publisher(for: .pointPostFinish)) { noti in
             isHaveFinalPoint = false

@@ -173,6 +173,14 @@ class GameManager  : NSObject {
     public var isGameOver:Bool {
         맞춤.count >= GameManager.게임오버기준 || 틀림.count >= GameManager.게임오버기준 
     }
+    
+    public var isPerfectClear:Bool {
+        틀림.count == 0 && 맞춤.count == GameManager.게임오버기준
+    }
+    
+    public var allFaild:Bool {
+        틀림.count == GameManager.게임오버기준 && 맞춤.count == 0
+    }
 }
 
 
