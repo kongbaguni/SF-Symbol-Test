@@ -347,10 +347,20 @@ struct GameView: View {
         .onReceive(NotificationCenter.default.publisher(for: .gameOver)) { noti in
             isHaveFinalPoint = true
             if GameManager.shared.isPerfectClear {
-                GKAchievement.report([GKAchievement.init(identifier: "grp.SFSymbol.perfectClear", player: GKLocalPlayer.local)])
+                GameManager.shared.reportAchivement(archivementType: .perfectCleae) { error in
+                    if let err = error {
+                        isAlert = true
+                        alertMessage = Text(err.localizedDescription)
+                    }
+                }
             }
             if GameManager.shared.allFaild {
-                GKAchievement.report([GKAchievement.init(identifier: "grp.SFSymbol.allFaild", player: GKLocalPlayer.local)])
+                GameManager.shared.reportAchivement(archivementType: .allFaild) { error in
+                    if let err = error {
+                        isAlert = true
+                        alertMessage = Text(err.localizedDescription)
+                    }
+                }
             }
 
         }

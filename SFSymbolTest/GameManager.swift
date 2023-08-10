@@ -181,6 +181,31 @@ class GameManager  : NSObject {
     public var allFaild:Bool {
         틀림.count == GameManager.게임오버기준 && 맞춤.count == 0
     }
+    
+    public enum AchivementType:String {
+        case perfectCleae =  "grp.SFSymbol.perfectClear"
+        case allFaild = "grp.SFSymbol.allFaild"
+    }
+    
+    public func reportAchivement(archivementType:AchivementType, complete:@escaping(_ error:Error?)->Void) {
+        GKAchievement.loadAchievements { archivements, error in
+            if let err = error {
+                complete(err)
+                return
+            }
+            
+            if let archivements = archivements {
+                if archivements.filter({ a in
+                    return a.identifier == archivementType.rawValue
+                }).count == 0 {
+                    GKAchievement.report([GKAchievement.init(identifier: archivementType.rawValue)]) { error in
+                        complete(error)
+                    }
+                }
+            }
+        }
+
+    }
 }
 
 
