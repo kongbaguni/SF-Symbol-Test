@@ -365,7 +365,7 @@ struct GameView: View {
                         alertMessage = Text(err.localizedDescription)
                     } else {
                         isShowGameCenterView = true
-                        gameCenterState = .challenges
+                        gameCenterState = .achievements
                     }
                 }
             }
@@ -377,7 +377,7 @@ struct GameView: View {
                         alertMessage = Text(err.localizedDescription)
                     } else {
                         isShowGameCenterView = true
-                        gameCenterState = .challenges
+                        gameCenterState = .achievements
                     }
                 }
             }
