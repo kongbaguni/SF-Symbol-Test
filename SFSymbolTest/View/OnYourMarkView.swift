@@ -11,6 +11,7 @@ import GameKit
 struct OnYourMarkView: View {
     @State var isShowGameCenterSigninBtn = false
     @Binding var isShowGameCenterView:Bool
+    @Binding var gameCenterState:GKGameCenterViewControllerState
     let option:OptionView.Data
     let leaderBoardId:String
     let onTouchupStartBtn:()->Void
@@ -31,6 +32,7 @@ struct OnYourMarkView: View {
             HStack {
                 RoundedButtonView(text: Text("leaderboard"), style: .normalStyle) {
                     isShowGameCenterView = true
+                    gameCenterState = .leaderboards
                 }
                 
                 RoundedButtonView(text: Text("Start!"), style: .normalStyle) {

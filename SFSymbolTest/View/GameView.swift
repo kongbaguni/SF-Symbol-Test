@@ -230,7 +230,10 @@ struct GameView: View {
     }
     
     var onYourMarkView : some View {
-        OnYourMarkView(isShowGameCenterView: $isShowGameCenterView, option:option, leaderBoardId:leaderBoardId) {
+        OnYourMarkView(isShowGameCenterView: $isShowGameCenterView,
+                       gameCenterState: $gameCenterState,
+                       option:option,
+                       leaderBoardId:leaderBoardId) {
             makeNewGame()
             onYourMark = false
         }
