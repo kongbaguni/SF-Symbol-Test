@@ -14,8 +14,8 @@
             filePath = "SFSymbolTest/View/GameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "SFSymbolTest/View/GameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -64,54 +64,6 @@
                   startingLineNumber = "368"
                   endingLineNumber = "368"
                   offsetFromSymbolStart = "133">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "726C3470-50D7-45E3-9911-6F7D9A8DE33F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SFSymbolTest/GameManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "reportAchivement(archivementType:complete:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "726C3470-50D7-45E3-9911-6F7D9A8DE33F - b6362c114fe746bc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.GKAchievement&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SFSymbolTest.GameManager.reportAchivement(archivementType: SFSymbolTest.GameManager.AchivementType, complete: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "SFSymbolTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seochangyeol/Documents/SFSymbolTest/SFSymbolTest/GameManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "766">
-               </Location>
-               <Location
-                  uuid = "726C3470-50D7-45E3-9911-6F7D9A8DE33F - 4df7fd9376c31291"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.GKAchievement&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SFSymbolTest.GameManager.reportAchivement(archivementType: SFSymbolTest.GameManager.AchivementType, complete: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "SFSymbolTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seochangyeol/Documents/SFSymbolTest/SFSymbolTest/GameManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "204"
-                  endingLineNumber = "204"
-                  offsetFromSymbolStart = "52">
                </Location>
             </Locations>
          </BreakpointContent>

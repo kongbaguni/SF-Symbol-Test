@@ -183,7 +183,7 @@ class GameManager  : NSObject {
     }
     
     public enum AchivementType:String {
-        case perfectCleae =  "grp.SFSymbol.perfectClear"
+        case perfectClear =  "grp.SFSymbol.perfectClear"
         case allFaild = "grp.SFSymbol.allFaild"
     }
     
@@ -199,9 +199,8 @@ class GameManager  : NSObject {
                     return a.identifier == archivementType.rawValue
                 }).count == 0 {
                     let achivement = GKAchievement.init(identifier: archivementType.rawValue, player: GKLocalPlayer.local)
-                    
                     GKAchievement.report([achivement]) { error in
-                        complete(error)                        
+                        complete(error)
                     }
                 }
             }

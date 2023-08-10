@@ -355,10 +355,8 @@ struct GameView: View {
         .onReceive(NotificationCenter.default.publisher(for: .gameOver)) { noti in
             isHaveFinalPoint = true
             if GameManager.shared.isPerfectClear {
-//                toastMessage = "완벽하군!"
-//                isToast = true
 
-                GameManager.shared.reportAchivement(archivementType: .perfectCleae) { error in
+                GameManager.shared.reportAchivement(archivementType: .perfectClear) { error in
                     if let err = error {
                         isAlert = true
                         alertMessage = Text(err.localizedDescription)
@@ -369,8 +367,6 @@ struct GameView: View {
                 }
             }
             if GameManager.shared.allFaild {
-//                toastMessage = "다 틀렸다"
-//                isToast = true
                 
                 GameManager.shared.reportAchivement(archivementType: .allFaild) { error in
                     if let err = error {
