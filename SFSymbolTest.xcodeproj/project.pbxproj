@@ -30,6 +30,7 @@
 		8D0B8E10294C1EC100BD039C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E0F294C1EC100BD039C /* Timer.swift */; };
 		8D0B8E12294C47F100BD039C /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B8E11294C47F000BD039C /* Int+Extensions.swift */; };
 		8D2EEB812962A6FA003ECA66 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2EEB802962A6FA003ECA66 /* Consts.swift */; };
+		8D3D9F862A84C29300DC9897 /* LeaderBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D9F852A84C29300DC9897 /* LeaderBoardController.swift */; };
 		8D4E95572954294D0066AD66 /* OnYourMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E95562954294D0066AD66 /* OnYourMarkView.swift */; };
 		8D5150222966BAFF00823687 /* GoogleFullscreenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */; };
 		8D5150242966BC1500823687 /* Userdefault+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5150232966BC1500823687 /* Userdefault+Extensions.swift */; };
@@ -109,6 +110,7 @@
 		8D0B8E0F294C1EC100BD039C /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		8D0B8E11294C47F000BD039C /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		8D2EEB802962A6FA003ECA66 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		8D3D9F852A84C29300DC9897 /* LeaderBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardController.swift; sourceTree = "<group>"; };
 		8D4E95562954294D0066AD66 /* OnYourMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnYourMarkView.swift; sourceTree = "<group>"; };
 		8D5150212966BAFF00823687 /* GoogleFullscreenAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleFullscreenAd.swift; sourceTree = "<group>"; };
 		8D5150232966BC1500823687 /* Userdefault+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Userdefault+Extensions.swift"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				8D2EEB802962A6FA003ECA66 /* Consts.swift */,
 				8D6AC716294ADCAB003AABDA /* Toast.swift */,
 				8D6AC72B294C0307003AABDA /* GameManager.swift */,
+				8D3D9F852A84C29300DC9897 /* LeaderBoardController.swift */,
 				8D0B8E0F294C1EC100BD039C /* Timer.swift */,
 				8D6AC725294BFF81003AABDA /* View */,
 				8D96829C29471E4E006384E5 /* Assets.xcassets */,
@@ -490,6 +493,7 @@
 				8D70FD962963DBE9000742A1 /* RandomSFImageView.swift in Sources */,
 				1B5476322A68BED8003D5DD7 /* GoogleAdPrompt.swift in Sources */,
 				8D6AC710294AA42A003AABDA /* GridItem+Extensions.swift in Sources */,
+				8D3D9F862A84C29300DC9897 /* LeaderBoardController.swift in Sources */,
 				8D6AC719294ADDA7003AABDA /* Notification.Name+Extensions.swift in Sources */,
 				8DB2701A2A7A4DDC00412CFA /* NativeAdView.swift in Sources */,
 				8D6AC728294C000C003AABDA /* GameModel.swift in Sources */,

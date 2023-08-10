@@ -198,8 +198,10 @@ class GameManager  : NSObject {
                 if archivements.filter({ a in
                     return a.identifier == archivementType.rawValue
                 }).count == 0 {
-                    GKAchievement.report([GKAchievement.init(identifier: archivementType.rawValue)]) { error in
-                        complete(error)
+                    let achivement = GKAchievement.init(identifier: archivementType.rawValue, player: GKLocalPlayer.local)
+                    
+                    GKAchievement.report([achivement]) { error in
+                        complete(error)                        
                     }
                 }
             }
@@ -213,25 +215,5 @@ class GameManager  : NSObject {
 
 
 
-struct LeaderBoardViewController: UIViewControllerRepresentable {
-    let delegate = GameCenterControllerDelegate()
 
-    func makeUIViewController(context: Context) -> UIViewController {
-        let vc = GKGameCenterViewController(state: .leaderboards)
-        vc.gameCenterDelegate = delegate
-        delegate.vc = vc
-        return vc
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Update the view controller if needed
-    }
-    
-    class GameCenterControllerDelegate : NSObject, GKGameCenterControllerDelegate {
-        weak var vc:UIViewController? = nil
-        func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-            vc?.dismiss(animated: true)
-        }
-    }
-}
 

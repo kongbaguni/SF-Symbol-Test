@@ -50,8 +50,11 @@ struct GameView: View {
     @State var 틀린문제들:[String] = []
     
     @State var isGameOver:Bool = false
-    @State var isShowLeaderBoard:Bool = false
+    @State var isShowGameCenterView:Bool = false
+    @State var gameCenterState:GKGameCenterViewControllerState = .leaderboards
         
+    @State var isToast:Bool = false
+    @State var toastMessage:String = ""
         
     var pausedView : some View {
         VStack {
@@ -227,7 +230,7 @@ struct GameView: View {
     }
     
     var onYourMarkView : some View {
-        OnYourMarkView(isShowLeaderBoard: $isShowLeaderBoard, option:option, leaderBoardId:leaderBoardId) {
+        OnYourMarkView(isShowGameCenterView: $isShowGameCenterView, option:option, leaderBoardId:leaderBoardId) {
             makeNewGame()
             onYourMark = false
         }
@@ -278,7 +281,8 @@ struct GameView: View {
                     }
                 } else {
                     RoundedButtonView(text: Text("leaderboard"), style: .normalStyle) {
-                        isShowLeaderBoard = true
+                        isShowGameCenterView = true
+                        gameCenterState = .leaderboards
                     }
                 }
                 RoundedButtonView(text: Text("retry"),
@@ -331,9 +335,10 @@ struct GameView: View {
         .alert(isPresented: $isAlert) {
             Alert(title: Text("alert"), message: alertMessage)
         }
-        .sheet(isPresented: $isShowLeaderBoard, content: {
-            LeaderBoardViewController()
+        .sheet(isPresented: $isShowGameCenterView, content: {
+            GameCenterViewController(state: gameCenterState)
         })
+        .toast(message: toastMessage, isShowing: $isToast, duration: 3.0)
         .onReceive(NotificationCenter.default.publisher(for: .sTimerDidUpdate)) { noti in
             DispatchQueue.main.async {
                 isGameOver = GameManager.shared.isGameOver
@@ -347,18 +352,30 @@ struct GameView: View {
         .onReceive(NotificationCenter.default.publisher(for: .gameOver)) { noti in
             isHaveFinalPoint = true
             if GameManager.shared.isPerfectClear {
+//                toastMessage = "완벽하군!"
+//                isToast = true
+
                 GameManager.shared.reportAchivement(archivementType: .perfectCleae) { error in
                     if let err = error {
                         isAlert = true
                         alertMessage = Text(err.localizedDescription)
+                    } else {
+                        isShowGameCenterView = true
+                        gameCenterState = .challenges
                     }
                 }
             }
             if GameManager.shared.allFaild {
+//                toastMessage = "다 틀렸다"
+//                isToast = true
+                
                 GameManager.shared.reportAchivement(archivementType: .allFaild) { error in
                     if let err = error {
                         isAlert = true
                         alertMessage = Text(err.localizedDescription)
+                    } else {
+                        isShowGameCenterView = true
+                        gameCenterState = .challenges
                     }
                 }
             }
