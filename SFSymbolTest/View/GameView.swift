@@ -333,6 +333,9 @@ struct GameView: View {
         }
         .onDisappear{
             timer.stop()
+            if GameManager.shared.isGameOver {
+                GameManager.shared.clear()
+            }
         }
         .navigationTitle(Text("Game"))
         .alert(isPresented: $isAlert) {
