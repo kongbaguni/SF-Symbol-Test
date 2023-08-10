@@ -187,7 +187,7 @@ class GameManager  : NSObject {
         case allFaild = "grp.SFSymbol.allFaild"
     }
     
-    public func reportAchivement(archivementType:AchivementType, complete:@escaping(_ error:Error?)->Void) {
+    public func reportAchivement(archivementType:AchivementType, complete:@escaping(_ error:Error?)->Void) {        
         GKAchievement.loadAchievements { archivements, error in
             if let err = error {
                 complete(err)
@@ -199,6 +199,7 @@ class GameManager  : NSObject {
                     return a.identifier == archivementType.rawValue
                 }).count == 0 {
                     let achivement = GKAchievement.init(identifier: archivementType.rawValue, player: GKLocalPlayer.local)
+                    achivement.percentComplete = 100
                     GKAchievement.report([achivement]) { error in
                         complete(error)
                     }
