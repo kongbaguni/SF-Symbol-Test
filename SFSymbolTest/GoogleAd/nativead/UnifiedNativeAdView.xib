@@ -97,7 +97,7 @@
                 <constraint firstItem="jkL-uo-Bv8" firstAttribute="centerY" secondItem="CZu-RD-2OL" secondAttribute="centerY" id="JnB-0F-O8B"/>
                 <constraint firstAttribute="trailing" secondItem="kTT-6b-hcd" secondAttribute="trailing" constant="10" id="LDl-qF-1fF"/>
                 <constraint firstAttribute="bottom" secondItem="CZu-RD-2OL" secondAttribute="bottom" constant="15" id="M9b-t2-3Ez"/>
-                <constraint firstItem="CZu-RD-2OL" firstAttribute="top" secondItem="WoY-86-IQs" secondAttribute="bottom" constant="5" id="SqJ-3d-tIg"/>
+                <constraint firstItem="CZu-RD-2OL" firstAttribute="top" secondItem="WoY-86-IQs" secondAttribute="bottom" priority="750" constant="5" id="SqJ-3d-tIg"/>
                 <constraint firstItem="ddn-8y-hVF" firstAttribute="centerY" secondItem="N3G-cx-JxJ" secondAttribute="centerY" id="WNj-22-kdr"/>
                 <constraint firstItem="yQq-Cl-r8U" firstAttribute="leading" secondItem="Brb-EX-JH5" secondAttribute="trailing" constant="5" id="XWJ-CV-RBv"/>
                 <constraint firstItem="N3G-cx-JxJ" firstAttribute="leading" secondItem="Brb-EX-JH5" secondAttribute="trailing" constant="5" id="d7J-ac-Ml2"/>
@@ -111,7 +111,7 @@
                 <constraint firstItem="hNt-Km-SG0" firstAttribute="centerY" secondItem="jkL-uo-Bv8" secondAttribute="centerY" id="xLp-lo-wri"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="14.503816793893129" y="-5.9859154929577469"/>
+            <point key="canvasLocation" x="13.6" y="-6.2968515742128943"/>
         </view>
     </objects>
     <resources>
