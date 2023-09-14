@@ -10,6 +10,7 @@ import SwiftUI
 import WidgetKit
 
 fileprivate let appGroupId = "group.net.kongbaguni"
+
 struct AppGroup {
     fileprivate static func makedFileURL(fileName:String)->URL? {
         let sharedContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupId)
