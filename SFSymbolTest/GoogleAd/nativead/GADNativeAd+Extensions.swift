@@ -12,7 +12,7 @@ import GoogleMobileAds
 extension GADNativeAd {
     var view : some View {
         NadViewAdView(ad: self)
-            .frame(height:350)
+//            .frame(height:350)
         
     }
 }
