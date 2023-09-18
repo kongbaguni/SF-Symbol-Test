@@ -106,12 +106,8 @@ struct SymbolListView: View {
             if isFavorite && favorites.count == 0 {
                 Text("There are no favorites.")
             }
+            NativeAdView()
             ForEach(0..<data.count, id:\.self) { i in
-                if i % (isiPad ? 30 : 10) == 0 {
-                    if !Consts.isNotShowAd {                        
-                        NativeAdView()
-                    }
-                }
                 if let category = data[i] as? (String,String,Text) {
                     getImageView(destination: SymbolListView(category: category.0, title: category.2, isFavorite: false).navigationTitle(category.2),
                                  imgName: category.1, text: category.2)
