@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 extension GADNativeAd {
     var view : some View {
-        NadViewAdView(ad: self)        
+        NadViewAdView(ad: self)
     }
 }
 
