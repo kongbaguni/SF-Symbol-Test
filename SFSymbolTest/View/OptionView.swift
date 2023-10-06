@@ -12,44 +12,19 @@ extension Notification.Name {
     
 }
 struct OptionView: View {
-    struct Data {
-        var renderingModeSelect:Int {
-            didSet {
-                UserDefaults.standard.set(renderingModeSelect, forKey: "renderingModeSelect")
-            }
-        }
-        
-        var fontWeightSelect:Int {
-            didSet {
-                UserDefaults.standard.set(fontWeightSelect, forKey: "fontWeightSelect")
-            }
-        }
-        var forgroundColorSelect1:Int {
-            didSet {
-                UserDefaults.standard.set(forgroundColorSelect1, forKey: "forgroundColorSelect1")
-            }
-        }
-        
-        var forgroundColorSelect2:Int {
-            didSet {
-                UserDefaults.standard.set(forgroundColorSelect2, forKey: "forgroundColorSelect2")
-            }
-        }
-        
-        var forgroundColorSelect3:Int {
-            didSet {
-                UserDefaults.standard.set(forgroundColorSelect3, forKey: "forgroundColorSelect3")
-            }
-        }
+    let data:Data = .init()
+    @AppStorage("renderingModeSelect") var renderingModeSelect:Int = 0
+    @AppStorage("fontWeightSelect") var fontWeightSelect:Int = 0
+    @AppStorage("forgroundColorSelect1") var forgroundColorSelect1:Int = 0
+    @AppStorage("forgroundColorSelect2") var forgroundColorSelect2:Int = 0
+    @AppStorage("forgroundColorSelect3") var forgroundColorSelect3:Int = 0
 
-        init() {
-            renderingModeSelect = UserDefaults.standard.integer(forKey: "renderingModeSelect")
-            fontWeightSelect = UserDefaults.standard.integer(forKey: "fontWeightSelect")
-            forgroundColorSelect1 = UserDefaults.standard.integer(forKey: "forgroundColorSelect1")
-            forgroundColorSelect2 =  UserDefaults.standard.integer(forKey: "forgroundColorSelect2")
-            forgroundColorSelect3 = UserDefaults.standard.integer(forKey: "forgroundColorSelect3")
-        }
-        
+    struct Data {
+        @AppStorage("renderingModeSelect") var renderingModeSelect:Int = 0
+        @AppStorage("fontWeightSelect") var fontWeightSelect:Int = 0
+        @AppStorage("forgroundColorSelect1") var forgroundColorSelect1:Int = 0
+        @AppStorage("forgroundColorSelect2") var forgroundColorSelect2:Int = 0
+        @AppStorage("forgroundColorSelect3") var forgroundColorSelect3:Int = 0
         
         var renderingMode:SymbolRenderingMode {
             Option.symbolRenderingModes[renderingModeSelect].1
@@ -87,9 +62,7 @@ struct OptionView: View {
                 return false
         }
     }
-    
-    @Binding var data:Data
-    
+        
     let previewNames:[String]
 
     var body: some View {
@@ -110,7 +83,7 @@ struct OptionView: View {
                 }
             }
             Section {
-                Picker(selection: $data.renderingModeSelect) {
+                Picker(selection: $renderingModeSelect) {
                     ForEach(0..<Option.symbolRenderingModes.count, id:\.self) { i in
                         Text(Option.symbolRenderingModes[i].0)
                     }
@@ -118,7 +91,7 @@ struct OptionView: View {
                     Text("renderingMode")
                 }
                                 
-                Picker(selection: $data.fontWeightSelect) {
+                Picker(selection: $fontWeightSelect) {
                     ForEach(0..<Option.fontWeights.count, id:\.self) { i in
                         Text(Option.fontWeights[i].0)
                     }
@@ -127,7 +100,7 @@ struct OptionView: View {
                         .fontWeight(data.fontWeight)
                 }
                 
-                Picker(selection: $data.forgroundColorSelect1) {
+                Picker(selection: $forgroundColorSelect1) {
                     ForEach(0..<Option.colorList.count, id:\.self) { i in
                         Text(Option.colorList[i].0)
                     }
@@ -138,7 +111,7 @@ struct OptionView: View {
                 
                 
                 if isPallete {
-                    Picker(selection: $data.forgroundColorSelect2) {
+                    Picker(selection: $forgroundColorSelect2) {
                         ForEach(0..<Option.colorList.count, id:\.self) { i in
                             Text(Option.colorList[i].0)
                         }
@@ -148,7 +121,7 @@ struct OptionView: View {
                     .foregroundColor(data.forgroundColor.1)
                     
                     
-                    Picker(selection: $data.forgroundColorSelect3) {
+                    Picker(selection: $forgroundColorSelect3) {
                         ForEach(0..<Option.colorList.count, id:\.self) { i in
                             Text(Option.colorList[i].0)
                         }

@@ -13,7 +13,8 @@ struct SFSymbolDetailView: View {
         case selectBackgroundColor
     }
     let imageName:String
-    @Binding var optionData:OptionView.Data
+    let optionData:OptionView.Data = .init()
+    
     @State var isToast = false
     @State var toastMessage = ""
     @State var toastTitle:Text? = nil
@@ -24,7 +25,7 @@ struct SFSymbolDetailView: View {
     let ad = GoogleFullScreenAd()
     var body: some View {
         List {
-            OptionView(data: $optionData, previewNames: [imageName])
+            OptionView(previewNames: [imageName])
             
             Section {
                 Button {

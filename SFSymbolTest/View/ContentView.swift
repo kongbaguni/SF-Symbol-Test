@@ -32,7 +32,7 @@ struct ContentView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     NavigationLink {
                         List {
-                            OptionView(data: $optionData, previewNames: ["mic",
+                            OptionView(previewNames: ["mic",
                                                                          "carbon.dioxide.cloud",
                                                                          "carbon.dioxide.cloud.fill",
                                                                          "bolt.trianglebadge.exclamationmark"])

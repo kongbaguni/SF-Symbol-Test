@@ -16,7 +16,8 @@ struct SymbolListView: View {
     
     @State var names:[String] = []
     @State var favorites:[String] = UserDefaults.standard.favorites
-    @State var optionData:OptionView.Data = .init()
+    
+    let optionData = OptionView.Data()
     @State var keyword = ""
     
     @State var isPushView = false
@@ -114,7 +115,7 @@ struct SymbolListView: View {
                     
                 }
                 if let name = data[i] as? String {
-                    getImageView(destination: SFSymbolDetailView(imageName: name, optionData: $optionData),
+                    getImageView(destination: SFSymbolDetailView(imageName: name),
                                  imgName: name)
                 }
             }
@@ -169,7 +170,6 @@ struct SymbolListView: View {
         }
         
         .onAppear {
-            optionData.load()
             SFSymbol(names: $names).loadData(category: category ?? "all")
             favorites = UserDefaults.standard.favorites
         }
