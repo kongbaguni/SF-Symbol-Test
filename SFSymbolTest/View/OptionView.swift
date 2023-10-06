@@ -18,6 +18,8 @@ struct OptionView: View {
     @AppStorage("forgroundColorSelect1") var forgroundColorSelect1:Int = 0
     @AppStorage("forgroundColorSelect2") var forgroundColorSelect2:Int = 0
     @AppStorage("forgroundColorSelect3") var forgroundColorSelect3:Int = 0
+    @AppStorage("isUseAnimation") var isUseAnimation:Bool = false
+    @AppStorage("animationStyleSelect") var animationStyleSelect:Int = 0
 
     struct Data {
         @AppStorage("renderingModeSelect") var renderingModeSelect:Int = 0
@@ -25,6 +27,12 @@ struct OptionView: View {
         @AppStorage("forgroundColorSelect1") var forgroundColorSelect1:Int = 0
         @AppStorage("forgroundColorSelect2") var forgroundColorSelect2:Int = 0
         @AppStorage("forgroundColorSelect3") var forgroundColorSelect3:Int = 0
+        @AppStorage("isUseAnimation") var isUseAnimation:Bool = false
+        @AppStorage("animationStyleSelect") var animationStyleSelect:Int = 0
+
+        var animationStyle:Option.AnimationStyle {
+            Option.AnimationStyle.allCases[animationStyleSelect]
+        }
         
         var renderingMode:SymbolRenderingMode {
             Option.symbolRenderingModes[renderingModeSelect].1
@@ -51,6 +59,7 @@ struct OptionView: View {
             forgroundColorSelect2 = option.forgroundColorSelect2
             forgroundColorSelect3 = option.forgroundColorSelect3            
         }
+               
                 
     }
     
@@ -65,20 +74,56 @@ struct OptionView: View {
         
     let previewNames:[String]
 
+    func makeImage(name:String) -> some View  {
+        Image(systemName: name)
+            .font(.system(size: 150 / CGFloat(previewNames.count), weight: data.fontWeight))
+            .symbolRenderingMode(data.renderingMode)
+            .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
+    }
+        
     var body: some View {
         Group {
             Section {
                 LazyVGrid(columns: GridItem.makeGridItems(number: previewNames.count)) {
                     ForEach(previewNames, id:\.self) { previewName in
                         VStack {
-                            Image(systemName: previewName)
-                                .font(.system(size: 150 / CGFloat(previewNames.count), weight: data.fontWeight))
-                                .symbolRenderingMode(data.renderingMode)                                
-                                .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
+                            if isUseAnimation {
+                                switch Option.AnimationStyle.allCases[animationStyleSelect] {
+                                case .pulse:
+                                    makeImage(name: previewName).symbolEffect(.pulse)
+                                case .appear:
+                                    makeImage(name: previewName).symbolEffect(.appear.down.byLayer)
+                                case .variableColor:
+                                    makeImage(name: previewName).symbolEffect(.variableColor.cumulative.dimInactiveLayers)
+                                    
+                                
+                                default:
+                                    makeImage(name: previewName)
+                                }
+                            } else {
+                                makeImage(name: previewName)
+                            }
+                                
+                                
+                                
                             if previewNames.count == 1 {
                                 Text(previewName)
                             }
                         }
+                    }
+                }
+            }
+            Section {
+                Toggle(isOn: $isUseAnimation) {
+                    Text("use Animation")
+                }
+                if isUseAnimation {
+                    Picker(selection:$animationStyleSelect) {
+                        ForEach(0..<Option.AnimationStyle.allCases.count, id:\.self) { i in
+                            Text(Option.AnimationStyle.allCases[i].rawValue)
+                        }
+                    } label : {
+                        Text("animationStyle")
                     }
                 }
             }

@@ -10,6 +10,17 @@ import SwiftUI
 
 
 struct Option {
+    
+    enum AnimationStyle:String, CaseIterable  {
+        case appear = "appear"
+        case bounce = "bounce"
+        case pulse = "pulse"
+        case variableColor = "variableColor"
+        case scale = "scale"
+        case replace = "replace"
+        case disappear = "disappear"
+    }
+    
     static let symbolRenderingModes:[(String,SymbolRenderingMode)] = [
         ("multicolor",.multicolor),
         ("hierarchical",.hierarchical),
