@@ -12,13 +12,37 @@ import SwiftUI
 struct Option {
     
     enum AnimationStyle:String, CaseIterable  {
-        case appear = "appear"
+//        case appear = "appear"
         case bounce = "bounce"
         case pulse = "pulse"
         case variableColor = "variableColor"
-        case scale = "scale"
-        case replace = "replace"
-        case disappear = "disappear"
+//        case scale = "scale"
+//        case replace = "replace"
+//        case disappear = "disappear"
+    }
+    
+    enum AnimationAnimate:String, CaseIterable {
+        case wholeSymbol = "wholeSymbol"
+        case byLayer = "byLayer"
+    }
+    
+    enum AnimationDirection:String, CaseIterable {
+        case up = "up"
+        case down = "down"
+    }
+    
+    enum AnimationVaribleStyle:String, CaseIterable {
+        /** 누적*/
+        case cumulative = "cumulative"
+        /** 반복*/
+        case iterative = "iterative"
+    }
+    
+    enum AnimationInactiveLayers: String, CaseIterable {
+        /** 어둡게*/
+        case dimInactiveLayers = "dimInactiveLayers"
+        /** 가리기*/
+        case hideInactiveLayers = "hideInactiveLayers"
     }
     
     static let symbolRenderingModes:[(String,SymbolRenderingMode)] = [

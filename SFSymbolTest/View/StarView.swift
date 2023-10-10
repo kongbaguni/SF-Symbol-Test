@@ -44,8 +44,6 @@ struct StarView: View {
     }
 }
 
-struct StarView_Previews: PreviewProvider {
-    static var previews: some View {
-        StarView(numberOfStar: 3.5, forgroundColor: .yellow, size: .init(width: 12, height: 12))
-    }
+#Preview {
+    StarView(numberOfStar: 3.5, forgroundColor: .yellow, size: .init(width: 12, height: 12))
 }

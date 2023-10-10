@@ -20,6 +20,11 @@ struct OptionView: View {
     @AppStorage("forgroundColorSelect3") var forgroundColorSelect3:Int = 0
     @AppStorage("isUseAnimation") var isUseAnimation:Bool = false
     @AppStorage("animationStyleSelect") var animationStyleSelect:Int = 0
+    @AppStorage("animationAnimateSelect") var animationAnimateSelect:Int = 0
+    @AppStorage("animationDirectionSelect") var animationDirectionSelect:Int = 0
+    @AppStorage("animationVaribleStyleSelect") var animationVaribleStyleSelect:Int = 0
+    @AppStorage("animationInactiveLayersSelect") var animationInactiveLayersSelect:Int = 0
+    @AppStorage("animationReversing") var animationReversing = false
 
     struct Data {
         @AppStorage("renderingModeSelect") var renderingModeSelect:Int = 0
@@ -29,9 +34,30 @@ struct OptionView: View {
         @AppStorage("forgroundColorSelect3") var forgroundColorSelect3:Int = 0
         @AppStorage("isUseAnimation") var isUseAnimation:Bool = false
         @AppStorage("animationStyleSelect") var animationStyleSelect:Int = 0
-
+        @AppStorage("animationAnimateSelect") var animationAnimateSelect:Int = 0
+        @AppStorage("animationDirectionSelect") var animationDirectionSelect:Int = 0
+        @AppStorage("animationVaribleStyleSelect") var animationVaribleStyleSelect:Int = 0
+        @AppStorage("animationInactiveLayersSelect") var animationInactiveLayersSelect:Int = 0
+        @AppStorage("animationReversing") var animationReversing = false
+        
         var animationStyle:Option.AnimationStyle {
             Option.AnimationStyle.allCases[animationStyleSelect]
+        }
+        
+        var animationAnimate:Option.AnimationAnimate {
+            Option.AnimationAnimate.allCases[animationAnimateSelect]
+        }
+        
+        var animationDirection:Option.AnimationDirection {
+            Option.AnimationDirection.allCases[animationDirectionSelect]
+        }
+        
+        var animatonVaribleStyle:Option.AnimationVaribleStyle {
+            Option.AnimationVaribleStyle.allCases[animationVaribleStyleSelect]
+        }
+        
+        var animationInactiveLayers:Option.AnimationInactiveLayers {
+            Option.AnimationInactiveLayers.allCases[animationInactiveLayersSelect]
         }
         
         var renderingMode:SymbolRenderingMode {
@@ -75,12 +101,64 @@ struct OptionView: View {
     let previewNames:[String]
 
     func makeImage(name:String) -> some View  {
-        Image(systemName: name)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            effectValue = UUID().uuidString
+        }
+        
+        return Image(systemName: name)
             .font(.system(size: 150 / CGFloat(previewNames.count), weight: data.fontWeight))
             .symbolRenderingMode(data.renderingMode)
             .foregroundStyle(data.forgroundColor.0, data.forgroundColor.1, data.forgroundColor.2)
     }
         
+    @State var effectValue:String = Date().formatted()
+    var animatePicker: some View {
+        Picker(selection: $animationAnimateSelect) {
+            ForEach(0..<Option.AnimationAnimate.allCases.count, id:\.self) { i in
+                Text(Option.AnimationAnimate.allCases[i].rawValue)
+            }
+        } label: {
+            Text("Animate")
+        }
+    }
+    
+    var directionPicker: some View {
+        Picker(selection: $animationDirectionSelect) {
+            ForEach(0..<Option.AnimationDirection.allCases.count, id:\.self) { i in
+                Text(Option.AnimationDirection.allCases[i].rawValue)
+            }
+        } label: {
+            Text("Direction")
+        }
+    }
+    
+    var varibleStylePicker:some View {
+        Picker(selection: $animationVaribleStyleSelect) {
+            ForEach(0..<Option.AnimationVaribleStyle.allCases.count, id:\.self) {i in
+                Text(Option.AnimationVaribleStyle.allCases[i].rawValue)
+            }
+        } label: {
+            Text("Style")
+        }
+    }
+    
+    var inactiveLayersPicker: some View {
+        Picker(selection: $animationInactiveLayersSelect) {
+            ForEach(0..<Option.AnimationInactiveLayers.allCases.count, id:\.self) {i in
+                Text(Option.AnimationInactiveLayers.allCases[i].rawValue)
+            }
+        } label: {
+            Text("Inactive Layers")
+        }
+
+    }
+
+    var reversingToggle: some View {
+        Toggle(isOn: $animationReversing, label: {
+            Text("Reversing")
+        })
+    }
+    
     var body: some View {
         Group {
             Section {
@@ -88,17 +166,71 @@ struct OptionView: View {
                     ForEach(previewNames, id:\.self) { previewName in
                         VStack {
                             if isUseAnimation {
-                                switch Option.AnimationStyle.allCases[animationStyleSelect] {
-                                case .pulse:
-                                    makeImage(name: previewName).symbolEffect(.pulse)
-                                case .appear:
-                                    makeImage(name: previewName).symbolEffect(.appear.down.byLayer)
-                                case .variableColor:
-                                    makeImage(name: previewName).symbolEffect(.variableColor.cumulative.dimInactiveLayers)
-                                    
                                 
-                                default:
-                                    makeImage(name: previewName)
+                                switch Option.AnimationStyle.allCases[animationStyleSelect] {
+                                case .bounce:
+                                    switch Option.AnimationAnimate.allCases[animationAnimateSelect] {
+                                    case .byLayer:
+                                        switch Option.AnimationDirection.allCases[animationDirectionSelect] {
+                                        case .up:
+                                            makeImage(name: previewName).symbolEffect(.bounce.up.byLayer, options: .repeating, value: effectValue)
+                                        case .down:
+                                            makeImage(name: previewName).symbolEffect(.bounce.down.byLayer, options: .repeating, value: effectValue)
+                                        }
+                                    case .wholeSymbol:
+                                        switch Option.AnimationDirection.allCases[animationDirectionSelect] {
+                                        case .up:
+                                            makeImage(name: previewName).symbolEffect(.bounce.up.wholeSymbol, options: .repeating, value: effectValue)
+                                        case .down:
+                                            makeImage(name: previewName).symbolEffect(.bounce.down.wholeSymbol, options: .repeating, value: effectValue)
+                                        }
+                                    }
+                                    
+                                case .pulse:
+                                    switch Option.AnimationAnimate.allCases[animationAnimateSelect] {
+                                    case .byLayer:
+                                        makeImage(name: previewName).symbolEffect(.pulse.byLayer,  options: .repeating, value: effectValue)
+                                    case .wholeSymbol:
+                                        makeImage(name: previewName).symbolEffect(.pulse.wholeSymbol,  options: .repeating, value: effectValue)
+                                    }
+                                case .variableColor:
+                                    switch Option.AnimationVaribleStyle.allCases[animationVaribleStyleSelect] {
+                                    case .cumulative:
+                                        switch Option.AnimationInactiveLayers.allCases[animationInactiveLayersSelect] {
+                                        case .dimInactiveLayers:
+                                            if animationReversing {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.cumulative.dimInactiveLayers.reversing)
+                                            }
+                                            else {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.cumulative.dimInactiveLayers.nonReversing)
+                                            }
+                                        case .hideInactiveLayers:
+                                            if animationReversing {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.cumulative.hideInactiveLayers.reversing)
+                                            } else {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.cumulative.hideInactiveLayers.nonReversing)
+                                            }
+                                        }
+                                        
+                                    case .iterative:
+                                        
+                                        switch Option.AnimationInactiveLayers.allCases[animationInactiveLayersSelect] {
+                                        case .dimInactiveLayers:
+                                            if animationReversing {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.iterative.dimInactiveLayers.reversing)
+                                            }
+                                            else {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.iterative.dimInactiveLayers.nonReversing)
+                                            }
+                                        case .hideInactiveLayers:
+                                            if animationReversing {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.iterative.hideInactiveLayers.reversing)
+                                            } else {
+                                                makeImage(name: previewName).symbolEffect(.variableColor.iterative.hideInactiveLayers.nonReversing)
+                                            }
+                                        }
+                                    }
+                                    
                                 }
                             } else {
                                 makeImage(name: previewName)
@@ -124,6 +256,20 @@ struct OptionView: View {
                         }
                     } label : {
                         Text("animationStyle")
+                    }
+                    
+                    let style = Option.AnimationStyle.allCases[animationStyleSelect]
+                    
+                    switch style {
+                    case .pulse:
+                        animatePicker
+                    case .variableColor:
+                        varibleStylePicker
+                        inactiveLayersPicker
+                        reversingToggle
+                    default:
+                        animatePicker
+                        directionPicker
                     }
                 }
             }
@@ -179,6 +325,9 @@ struct OptionView: View {
             Section {
                 NativeAdView()
             }
+        }
+        .onAppear {
+            effectValue = UUID().uuidString
         }
         .onDisappear {
             let option:Option = .init(
